@@ -1,0 +1,26 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/group_feature">
+        <item
+            android:id="@+id/action_parties"
+            android:title="@string/parties_activity_name"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_members"
+            android:title="@string/members_activity_name"
+            app:showAsAction="ifRoom" />
+        <item
+            android:id="@+id/action_products"
+            android:title="@string/products_activity_name"
+            app:showAsAction="ifRoom" />
+    </group>
+    <group
+        android:id="@+id/group_settings">
+        <item
+            android:id="@+id/action_settings"
+            android:title="@string/action_settings"
+            app:showAsAction="ifRoom"
+            android:icon="@drawable/ic_action_settings"/>
+    </group>
+</menu>

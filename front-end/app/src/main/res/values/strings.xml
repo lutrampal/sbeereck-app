@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">S\'Beer Eck</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="parties_activity_name">Soirées</string>
+    <string name="members_activity_name">Adhérents</string>
+    <string name="products_activity_name">Bières et autres</string>
+    <string name="action_search">Rechercher</string>
+    <string name="drawer_open">Ouvrir le menu latéral</string>
+    <string name="drawer_close">Fermer le menu latéral</string>
 </resources>
