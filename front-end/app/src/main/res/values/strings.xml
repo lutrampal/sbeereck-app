@@ -7,4 +7,10 @@
     <string name="action_search">Rechercher</string>
     <string name="drawer_open">Ouvrir le menu latéral</string>
     <string name="drawer_close">Fermer le menu latéral</string>
+    <string name="edit">Editer</string>
+    <string name="delete">Supprimer</string>
+    <string name="delete_party_title">Supprimer la soirée</string>
+    <string name="delete_party_confirm">Etes-vous sûr de vouloir supprimer la soirée ?</string>
+    <string name="cancel">Annuler</string>
+    <string name="title_activity_members">Adhérents</string>
 </resources>
