@@ -29,13 +29,13 @@
         <include layout="@layout/content_parties" />
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fab_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:padding="0dp"
-            app:elevation="0dp"
+            app:elevation="@dimen/fab_elevation"
             app:srcCompat="@drawable/ic_add"
             app:useCompatPadding="false" />
 

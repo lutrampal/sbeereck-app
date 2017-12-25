@@ -14,7 +14,6 @@ import com.sbeereck.lutrampal.model.Party;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -22,15 +21,12 @@ public class PartyListItemAdapter extends BaseAdapter implements Filterable {
 
     private List<Party> parties;
     private List<Party> filteredParties;
-    private Context context;
     private static LayoutInflater inflater = null;
 
     public PartyListItemAdapter(Context context, List<Party> parties) {
-        this.context = context;
         this.parties = parties;
         this.filteredParties = parties;
-        inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -81,8 +77,7 @@ public class PartyListItemAdapter extends BaseAdapter implements Filterable {
                     List<Party> filteredParties = new ArrayList<>();
 
                     for (Party p : parties) {
-                        if (p.getName().toUpperCase()
-                                .contains(constraint.toString().toUpperCase()))
+                        if (p.getName().toLowerCase().contains(constraint.toString().toLowerCase()))
                             filteredParties.add(p);
                     }
 

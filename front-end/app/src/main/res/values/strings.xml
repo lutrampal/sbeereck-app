@@ -13,4 +13,5 @@
     <string name="delete_party_confirm">Etes-vous sûr de vouloir supprimer la soirée ?</string>
     <string name="cancel">Annuler</string>
     <string name="title_activity_members">Adhérents</string>
+    <string name="total_balance">Solde Total</string>
 </resources>

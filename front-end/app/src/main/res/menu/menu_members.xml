@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sbeereck.lutrampal.applisbeereck.MembersActivity">
+    <item
+        android:id="@+id/total_balance"
+        android:title="@string/total_balance"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.widget.TextView" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/action_search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView" />
+</menu>

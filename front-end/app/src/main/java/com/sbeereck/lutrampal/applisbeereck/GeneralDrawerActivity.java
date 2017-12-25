@@ -37,7 +37,7 @@ public abstract class GeneralDrawerActivity extends AppCompatActivity {
     protected ListView mListview;
     protected SearchView mSearchView;
     protected int mLayoutId;
-    protected FloatingActionButton mFab;
+    protected FloatingActionButton mFabAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +49,11 @@ public abstract class GeneralDrawerActivity extends AppCompatActivity {
         createDrawer();
         createListView();
 
-        mFab = findViewById(R.id.fab);
+        mFabAdd = findViewById(R.id.fab_add);
     }
 
     private void createListView() {
-        mListview = findViewById(R.id.parties_lv);
+        mListview = findViewById(R.id.main_listview);
         registerForContextMenu(mListview);
         mListview.setTextFilterEnabled(true);
     }

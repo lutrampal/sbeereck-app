@@ -10,70 +10,70 @@ import java.util.Date;
 public class Party implements Comparable {
 
     /**
-     * The name of the party.
+     * The mName of the party.
      */
-    private String name;
+    private String mName;
     /**
-     * The date of the party.
+     * The mDate of the party.
      */
-    private Date date;
+    private Date mDate;
     /**
      * How many people attended the party.
      */
-    private int numberOfAttendees;
+    private int mNumberOfAttendees;
 
     /**
-     * How much income was earned during this party.
+     * How much mIncome was earned during this party.
      */
-    private float income;
+    private float mIncome;
 
     public float getIncome() {
-        return income;
+        return mIncome;
     }
 
-    public void setIncome(float income) {
-        this.income = income;
+    public void setIncome(float mIncome) {
+        this.mIncome = mIncome;
     }
 
 
     public String getName() {
-        return name;
+        return mName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String mName) {
+        this.mName = mName;
     }
 
     public Date getDate() {
-        return date;
+        return mDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDate(Date mDate) {
+        this.mDate = mDate;
     }
 
     public int getNumberOfAttendees() {
-        return numberOfAttendees;
+        return mNumberOfAttendees;
     }
 
-    public void setNumberOfAttendees(int numberOfAttendees) {
-        this.numberOfAttendees = numberOfAttendees;
+    public void setNumberOfAttendees(int mNumberOfAttendees) {
+        this.mNumberOfAttendees = mNumberOfAttendees;
     }
 
-    public Party(String name, Date date, int numberOfAttendees, float income) {
-        this.name = name;
-        this.date = date;
-        this.numberOfAttendees = numberOfAttendees;
-        this.income = income;
+    public Party(String mName, Date mDate, int mNumberOfAttendees, float mIncome) {
+        this.mName = mName;
+        this.mDate = mDate;
+        this.mNumberOfAttendees = mNumberOfAttendees;
+        this.mIncome = mIncome;
     }
 
     @Override
     public String toString() {
         return "Party{" +
-                "name='" + name + '\'' +
-                ", date=" + date +
-                ", numberOfAttendees=" + numberOfAttendees +
-                ", income=" + income +
+                "mName='" + mName + '\'' +
+                ", mDate=" + mDate +
+                ", mNumberOfAttendees=" + mNumberOfAttendees +
+                ", mIncome=" + mIncome +
                 '}';
     }
 
