@@ -9,7 +9,8 @@
     android:backgroundTint="?attr/colorButtonNormal"
     android:longClickable="false"
     android:orientation="horizontal"
-    android:padding="10dp">
+    android:padding="10dp"
+    android:id="@+id/member_list_item">
 
     <TextView
         android:id="@+id/member_name_tv"

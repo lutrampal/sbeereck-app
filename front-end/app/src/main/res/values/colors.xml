@@ -3,4 +3,6 @@
     <color name="colorPrimary">#9e9e9e</color>
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#fdd835</color>
+    <color name="colorBalanceTooLow">#c62828</color>
+    <color name="colorOutdatedMembership">#64b5f6</color>
 </resources>

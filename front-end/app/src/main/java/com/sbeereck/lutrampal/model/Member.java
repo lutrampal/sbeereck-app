@@ -23,12 +23,14 @@ public class Member {
         this.mMembership = mMembershipFee;
     }
 
-    public Member(String mName, float mBalance, School mSchool, String mEmail, String mPhone) {
+    public Member(String mName, float mBalance, School mSchool, String mEmail, String mPhone,
+                  Boolean mMembership) {
         this.mName = mName;
         this.mBalance = mBalance;
         this.mSchool = mSchool;
         this.mEmail = mEmail;
         this.mPhone = mPhone;
+        this.mMembership = mMembership;
     }
 
     public String getName() {

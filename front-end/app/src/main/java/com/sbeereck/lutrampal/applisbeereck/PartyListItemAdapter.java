@@ -21,6 +21,9 @@ public class PartyListItemAdapter extends BaseAdapter implements Filterable {
 
     private List<Party> parties;
     private List<Party> filteredParties;
+    public List<Party> getFilteredParties() {
+        return filteredParties;
+    }
     private static LayoutInflater inflater = null;
 
     public PartyListItemAdapter(Context context, List<Party> parties) {

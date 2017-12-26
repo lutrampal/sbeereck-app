@@ -4,14 +4,48 @@
     <string name="parties_activity_name">Soirées</string>
     <string name="members_activity_name">Adhérents</string>
     <string name="products_activity_name">Bières et autres</string>
+    <string name="validate">Valider</string>
     <string name="action_search">Rechercher</string>
     <string name="drawer_open">Ouvrir le menu latéral</string>
     <string name="drawer_close">Fermer le menu latéral</string>
-    <string name="edit">Editer</string>
+    <string name="edit">Éditer</string>
     <string name="delete">Supprimer</string>
-    <string name="delete_party_title">Supprimer la soirée</string>
-    <string name="delete_party_confirm">Etes-vous sûr de vouloir supprimer la soirée ?</string>
+    <string name="delete_party_confirm">Êtes-vous sûr de vouloir supprimer la soirée ?</string>
     <string name="cancel">Annuler</string>
     <string name="title_activity_members">Adhérents</string>
     <string name="total_balance">Solde Total</string>
+    <string name="update_balance">Ajuster le solde</string>
+    <string name="delete_member">Clôturer</string>
+    <string name="pay_membership">Cotiser</string>
+    <string name="export_member">Exporter</string>
+    <string name="delete_member_confirm">Etes-vous sûr de vouloir clôturer ce compte ?</string>
+    <string name="ok">Ok</string>
+    <string name="valid_membership">Cotisation à jour</string>
+    <string name="invalid_membership">Cotisation expirée</string>
+    <string name="membership_confirm">Valider la cotisation ?</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_member_title">Nouvel adhérent</string>
+    <string name="mendatory_name">Nom *</string>
+    <string name="school">École</string>
+    <string name="mendatory_email">Email *</string>
+    <string name="phone">Téléphone</string>
+    <string name="add">Ajouter</string>
+    <string name="reason">Motif</string>
+    <string name="amount">Montant (+ ou - en €)</string>
+    <string-array name="schools">
+        <item>Écoles</item>
+        <item>Ense3</item>
+        <item>Ensimag</item>
+        <item>Esisar</item>
+        <item>GI</item>
+        <item>Papet</item>
+        <item>Phelma</item>
+    </string-array>
+    <string name="title_activity_main">S\'Beer Eck</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
