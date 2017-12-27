@@ -19,6 +19,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".PartyActivity"
+            android:label="@string/title_activity_party"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sbeereck.lutrampal.applisbeereck.MainActivity" />
+        </activity>
+        <activity
+            android:name=".NewPartyActivity"
+            android:label="@string/title_activity_new_party"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sbeereck.lutrampal.applisbeereck.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddBeersActivity"
+            android:label="@string/title_activity_add_beers"
+            android:parentActivityName=".NewPartyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sbeereck.lutrampal.applisbeereck.NewPartyActivity" />
+        </activity>
+        <activity
+            android:name=".NewTransactionActivity"
+            android:label="@string/title_activity_new_transaction"
+            android:parentActivityName=".PartyActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sbeereck.lutrampal.applisbeereck.PartyActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="15dp"
-    android:layout_marginTop="5dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="30dp"
+    android:gravity="center"
     android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+    <ImageView
+        android:id="@+id/sbeereck_art"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
         android:layout_weight="1"
-        android:gravity="bottom"
-        android:text="@string/app_name"
-        android:textAlignment="viewStart"
-        android:textAllCaps="false"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:typeface="sans" />
-
+        android:contentDescription="S'Beer Eck logo"
+        android:cropToPadding="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/sbeereck" />
 </LinearLayout>

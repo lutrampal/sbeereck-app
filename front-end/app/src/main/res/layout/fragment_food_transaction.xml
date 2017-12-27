@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="vertical"
+    tools:context="com.sbeereck.lutrampal.applisbeereck.FoodTransactionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="13dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/minus_quantity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:background="@null"
+            android:contentDescription="Reduce quantity"
+            android:cropToPadding="false"
+            android:elevation="5dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_remove_round" />
+
+        <TextView
+            android:id="@+id/quantity_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:text="1"
+            android:textColor="@android:color/black"
+            android:textSize="24sp" />
+
+        <ImageButton
+            android:id="@+id/plus_quantity_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="false"
+            android:background="@null"
+            android:contentDescription="Increase quantity"
+            android:cropToPadding="false"
+            android:elevation="5dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/ic_add_round" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/food_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:choiceMode="singleChoice" />
+</LinearLayout>

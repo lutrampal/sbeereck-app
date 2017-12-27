@@ -1,9 +1,9 @@
 package com.sbeereck.lutrampal.applisbeereck;
 
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,7 +18,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filterable;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,15 +42,15 @@ public class GeneralMainViewFragment extends Fragment {
         mActivity = (AppCompatActivity)getActivity();
         Toolbar toolbar = mActivity.findViewById(R.id.toolbar);
         mActivity.setSupportActionBar(toolbar);
-        mActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mActivity.getSupportActionBar().setHomeButtonEnabled(true);
+        mActivity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
-        DrawerLayout drawer = (DrawerLayout) mActivity.findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = mActivity.findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer,
                 toolbar,
                 R.string.navigation_drawer_open,
                 R.string.navigation_drawer_close);
         drawer.addDrawerListener(mDrawerToggle);
+        mDrawerToggle.setDrawerIndicatorEnabled(true);
         mDrawerToggle.syncState();
 
         mListview = view.findViewById(R.id.main_listview);
@@ -60,12 +59,14 @@ public class GeneralMainViewFragment extends Fragment {
 
         mFabAdd = view.findViewById(R.id.fab_add);
         setHasOptionsMenu(true);
+
         return view;
     }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_members, menu);
+        menu.clear();
+        inflater.inflate(R.menu.menu_general, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    tools:context="com.sbeereck.lutrampal.applisbeereck.BeerTransactionFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/minus_quantity_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="false"
+                android:background="@null"
+                android:contentDescription="Reduce quantity"
+                android:cropToPadding="false"
+                android:elevation="5dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_remove_round" />
+
+            <TextView
+                android:id="@+id/quantity_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="7dp"
+                android:layout_marginRight="7dp"
+                android:text="1"
+                android:textColor="@android:color/black"
+                android:textSize="24sp" />
+
+            <ImageButton
+                android:id="@+id/plus_quantity_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="false"
+                android:background="@null"
+                android:contentDescription="Increase quantity"
+                android:cropToPadding="false"
+                android:elevation="5dp"
+                android:scaleType="fitStart"
+                android:src="@drawable/ic_add_round" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="1"
+            android:checkedButton="@+id/half_pint_rb">
+
+            <RadioButton
+                android:id="@+id/half_pint_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/half_pint" />
+
+            <RadioButton
+                android:id="@+id/pint_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pint" />
+
+            <RadioButton
+                android:id="@+id/pitcher_rb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pitcher" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/beers_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:choiceMode="singleChoice" />
+
+</LinearLayout>

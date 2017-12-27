@@ -2,13 +2,19 @@ package com.sbeereck.lutrampal.model;
 
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A class to represent a party organized by S'Beer Eck.
  */
-public class Party implements Comparable {
+public class Party implements Comparable, Serializable {
 
+    public Map<Product, BeerCategory> servedBeers;
     /**
      * The mName of the party.
      */
@@ -21,11 +27,33 @@ public class Party implements Comparable {
      * How many people attended the party.
      */
     private int mNumberOfAttendees;
-
     /**
      * How much mIncome was earned during this party.
      */
     private float mIncome;
+    private List<Transaction> transactions;
+    private float specialBeerPrice;
+    private float normalBeerPrice;
+
+    public Party(String mName, Date mDate, int mNumberOfAttendees, float mIncome,
+                 float normalBeerPrice, float specialBeerPrice) {
+        this.mName = mName;
+        this.mDate = mDate;
+        this.mNumberOfAttendees = mNumberOfAttendees;
+        this.mIncome = mIncome;
+        this.specialBeerPrice = specialBeerPrice;
+        this.normalBeerPrice = normalBeerPrice;
+        this.servedBeers = new HashMap<>();
+        this.transactions = new ArrayList<>();
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
 
     public float getIncome() {
         return mIncome;
@@ -34,7 +62,6 @@ public class Party implements Comparable {
     public void setIncome(float mIncome) {
         this.mIncome = mIncome;
     }
-
 
     public String getName() {
         return mName;
@@ -60,11 +87,28 @@ public class Party implements Comparable {
         this.mNumberOfAttendees = mNumberOfAttendees;
     }
 
-    public Party(String mName, Date mDate, int mNumberOfAttendees, float mIncome) {
-        this.mName = mName;
-        this.mDate = mDate;
-        this.mNumberOfAttendees = mNumberOfAttendees;
-        this.mIncome = mIncome;
+    public Map<Product, BeerCategory> getServedBeers() {
+        return servedBeers;
+    }
+
+    public void setServedBeers(Map<Product, BeerCategory> servedBeers) {
+        this.servedBeers = servedBeers;
+    }
+
+    public float getSpecialBeerPrice() {
+        return specialBeerPrice;
+    }
+
+    public void setSpecialBeerPrice(float specialBeerPrice) {
+        this.specialBeerPrice = specialBeerPrice;
+    }
+
+    public float getNormalBeerPrice() {
+        return normalBeerPrice;
+    }
+
+    public void setNormalBeerPrice(float normalBeerPrice) {
+        this.normalBeerPrice = normalBeerPrice;
     }
 
     @Override

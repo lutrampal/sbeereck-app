@@ -1,9 +1,11 @@
 package com.sbeereck.lutrampal.model;
 
+import java.io.Serializable;
+
 /**
  * A class to represent a member of the association who attends parties.
  */
-public class Member {
+public class Member implements Serializable {
 
     private String mName;
     private float mBalance;
@@ -15,14 +17,6 @@ public class Member {
      */
     private Boolean mMembership;
 
-    public Boolean getMembership() {
-        return mMembership;
-    }
-
-    public void setMembership(Boolean mMembershipFee) {
-        this.mMembership = mMembershipFee;
-    }
-
     public Member(String mName, float mBalance, School mSchool, String mEmail, String mPhone,
                   Boolean mMembership) {
         this.mName = mName;
@@ -31,6 +25,14 @@ public class Member {
         this.mEmail = mEmail;
         this.mPhone = mPhone;
         this.mMembership = mMembership;
+    }
+
+    public Boolean getMembership() {
+        return mMembership;
+    }
+
+    public void setMembership(Boolean mMembershipFee) {
+        this.mMembership = mMembershipFee;
     }
 
     public String getName() {

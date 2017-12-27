@@ -1,15 +1,12 @@
 package com.sbeereck.lutrampal.applisbeereck;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sbeereck.lutrampal.model.Member;
@@ -20,19 +17,19 @@ import java.util.List;
 
 public class MemberListItemAdapter extends BaseAdapter implements Filterable {
 
-    private List<Member> members;
-    private List<Member> filteredMembers;
-    public List<Member> getFilteredMembers() {
-        return filteredMembers;
-    }
-    private static LayoutInflater inflater = null;
-    private Context context;
-
+    protected static LayoutInflater inflater = null;
+    protected List<Member> members;
+    protected List<Member> filteredMembers;
+    protected Context context;
     public MemberListItemAdapter(Context context, List<Member> members) {
         this.context = context;
         this.members = members;
         this.filteredMembers = members;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public List<Member> getFilteredMembers() {
+        return filteredMembers;
     }
 
     @Override
@@ -82,15 +79,15 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
                     results.count = members.size();
                 }
                 else {
-                    List<Member> filteredParties = new ArrayList<>();
+                    List<Member> filteredMembers = new ArrayList<>();
 
                     for (Member m : members) {
                         if (m.getName().toLowerCase().contains(constraint.toString().toLowerCase()))
-                            filteredParties.add(m);
+                            filteredMembers.add(m);
                     }
 
-                    results.values = filteredParties;
-                    results.count = filteredParties.size();
+                    results.values = filteredMembers;
+                    results.count = filteredMembers.size();
                 }
                 return results;
 

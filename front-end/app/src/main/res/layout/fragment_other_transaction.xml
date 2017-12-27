@@ -2,29 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="15dp"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.UpdateBalanceDialogFragment">
+    tools:context="com.sbeereck.lutrampal.applisbeereck.OtherTransactionFragment">
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:text="@string/update_balance"
-        android:textAlignment="center"
-        android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editText7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/reason"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="@string/refill" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,8 +22,8 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText4"
-            android:layout_width="match_parent"
+            android:id="@+id/editText9"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
@@ -41,12 +31,11 @@
             android:inputType="numberSigned|numberDecimal" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="€" />
-
     </LinearLayout>
 
 </LinearLayout>

@@ -4,11 +4,11 @@
         android:id="@+id/group_feature">
         <item
             android:id="@+id/action_parties"
-            android:title="@string/parties_activity_name"
+            android:title="@string/parties_fragment_name"
             app:showAsAction="ifRoom" />
         <item
             android:id="@+id/action_members"
-            android:title="@string/members_activity_name"
+            android:title="@string/members_fragment_name"
             app:showAsAction="ifRoom" />
         <item
             android:id="@+id/action_products"
@@ -19,8 +19,8 @@
         android:id="@+id/group_settings">
         <item
             android:id="@+id/action_settings"
+            android:icon="@drawable/ic_action_settings"
             android:title="@string/action_settings"
-            app:showAsAction="ifRoom"
-            android:icon="@drawable/ic_action_settings"/>
+            app:showAsAction="ifRoom" />
     </group>
 </menu>

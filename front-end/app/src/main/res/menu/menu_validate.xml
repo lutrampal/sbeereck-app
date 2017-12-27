@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sbeereck.lutrampal.applisbeereck.NewPartyActivity">
+    <item
+        android:id="@+id/validate"
+        android:icon="@drawable/ic_validate"
+        android:title="@string/validate"
+        app:showAsAction="ifRoom" />
+</menu>

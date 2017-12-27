@@ -2,9 +2,10 @@ package com.sbeereck.lutrampal.applisbeereck;
 
 
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -16,10 +17,10 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
+import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.Party;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
@@ -30,14 +31,6 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
     private List<Party> parties;
 
-    private List<Party> getPlaceHolderParties() {
-        List<Party> parties = new ArrayList<>();
-        parties.add(new Party("Soirée 1", new Date(2017, 12, 25), 200, 2000));
-        parties.add(new Party("Soirée 2", new Date(2017, 12, 24), 50, 2000));
-        parties.add(new Party("Soirée 3", new Date(2017, 12, 11), 50, -8000));
-        return parties;
-    }
-
     public PartiesFragment() {
         // Required empty public constructor
     }
@@ -46,11 +39,36 @@ public class PartiesFragment extends GeneralMainViewFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_parties, container, false);
-        parties = getPlaceHolderParties();
+        parties = Placeholders.getPlaceHolderParties();
         super.onCreateView(inflater, container, savedInstanceState);
         mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
-        mActivity.getSupportActionBar().setTitle(R.string.parties_activity_name);
+        mListview.setOnItemClickListener(getListViewItemClickListener());
+        mActivity.getSupportActionBar().setTitle(R.string.parties_fragment_name);
+        mFabAdd.setOnClickListener(getFabAddOnClickListener());
         return view;
+    }
+
+    private View.OnClickListener getFabAddOnClickListener() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mActivity, NewPartyActivity.class);
+                startActivity(intent);
+            }
+        };
+    }
+
+    private AdapterView.OnItemClickListener getListViewItemClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(mActivity, PartyActivity.class);
+                intent.putExtra("party", ((PartyListItemAdapter) mListview.getAdapter())
+                        .getFilteredParties().get(i));
+                intent.putExtra("members", (ArrayList<Member>) Placeholders.getPlaceHolderMembers());
+                startActivity(intent);
+            }
+        };
     }
 
     @Override
@@ -69,6 +87,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         switch (item.getItemId()) {
             case R.id.edit:
                 // user wants to edit a party
+                editParty(info.position);
                 return true;
             case R.id.delete:
                 // user wants to delete a party
@@ -77,6 +96,15 @@ public class PartiesFragment extends GeneralMainViewFragment {
             default:
                 return super.onContextItemSelected(item);
         }
+    }
+
+    private void editParty(int position) {
+        List<Party> filteredParties = ((PartyListItemAdapter) mListview.getAdapter())
+                .getFilteredParties();
+        Party partyToEdit = filteredParties.get(position);
+        Intent intent = new Intent(mActivity, NewPartyActivity.class);
+        intent.putExtra("party", partyToEdit);
+        startActivity(intent);
     }
 
     private void deleteParty(final int partyIndex) {

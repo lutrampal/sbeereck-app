@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/phone"
-            android:inputType="textPersonName|phone"
+            android:inputType="phone"
             android:paddingRight="5dp" />
 
         <Spinner

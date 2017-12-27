@@ -2,10 +2,10 @@ package com.sbeereck.lutrampal.applisbeereck;
 
 
 import android.app.Dialog;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
@@ -18,9 +18,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 
 import com.sbeereck.lutrampal.model.Member;
-import com.sbeereck.lutrampal.model.School;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,32 +27,22 @@ import java.util.List;
  */
 public class MembersFragment extends GeneralMainViewFragment {
 
-
-    private List<Member> getPlaceHolderMembers() {
-        List<Member> members = new ArrayList<>();
-        members.add(new Member("Kerboul Thomas", -50, School.ENSE3, "kerboul@gmail.com", "0635368817", true));
-        members.add(new Member("Bertaux Benjamin", 10.5f, School.ENSIMAG, "ber.ben@gmail.com", "0635368817", false));
-        members.add(new Member("Trampal Lucas", 100, School.ENSIMAG, "lt@gmail.com", "0635368817", true));
-        return members;
-    }
-
     private List<Member> members;
 
     public MembersFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_members, container, false);
-        members = getPlaceHolderMembers();
+        members = Placeholders.getPlaceHolderMembers();
         super.onCreateView(inflater, container, savedInstanceState);
         mListview.setAdapter(new MemberListItemAdapter(getActivity(), members));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mFabAdd.setOnClickListener(getFabAddClickListener());
-        mActivity.getSupportActionBar().setTitle(R.string.members_activity_name);
+        mActivity.getSupportActionBar().setTitle(R.string.members_fragment_name);
         return view;
     }
 
@@ -75,14 +63,8 @@ public class MembersFragment extends GeneralMainViewFragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 DialogFragment infoDialog = new MemberInfoDialogFragment();
                 Bundle args = new Bundle();
-                Member m =  ((MemberListItemAdapter) mListview.getAdapter())
-                        .getFilteredMembers().get(i);
-                args.putString("name", m.getName());
-                args.putFloat("balance", m.getBalance());
-                args.putString("school", School.getName(m.getSchool()));
-                args.putString("email", m.getEmail());
-                args.putString("phone", m.getPhone());
-                args.putBoolean("membership", m.getMembership());
+                Member m = (Member) mListview.getAdapter().getItem(i);
+                args.putSerializable("member", m);
                 infoDialog.setArguments(args);
                 infoDialog.show(mActivity.getSupportFragmentManager(),
                         "MemberInfoDialogFragment");
@@ -99,8 +81,7 @@ public class MembersFragment extends GeneralMainViewFragment {
         MenuInflater inflater = mActivity.getMenuInflater();
         if (v.getId()==R.id.main_listview) {
             inflater.inflate(R.menu.menu_member, menu);
-            Member selectedMember = ((MemberListItemAdapter) mListview.getAdapter())
-                    .getFilteredMembers().get((int)info.id);
+            Member selectedMember = (Member) mListview.getAdapter().getItem((int) info.id);
             if (selectedMember.getMembership()) {
                 menu.getItem(0).setVisible(false);
             }
@@ -141,8 +122,7 @@ public class MembersFragment extends GeneralMainViewFragment {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked yes button
-                        ((MemberListItemAdapter) mListview.getAdapter()).getFilteredMembers()
-                                .get(position).setMembership(true);
+                        ((Member) mListview.getAdapter().getItem(position)).setMembership(true);
                         ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
                     }
                 })

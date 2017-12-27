@@ -1,50 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp"
     android:layout_marginLeft="20dp"
     android:layout_marginRight="20dp"
     android:layout_marginTop="10dp"
-    android:backgroundTint="?attr/colorButtonNormal"
-    android:longClickable="false"
     android:orientation="vertical"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/party_name_tv"
+            android:id="@+id/label_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/colorBeer"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/party_date_tv"
+            android:id="@+id/amount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text=""
             android:textAlignment="textEnd"
             android:textStyle="italic" />
 
     </LinearLayout>
 
     <TextView
-        android:id="@+id/party_attendees_tv"
+        android:id="@+id/member_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
-
-    <TextView
-        android:id="@+id/party_income_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="" />
-
-</android.widget.LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+</LinearLayout>

@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">S\'Beer Eck</string>
     <string name="action_settings">Paramètres</string>
-    <string name="parties_activity_name">Soirées</string>
-    <string name="members_activity_name">Adhérents</string>
+    <string name="parties_fragment_name">Soirées</string>
+    <string name="members_fragment_name">Adhérents</string>
     <string name="products_activity_name">Bières et autres</string>
     <string name="validate">Valider</string>
     <string name="action_search">Rechercher</string>
@@ -10,7 +10,7 @@
     <string name="drawer_close">Fermer le menu latéral</string>
     <string name="edit">Éditer</string>
     <string name="delete">Supprimer</string>
-    <string name="delete_party_confirm">Êtes-vous sûr de vouloir supprimer la soirée ?</string>
+    <string name="delete_product_confirm">Êtes-vous sûr de vouloir supprimer ce produit ?</string>
     <string name="cancel">Annuler</string>
     <string name="title_activity_members">Adhérents</string>
     <string name="total_balance">Solde Total</string>
@@ -18,7 +18,7 @@
     <string name="delete_member">Clôturer</string>
     <string name="pay_membership">Cotiser</string>
     <string name="export_member">Exporter</string>
-    <string name="delete_member_confirm">Etes-vous sûr de vouloir clôturer ce compte ?</string>
+    <string name="delete_member_confirm">Êtes-vous sûr de vouloir clôturer ce compte ?</string>
     <string name="ok">Ok</string>
     <string name="valid_membership">Cotisation à jour</string>
     <string name="invalid_membership">Cotisation expirée</string>
@@ -28,13 +28,13 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_member_title">Nouvel adhérent</string>
-    <string name="mendatory_name">Nom *</string>
+    <string name="mendatory_name">Nom</string>
     <string name="school">École</string>
-    <string name="mendatory_email">Email *</string>
+    <string name="mendatory_email">Email</string>
     <string name="phone">Téléphone</string>
     <string name="add">Ajouter</string>
     <string name="reason">Motif</string>
-    <string name="amount">Montant (+ ou - en €)</string>
+    <string name="amount">Montant</string>
     <string-array name="schools">
         <item>Écoles</item>
         <item>Ense3</item>
@@ -48,4 +48,36 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="beer_and_other_fragment_name">Bières et autres</string>
+    <string name="delete_party_confirm">Êtes-vous sûr de vouloir supprimer la soirée ?</string>
+    <string name="new_product_dialog_title">Nouveau produit</string>
+    <string name="edit_product_dialog_title">Editer le produit</string>
+    <string name="type">Type</string>
+    <string name="beer">Bière</string>
+    <string name="deposit">Caution</string>
+    <string name="other">Autre</string>
+    <string name="price">Prix</string>
+    <string name="title_activity_party">PartyActivity</string>
+    <string name="title_activity_new_party">Nouvelle soirée</string>
+    <string name="mendatory_date">Date</string>
+    <string name="beer_price">Tarifs des bières (demi)</string>
+    <string name="normal">Normales</string>
+    <string name="special">Spéciales</string>
+    <string name="served_beers">Bières servies</string>
+    <string name="title_activity_edit_party">Éditer la soirée</string>
+    <string name="title_activity_add_beers">Ajouter des bières</string>
+    <string name="title_activity_new_transaction">Nouvelle transaction</string>
+    <string name="member_name">Nom de l\'adhérent</string>
+    <string name="food">Nourriture</string>
+    <string name="refill_or_other">Recharge/autre</string>
+    <string name="half_pint">Demi</string>
+    <string name="pint">Pinte</string>
+    <string name="pitcher">Pichet</string>
+    <string name="of">de</string>
+    <string name="cash_in_deposit">Encaisser</string>
+    <string name="cash_out_deposit">Rendre</string>
+    <string name="refill">Recharge</string>
+    <string name="balance">Solde</string>
+    <string name="transaction_balance_too_low_title">Solde insuffisant</string>
+    <string name="add_transaction_anyway">Ajouter quand même</string>
 </resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp">
+
+    <TextView
+        android:id="@+id/beer_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical" />
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:checkedButton="@id/no_rb"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/no_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/no"
+            android:textAllCaps="false" />
+
+        <RadioButton
+            android:id="@+id/normal_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="N" />
+
+        <RadioButton
+            android:id="@+id/special_rb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="serif"
+            android:text="S"
+            android:textColor="@color/colorBeer"
+            android:textStyle="bold"
+            android:typeface="serif" />
+    </RadioGroup>
+</LinearLayout>
