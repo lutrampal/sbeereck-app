@@ -1,9 +1,9 @@
-#!python
-
 import csv
 import sys
-import datetime
+from datetime import datetime
+from datetime import timedelta
 import unicodedata
+import pymysql.cursors
 
 USER = 'root'
 PORT = 3306
@@ -43,14 +43,14 @@ def get_members_from_csv(file, student_school_dict):
             else:
                 school = ''
 
-            last_membership_payment = datetime.datetime.now()
+            last_membership_payment = datetime.now()
             is_former_staff = 0
             if row['Cotiz\''] == 'non':
-                last_membership_payment.replace(year=last_membership_payment.year - 1)
+                last_membership_payment = last_membership_payment - timedelta(days=365)
             elif row['Cotiz\''] != 'oui': # member is part of the staff
                 is_former_staff = 1
 
-            s1 = last_name.replace(" ", "").lower() + '.' + first_name.replace(" ", "").lower()
+            s1 = first_name.replace(" ", "").lower() + '.' + last_name.replace(" ", "").lower()
             s2 = unicodedata.normalize('NFD', s1).encode('ascii', 'ignore')  # remove accents
             email = s2.decode('utf-8') + '@grenoble-inp.fr'
 
@@ -68,19 +68,29 @@ def get_members_from_csv(file, student_school_dict):
 
 
 def insert_into_db(members, host, pwd):
-    cnx = mysql.connector.connect(user=USER, password=pwd, host=host, port=PORT, database=DATABASE)
-    cursor = cnx.cursor()
-    query = ("INSERT INTO members(first_name, last_name, school, email, balance, last_membership_payment, "
-             "is_former_staff) "
-             "VALUES(%(first_name)s, %(last_name)s, %(school)s, %(email)s, %(balance)s, %(last_membership_payment)s, "
-             "%(is_former_staff)s)")
+    connection = pymysql.connect(user=USER,
+                          password=pwd,
+                          host=host,
+                          port=PORT,
+                          db=DATABASE,
+                          charset='utf8mb4',
+                          cursorclass=pymysql.cursors.DictCursor)
 
-    for member in members:
-        cursor.execute(query, member)
+    try:
+        with connection.cursor() as cursor:
+            query = ("INSERT INTO members(first_name, last_name, school, email, balance, last_membership_payment, "
+                     "is_former_staff) "
+                     "VALUES(%(first_name)s, %(last_name)s, %(school)s, %(email)s, %(balance)s, %(last_membership_payment)s, "
+                     "%(is_former_staff)s)")
 
-    cnx.commit()
-    cursor.close()
-    cnx.close()
+            for member in members:
+                cursor.execute(query, member)
+
+            connection.commit()
+    except Exception as e:
+        print(e)
+    finally:
+        connection.close()
 
 
 if len(sys.argv) < 5:
