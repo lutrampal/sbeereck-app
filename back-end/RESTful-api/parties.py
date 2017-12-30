@@ -8,9 +8,9 @@ class Parties(Resource):
         parser = get_default_parser()
         args = parser.parse_args()
         connection = get_db_connection()
-        if not is_token_valid(args['authentication_token'], connection):
+        if not is_token_valid(args['authentication-token'], connection):
             abort(403)
-        query = "SELECT p.party_id, name, date, number_of_attendees, balance " \
+        query = "SELECT party_id, name, date, number_of_attendees, balance " \
                 "FROM party_list"
         parties = []
         with connection.cursor() as cursor:
@@ -19,7 +19,7 @@ class Parties(Resource):
                 parties.append({
                     'id': row['party_id'],
                     'name': row['name'],
-                    'date': row['date'],
+                    'date': str(row['date']),
                     'number_of_attendees': row['number_of_attendees'],
                     'balance': row['balance']
                 })

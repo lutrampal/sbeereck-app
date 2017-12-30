@@ -171,6 +171,12 @@ def generate_transactions():
                 cursor.execute(query, transaction)
     CONNECTION.commit()
 
+def generate_auth_token():
+    # test token, hash for 'password'
+    query = "INSERT INTO authentication_tokens VALUES (0001, '$pbkdf2-sha256$29000$h5BSylnLOWdszTnHmLNWyg$hUHbZ2bC0mLgW7vB8puySWzfa0yIXZ5125etx19VVAw')""
+    with CONNECTION.cursor() as cursor:
+        cursor.execute(query)
+    CONNECTION.commit()
 
 print("Inserting parameters...")
 generate_parameters()
@@ -186,6 +192,8 @@ print("Inserting served beers...")
 generate_served_beers()
 print("Inserting transactions...")
 generate_transactions()
+print("Inserting auth token...")
+generate_auth_token()
 print("DONE!")
 
 CONNECTION.close()

@@ -34,5 +34,5 @@ def get_db_connection():
 
 def get_default_parser():
     parser = reqparse.RequestParser()
-    parser.add_argument('authentication_token', required=True, location='json')
+    parser.add_argument('authentication-token', required=True, location='headers')
     return parser

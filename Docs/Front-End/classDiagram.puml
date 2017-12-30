@@ -1,0 +1,30 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam nodesep 110
+skinparam ranksep 10
+
+package Model {
+	class Party {
+		- id: int
+		- name: String
+		- date: Date
+		- numberOfAttendees: int
+		- balance: float
+		+ Party(id: int, name: String, date: Date, numberOfAttendees: int, balance: float)
+	}
+}
+
+package Controller {
+	class PartyController{
+		- host: String
+		- port: String
+		- authTokne: String
+		+ PartyController(host: String, port: String, authTokne: String)
+		+ getAllParties() : List<Party>
+	}
+}
+
+Party <. PartyController : Uses
+
+@enduml
