@@ -14,37 +14,35 @@ import java.util.Map;
  */
 public class Party implements Comparable, Serializable {
 
-    public Map<Product, BeerCategory> servedBeers;
+    private int id;
     /**
-     * The mName of the party.
+     * The name of the party.
      */
-    private String mName;
+    private String name;
     /**
-     * The mDate of the party.
+     * The date of the party.
      */
-    private Date mDate;
+    private Date date;
     /**
      * How many people attended the party.
      */
-    private int mNumberOfAttendees;
+    private int numberOfAttendees;
     /**
-     * How much mIncome was earned during this party.
+     * How much balance was earned during this party.
      */
-    private float mIncome;
+    private float balance;
     private List<Transaction> transactions;
     private float specialBeerPrice;
     private float normalBeerPrice;
 
-    public Party(String mName, Date mDate, int mNumberOfAttendees, float mIncome,
-                 float normalBeerPrice, float specialBeerPrice) {
-        this.mName = mName;
-        this.mDate = mDate;
-        this.mNumberOfAttendees = mNumberOfAttendees;
-        this.mIncome = mIncome;
-        this.specialBeerPrice = specialBeerPrice;
-        this.normalBeerPrice = normalBeerPrice;
-        this.servedBeers = new HashMap<>();
-        this.transactions = new ArrayList<>();
+    private Map<Product, BeerCategory> servedBeers;
+
+    public int getId() {
+        return id;
+    }
+
+    private void setId(int id) {
+        this.id = id;
     }
 
     public List<Transaction> getTransactions() {
@@ -56,35 +54,35 @@ public class Party implements Comparable, Serializable {
     }
 
     public float getIncome() {
-        return mIncome;
+        return balance;
     }
 
     public void setIncome(float mIncome) {
-        this.mIncome = mIncome;
+        this.balance = mIncome;
     }
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String mName) {
-        this.mName = mName;
+        this.name = mName;
     }
 
     public Date getDate() {
-        return mDate;
+        return date;
     }
 
     public void setDate(Date mDate) {
-        this.mDate = mDate;
+        this.date = mDate;
     }
 
     public int getNumberOfAttendees() {
-        return mNumberOfAttendees;
+        return numberOfAttendees;
     }
 
     public void setNumberOfAttendees(int mNumberOfAttendees) {
-        this.mNumberOfAttendees = mNumberOfAttendees;
+        this.numberOfAttendees = mNumberOfAttendees;
     }
 
     public Map<Product, BeerCategory> getServedBeers() {
@@ -111,13 +109,33 @@ public class Party implements Comparable, Serializable {
         this.normalBeerPrice = normalBeerPrice;
     }
 
+    public Party(String name, Date date, int numberOfAttendees, float balance,
+                 float normalBeerPrice, float specialBeerPrice) {
+        this.name = name;
+        this.date = date;
+        this.numberOfAttendees = numberOfAttendees;
+        this.balance = balance;
+        this.specialBeerPrice = specialBeerPrice;
+        this.normalBeerPrice = normalBeerPrice;
+        this.servedBeers = new HashMap<>();
+        this.transactions = new ArrayList<>();
+    }
+
+    public Party(int id, String name, Date date, int numberOfAttendees, float balance) {
+        this.id = id;
+        this.name = name;
+        this.date = date;
+        this.numberOfAttendees = numberOfAttendees;
+        this.balance = balance;
+    }
+
     @Override
     public String toString() {
         return "Party{" +
-                "mName='" + mName + '\'' +
-                ", mDate=" + mDate +
-                ", mNumberOfAttendees=" + mNumberOfAttendees +
-                ", mIncome=" + mIncome +
+                "name='" + name + '\'' +
+                ", date=" + date +
+                ", numberOfAttendees=" + numberOfAttendees +
+                ", balance=" + balance +
                 '}';
     }
 
@@ -128,18 +146,13 @@ public class Party implements Comparable, Serializable {
 
         Party party = (Party) o;
 
-        if (getName() != null ? !getName().equals(party.getName()) : party.getName() != null)
-            return false;
-        return getDate() != null ? getDate().equals(party.getDate()) : party.getDate() == null;
+        return id == party.id;
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getDate() != null ? getDate().hashCode() : 0);
-        return result;
+        return id;
     }
-
 
     @Override
     public int compareTo(@NonNull Object o) {

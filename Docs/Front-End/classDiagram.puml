@@ -16,13 +16,30 @@ package Model {
 }
 
 package Controller {
+	interface RESTDataManager {
+		+ getObject(ressource : String) : Map<String, Object>
+		+ getArray(ressource : String) : List<Object>
+		+ post(resource : String, jsonObject : Map<String, Object>)
+		+ put(resource : String, jsonObject : Map<String, Object)
+		+ delete(resource : String) : Map<String, Object>
+	}
+
+	class RESTfulDataManager {
+		- host : String
+		- port : String
+		- authToken : String
+		+ RESTfulDataManager(host : String, port : String, authToken : String)
+	}
+
+	RESTDataManager <.. RESTfulDataManager
+		
+
 	class PartyController{
-		- host: String
-		- port: String
-		- authTokne: String
-		+ PartyController(host: String, port: String, authTokne: String)
+		+ PartyController(dataManager : RESTDataManager)
 		+ getAllParties() : List<Party>
 	}
+
+	RESTDataManager "- dataManager" <- PartyController
 }
 
 Party <. PartyController : Uses

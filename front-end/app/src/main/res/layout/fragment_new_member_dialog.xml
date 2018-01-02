@@ -6,7 +6,7 @@
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
     android:paddingTop="10dp"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.NewMemberDialogFragment">
+    tools:context="com.sbeereck.lutrampal.view.NewMemberDialogFragment">
 
 
     <TextView

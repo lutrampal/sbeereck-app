@@ -7,7 +7,7 @@
     android:layout_margin="15dp"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.NewPartyActivity"
+    tools:context="com.sbeereck.lutrampal.view.NewPartyActivity"
     tools:showIn="@layout/activity_new_party">
 
     <EditText

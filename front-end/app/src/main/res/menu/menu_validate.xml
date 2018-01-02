@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.NewPartyActivity">
+    tools:context="com.sbeereck.lutrampal.view.NewPartyActivity">
     <item
         android:id="@+id/validate"
         android:icon="@drawable/ic_validate"

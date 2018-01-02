@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="20dp"
     android:orientation="vertical"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.FoodTransactionFragment">
+    tools:context="com.sbeereck.lutrampal.view.FoodTransactionFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

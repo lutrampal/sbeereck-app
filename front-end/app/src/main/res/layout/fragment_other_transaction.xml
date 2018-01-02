@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.OtherTransactionFragment">
+    tools:context="com.sbeereck.lutrampal.view.OtherTransactionFragment">
 
 
     <EditText

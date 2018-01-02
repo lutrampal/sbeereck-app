@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sbeereck.lutrampal.applisbeereck">
+    package="com.sbeereck.lutrampal.view">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -10,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.sbeereck.lutrampal.view.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -20,39 +23,39 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PartyActivity"
+            android:name="com.sbeereck.lutrampal.view.PartyActivity"
             android:label="@string/title_activity_party"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sbeereck.lutrampal.applisbeereck.MainActivity" />
+                android:value="com.sbeereck.lutrampal.view.MainActivity" />
         </activity>
         <activity
-            android:name=".NewPartyActivity"
+            android:name="com.sbeereck.lutrampal.view.NewPartyActivity"
             android:label="@string/title_activity_new_party"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.sbeereck.lutrampal.view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sbeereck.lutrampal.applisbeereck.MainActivity" />
+                android:value="com.sbeereck.lutrampal.view.MainActivity" />
         </activity>
         <activity
-            android:name=".AddBeersActivity"
+            android:name="com.sbeereck.lutrampal.view.AddBeersActivity"
             android:label="@string/title_activity_add_beers"
-            android:parentActivityName=".NewPartyActivity"
+            android:parentActivityName="com.sbeereck.lutrampal.view.NewPartyActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sbeereck.lutrampal.applisbeereck.NewPartyActivity" />
+                android:value="com.sbeereck.lutrampal.view.NewPartyActivity" />
         </activity>
         <activity
-            android:name=".NewTransactionActivity"
+            android:name="com.sbeereck.lutrampal.view.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
-            android:parentActivityName=".PartyActivity"
+            android:parentActivityName="com.sbeereck.lutrampal.view.PartyActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sbeereck.lutrampal.applisbeereck.PartyActivity" />
+                android:value="com.sbeereck.lutrampal.view.PartyActivity" />
         </activity>
     </application>
 

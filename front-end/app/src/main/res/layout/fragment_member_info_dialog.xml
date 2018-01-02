@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.MemberInfoDialogFragment">
+    tools:context="com.sbeereck.lutrampal.view.MemberInfoDialogFragment">
 
     <TextView
         android:id="@+id/member_name"

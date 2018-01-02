@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_margin="15dp"
     android:orientation="vertical"
-    tools:context="com.sbeereck.lutrampal.applisbeereck.BeerTransactionFragment">
+    tools:context="com.sbeereck.lutrampal.view.BeerTransactionFragment">
 
     <LinearLayout
         android:layout_width="wrap_content"

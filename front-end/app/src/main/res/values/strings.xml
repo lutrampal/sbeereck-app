@@ -80,4 +80,5 @@
     <string name="balance">Solde</string>
     <string name="transaction_balance_too_low_title">Solde insuffisant</string>
     <string name="add_transaction_anyway">Ajouter quand même</string>
+    <string name="parties_loading_error">Impossible de charger les soirées</string>
 </resources>
