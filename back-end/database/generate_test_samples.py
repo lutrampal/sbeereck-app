@@ -39,7 +39,7 @@ CONNECTION = pymysql.connect(user=USER,
 def generate_parameters():
     query = ("INSERT INTO parameters(balance_too_low_threshold, membership_cost, membership_expiring_date, "
              "default_normal_beer_price, default_special_beer_price) "
-                     "VALUES(%(balance_too_low_threshold)s, %(membership_cost)s, %(membership_expiring_date)s, "
+             "VALUES(%(balance_too_low_threshold)s, %(membership_cost)s, %(membership_expiring_date)s, "
              "%(default_normal_beer_price)s, %(default_special_beer_price)s)")
     params = {
         'balance_too_low_threshold': BALANCE_TOO_LOW,
@@ -55,7 +55,7 @@ def generate_parameters():
 
 def generate_parties():
     query = ("INSERT INTO parties(name, date, normal_beer_price, special_beer_price) "
-                     "VALUES(%(name)s, %(date)s, %(normal_beer_price)s, %(special_beer_price)s)")
+             "VALUES(%(name)s, %(date)s, %(normal_beer_price)s, %(special_beer_price)s)")
     with CONNECTION.cursor() as cursor:
         for i in range(NUMBER_OF_PARTIES):
             year = random.randint(2017, 2018)
@@ -73,7 +73,7 @@ def generate_parties():
 
 def generate_beers():
     query = ("INSERT INTO products(name, price, type) "
-                     "VALUES(%(name)s, %(price)s, %(type)s)")
+             "VALUES(%(name)s, %(price)s, %(type)s)")
     with CONNECTION.cursor() as cursor:
         for i in range(NUMBER_OF_BEERS):
             beer = {
@@ -87,7 +87,7 @@ def generate_beers():
 
 def generate_deposits():
     query = ("INSERT INTO products(name, price, type) "
-                     "VALUES(%(name)s, %(price)s, %(type)s)")
+             "VALUES(%(name)s, %(price)s, %(type)s)")
     deposits = [
         {
             "name": "Caution demi",
@@ -113,7 +113,7 @@ def generate_deposits():
 
 def generate_food():
     query = ("INSERT INTO products(name, price, type) "
-                "VALUES(%(name)s, %(price)s, %(type)s)")
+             "VALUES(%(name)s, %(price)s, %(type)s)")
     food_items = [
         {
             "name": "saucisson",
@@ -129,7 +129,7 @@ def generate_food():
 
 def generate_served_beers():
     query = ("INSERT INTO served_beers_at_party(party_id, product_id, category) "
-                "VALUES(%(party_id)s, %(product_id)s, %(category)s)")
+             "VALUES(%(party_id)s, %(product_id)s, %(category)s)")
     categories = ['normal', 'special']
     with CONNECTION.cursor() as cursor:
         for party_id in range(1, NUMBER_OF_PARTIES + 1):
@@ -148,9 +148,10 @@ def generate_served_beers():
                 cursor.execute(query, served_beer)
     CONNECTION.commit()
 
+
 def generate_transactions():
     query = ("INSERT INTO transactions(member_id, party_id, amount, label, timestamp) "
-                "VALUES(%(member_id)s, %(party_id)s, %(amount)s, %(label)s, %(timestamp)s)")
+             "VALUES(%(member_id)s, %(party_id)s, %(amount)s, %(label)s, %(timestamp)s)")
     with CONNECTION.cursor() as cursor:
         for party_id in range(1, NUMBER_OF_PARTIES + 1):
             for i in range(NUMBER_OF_TRANSACTIONS_PER_PARTY):
@@ -171,12 +172,15 @@ def generate_transactions():
                 cursor.execute(query, transaction)
     CONNECTION.commit()
 
+
 def generate_auth_token():
     # test token, hash for 'password'
-    query = "INSERT INTO authentication_tokens VALUES (0001, '$pbkdf2-sha256$29000$h5BSylnLOWdszTnHmLNWyg$hUHbZ2bC0mLgW7vB8puySWzfa0yIXZ5125etx19VVAw')"
+    query = "INSERT INTO authentication_tokens " \
+            "VALUES (0001, '$pbkdf2-sha256$29000$h5BSylnLOWdszTnHmLNWyg$hUHbZ2bC0mLgW7vB8puySWzfa0yIXZ5125etx19VVAw')"
     with CONNECTION.cursor() as cursor:
         cursor.execute(query)
     CONNECTION.commit()
+
 
 print("Inserting parameters...")
 generate_parameters()

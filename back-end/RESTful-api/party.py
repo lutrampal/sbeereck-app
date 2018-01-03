@@ -8,6 +8,7 @@ class Party(Resource):
         args = parser.parse_args()
         connection = get_db_connection()
         if not is_token_valid(args['authentication-token'], connection):
+            connection.close()
             abort(403)
         update_query = "UPDATE parties SET is_deleted = 1 WHERE party_id = %s"
         select_query = "SELECT party_id, name, date, number_of_attendees, balance " \
@@ -15,6 +16,7 @@ class Party(Resource):
         with connection.cursor() as cursor:
             cursor.execute(select_query, party_id)
             if cursor.rowcount < 1:
+                connection.rollback()
                 connection.close()
                 abort(404)
             row = cursor.fetchone()
@@ -29,5 +31,3 @@ class Party(Resource):
         connection.commit()
         connection.close()
         return party, 201
-
-

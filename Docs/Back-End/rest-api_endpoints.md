@@ -56,7 +56,22 @@
 						"category":  
 					  }, ... ]  
 			}
-		
+		DELETE : delete the desired party, the deleted party is sent back.
+			{  
+				"id":  
+				"name":  
+				"date":  
+				"number_of_attendees":  
+				"balance":  
+			}
+	* /products
+		GET : return all the products, a type parameter can be specified to get only the products of requested type.
+			{
+				"id":
+				"name":
+				"price":
+				"type":
+			}
 			
 			
 			
