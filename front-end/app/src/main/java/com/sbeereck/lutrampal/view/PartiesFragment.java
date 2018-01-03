@@ -38,15 +38,15 @@ public class PartiesFragment extends GeneralMainViewFragment {
     private List<Party> parties = new ArrayList<>();
     private PartyController controller;
 
-    private class GetAllPartiesTask extends AsyncTask<PartyController, Integer, List<Party>> {
+    private class GetAllPartiesTask extends AsyncTask<Void, Integer, List<Party>> {
 
         private Exception e = null;
 
         @Override
-        protected List<Party> doInBackground(PartyController ... controllers) {
+        protected List<Party> doInBackground(Void ... voids) {
             List<Party> parties = null;
             try {
-                parties = controllers[0].getAllParties();
+                parties = controller.getAllParties();
             } catch (Exception e) {
                 this.e = e;
                 parties = new ArrayList<>();
@@ -77,7 +77,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         view = inflater.inflate(R.layout.fragment_parties, container, false);
         super.onCreateView(inflater, container, savedInstanceState);
         controller = new PartyController(Placeholders.getPlaceHolderDataManager());
-        new GetAllPartiesTask().execute(controller);
+        new GetAllPartiesTask().execute();
         mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mActivity.getSupportActionBar().setTitle(R.string.parties_fragment_name);
@@ -144,18 +144,50 @@ public class PartiesFragment extends GeneralMainViewFragment {
         startActivity(intent);
     }
 
+    private class DeletePartyTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+        private int selectedPartyId;
+        private int selectedPartyIdx;
+
+        public DeletePartyTask(int selectedPartyId, int selectedPartyIdx) {
+            this.selectedPartyId = selectedPartyId;
+            this.selectedPartyIdx = selectedPartyIdx;
+        }
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                controller.deleteParty(selectedPartyId);
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void voidObj) {
+            if (e != null) {
+                Toast.makeText(mActivity.getApplicationContext(),
+                        R.string.party_delete_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            List<Party> filteredParties = ((PartyListItemAdapter) mListview.getAdapter())
+                    .getFilteredParties();
+            Party partyToRemove = filteredParties.get(selectedPartyIdx);
+            filteredParties.remove(selectedPartyIdx);
+            parties.remove(partyToRemove);
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
+    }
+
     private void deleteParty(final int partyIndex) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         Dialog d = builder.setMessage(R.string.delete_party_confirm)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        // User clicked delete button
-                        List<Party> filteredParties = ((PartyListItemAdapter) mListview.getAdapter())
-                                .getFilteredParties();
-                        Party partyToRemove = filteredParties.get(partyIndex);
-                        filteredParties.remove(partyIndex);
-                        parties.remove(partyToRemove);
-                        ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+                        new DeletePartyTask(parties.get(partyIndex).getId(), partyIndex).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

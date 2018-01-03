@@ -1,8 +1,11 @@
 package com.sbeereck.lutrampal.controller;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -55,32 +58,20 @@ public class RESTfulDataManager implements RESTDataManager {
 
     @Override
     public Map<String, Object> getObject(String resource) throws Exception {
+        Object res = sendHttpWithoutBody(resource, "GET");
+        if (res instanceof JSONObject) {
+            return (JSONObject) res;
+        }
         return null;
     }
 
     @Override
     public List<Object> getArray(String resource) throws Exception {
-        Scanner scanner = null;
-        try {
-            URLConnection connection = new URL(getHost() + ":" + getPort() + resource).openConnection();
-            connection.setRequestProperty("authentication-token", getAuthToken());
-            InputStream response = connection.getInputStream();
-            scanner = new Scanner(response);
-            String body = scanner.useDelimiter("\\A").next();
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(body);
-            if (obj instanceof org.json.simple.JSONArray) {
-                return (org.json.simple.JSONArray) obj;
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            if (scanner != null) {
-                scanner.close();
-            }
+        Object res = sendHttpWithoutBody(resource, "GET");
+        if (res instanceof JSONArray) {
+            return (JSONArray) res;
         }
+        return null;
     }
 
     @Override
@@ -94,7 +85,32 @@ public class RESTfulDataManager implements RESTDataManager {
     }
 
     @Override
-    public Map<String, Object> delete(String resource) {
+    public Map<String, Object> delete(String resource) throws Exception {
+        Object res = sendHttpWithoutBody(resource, "DELETE");
+        if (res instanceof JSONObject) {
+            return (JSONObject) res;
+        }
         return null;
+    }
+
+    private Object sendHttpWithoutBody(String resource, String method) throws Exception {
+        Scanner scanner = null;
+        try {
+            HttpURLConnection connection = (HttpURLConnection) new URL(getHost() + ":"
+                    + getPort() + resource).openConnection();
+            connection.setRequestMethod(method);
+            connection.setRequestProperty("authentication-token", getAuthToken());
+            InputStream response = connection.getInputStream();
+            scanner = new Scanner(response);
+            String body = scanner.useDelimiter("\\A").next();
+            JSONParser parser = new JSONParser();
+            return parser.parse(body);
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
     }
 }

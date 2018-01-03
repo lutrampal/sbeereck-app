@@ -43,4 +43,11 @@ public class PartyController {
         }
         return parties;
     }
+
+    public void deleteParty(int partyId) throws Exception {
+        Object deletedParty = getDataManager().delete("/parties/" + partyId);
+        if (deletedParty == null) {
+            throw new Exception("Party not found");
+        }
+    }
 }

@@ -1,6 +1,5 @@
 from flask_restful import Resource, abort
 from utilities import get_db_connection, is_token_valid, get_default_parser
-from flask_restful import reqparse
 
 
 class Parties(Resource):
