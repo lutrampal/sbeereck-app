@@ -2,6 +2,7 @@ from flask_restful import Resource, abort
 from utilities import get_db_connection, is_token_valid, get_default_parser
 from flask import request
 
+
 class Parties(Resource):
     def get(self):
         parser = get_default_parser()
@@ -16,12 +17,18 @@ class Parties(Resource):
         with connection.cursor() as cursor:
             cursor.execute(query)
             for row in cursor.fetchall():
+                number_of_attendees = row['number_of_attendees']
+                if number_of_attendees is None:
+                    number_of_attendees = 0
+                balance = row['balance']
+                if balance is None:
+                    balance = 0
                 parties.append({
                     'id': row['party_id'],
                     'name': row['name'],
                     'date': str(row['date']),
-                    'number_of_attendees': row['number_of_attendees'],
-                    'balance': row['balance']
+                    'number_of_attendees': number_of_attendees,
+                    'balance': balance
                 })
         connection.close()
         return parties, 201
