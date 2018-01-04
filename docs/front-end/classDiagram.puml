@@ -1,0 +1,83 @@
+@startuml
+skinparam monochrome true
+skinparam classAttributeIconSize 0
+skinparam nodesep 110
+skinparam ranksep 10
+
+package Model {
+	class Party {
+		- id: int
+		- name: String
+		- date: Date
+		- numberOfAttendees: int
+		- balance: float
+		+ Party(id, name, date, numberOfAttendees, balance)
+		+ Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers)
+	}
+
+	class Product {
+		- id: int
+		- name: String
+		- price: float
+		+ Product(id, name, price, type)
+	}
+
+	enum ProductType {
+		BEER,
+		DEPOSIT,
+		FOOD
+	}
+
+	ProductType "- type" <- Product
+
+	enum BeerCategory {
+		NORMAL,
+		SPECIAL
+	}
+
+	Product "- servedBeers: Map<Product, BeerCategory>" <--o Party
+
+	BeerCategory <. Party: Uses
+}
+
+package Controller {
+	interface RESTDataManager {
+		+ getObject(ressource: String): Map<String, Object>
+		+ getArray(ressource: String): List<Object>
+		+ post(resource: String, jsonObject: Map<String, Object>)
+		+ put(resource: String, jsonObject: Map<String, Object)
+		+ delete(resource: String): Map<String, Object>
+	}
+
+	class RESTfulDataManager {
+		- host: String
+		- port: String
+		- authToken: String
+		+ RESTfulDataManager(host, port, authToken)
+	}
+
+	RESTDataManager <|.. RESTfulDataManager
+		
+
+	class PartyController {
+		+ PartyController(dataManager: RESTDataManager)
+		+ getAllParties(): List<Party>
+		+ addParty(party: Party): int
+		+ editParty(party: Party)
+	}
+
+	RESTDataManager "- dataManager" <- PartyController
+
+	class ProductController {
+		+ ProductController(dataManager: RESTDataManager)
+		+ getAllProducts(): List<Product>
+		+ getProductsByType(type: string): List<Product>
+	}
+
+	RESTDataManager "- dataManager" <-- ProductController
+}
+
+PartyController .> Party: Uses
+ProductController .> Product: Uses
+
+@enduml

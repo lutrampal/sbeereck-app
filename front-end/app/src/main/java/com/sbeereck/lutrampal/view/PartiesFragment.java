@@ -3,7 +3,6 @@ package com.sbeereck.lutrampal.view;
 
 import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -21,13 +20,17 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
-import com.sbeereck.lutrampal.controller.RESTfulDataManager;
+import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.Party;
+import com.sbeereck.lutrampal.model.Product;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -90,9 +93,19 @@ public class PartiesFragment extends GeneralMainViewFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mActivity, NewPartyActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         };
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == requestCode) {
+            Party newParty = (Party) data.getSerializableExtra("party");
+            parties.add(newParty);
+            Collections.sort(parties);
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
     }
 
     private AdapterView.OnItemClickListener getListViewItemClickListener() {

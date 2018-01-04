@@ -102,4 +102,12 @@ public class Placeholders {
         food.add(new Product("Saucisson", 3f, ProductType.FOOD));
         return food;
     }
+
+    public static float getPlaceHolderDefaultNormalBeerPrice() {
+        return 1.35f;
+    }
+
+    public static float getPlaceHolderDefaultSpecialBeerPrice() {
+        return 1.70f;
+    }
 }

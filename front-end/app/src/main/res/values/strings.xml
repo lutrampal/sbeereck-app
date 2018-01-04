@@ -82,4 +82,6 @@
     <string name="add_transaction_anyway">Ajouter quand même</string>
     <string name="parties_loading_error">Impossible de charger les soirées</string>
     <string name="party_delete_error">Impossible de supprimer la soirée</string>
+    <string name="beers_loading_error">Impossible de charger les bières</string>
+    <string name="party_adding_error">Impossible d\'ajouter la soirée</string>
 </resources>

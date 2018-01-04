@@ -1,6 +1,7 @@
 package com.sbeereck.lutrampal.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
@@ -9,11 +10,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.ProductController;
 import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Product;
+import com.sbeereck.lutrampal.model.ProductType;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +27,38 @@ import java.util.Map;
 public class AddBeersActivity extends AppCompatActivity {
 
     private ListView beersListView;
-    private List<Product> beers;
+    private List<Product> beers = new ArrayList<>();
+    private ProductController controller;
+
+    private class GetAllBeersTask extends AsyncTask<Void, Integer, List<Product>> {
+
+        private Exception e = null;
+
+        @Override
+        protected List<Product> doInBackground(Void ... voids) {
+            List<Product> beers = null;
+            try {
+                beers = controller.getProductsByType(ProductType.BEER);
+            } catch (Exception e) {
+                this.e = e;
+                beers = new ArrayList<>();
+            }
+            return beers;
+        }
+
+        @Override
+        protected void onPostExecute(List<Product> beers) {
+            if (e != null) {
+                Toast.makeText(getApplicationContext(),
+                        R.string.beers_loading_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            AddBeersActivity.this.beers.clear();
+            AddBeersActivity.this.beers.addAll(beers);
+            ((BaseAdapter) beersListView.getAdapter()).notifyDataSetChanged();
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +70,9 @@ public class AddBeersActivity extends AppCompatActivity {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(getFabOnClickListener());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
+        new GetAllBeersTask().execute();
 
-        beers = (List<Product>) getIntent().getSerializableExtra("beers");
         Map<Product, BeerCategory> alreadySelectedBeers;
         if (getIntent().getSerializableExtra("alreadySelectedBeers") != null) {
             alreadySelectedBeers = (Map<Product, BeerCategory>) getIntent()

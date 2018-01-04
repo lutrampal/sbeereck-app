@@ -15,6 +15,7 @@ class Products(Resource):
         query = "SELECT product_id, name, price, type FROM products"
         if args['type'] is not None:
             query += " WHERE type = %(type)s"
+        query += " ORDER BY name ASC"
         products = []
         with connection.cursor() as cursor:
             cursor.execute(query, args)

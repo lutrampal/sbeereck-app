@@ -9,11 +9,11 @@ public enum ProductType {
     public String toString() {
         switch (this) {
             case BEER:
-                return "Bière";
+                return "beer";
             case DEPOSIT:
-                return "Caution";
+                return "deposit";
             case FOOD:
-                return "Nourriture";
+                return "food";
             default:
                 return "";
         }

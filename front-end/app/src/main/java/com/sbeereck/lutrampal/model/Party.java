@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,15 +15,15 @@ import java.util.Map;
  */
 public class Party implements Comparable, Serializable {
 
-    private int id;
+    private int id = -1;
     /**
      * The name of the party.
      */
-    private String name;
+    private String name = "";
     /**
      * The date of the party.
      */
-    private Date date;
+    private Date date = null;
     /**
      * How many people attended the party.
      */
@@ -30,18 +31,18 @@ public class Party implements Comparable, Serializable {
     /**
      * How much balance was earned during this party.
      */
-    private float balance;
-    private List<Transaction> transactions;
-    private float specialBeerPrice;
-    private float normalBeerPrice;
+    private float balance = 0;
+    private List<Transaction> transactions = new LinkedList<>();
+    private float specialBeerPrice = 0;
+    private float normalBeerPrice = 0;
 
-    private Map<Product, BeerCategory> servedBeers;
+    private Map<Product, BeerCategory> servedBeers = new HashMap<>();
 
     public int getId() {
         return id;
     }
 
-    private void setId(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -129,6 +130,15 @@ public class Party implements Comparable, Serializable {
         this.balance = balance;
     }
 
+    public Party(String name, Date date, float normalBeerPrice, float specialBeerPrice,
+                 Map<Product, BeerCategory> servedBeers) {
+        this.name = name;
+        this.date = date;
+        this.specialBeerPrice = specialBeerPrice;
+        this.normalBeerPrice = normalBeerPrice;
+        this.servedBeers = servedBeers;
+    }
+
     @Override
     public String toString() {
         return "Party{" +
@@ -158,6 +168,6 @@ public class Party implements Comparable, Serializable {
     public int compareTo(@NonNull Object o) {
         if (getClass() != o.getClass()) return -1;
         Party party = (Party) o;
-        return getDate().compareTo(party.getDate());
+        return -getDate().compareTo(party.getDate());
     }
 }

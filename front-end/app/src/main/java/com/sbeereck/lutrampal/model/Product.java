@@ -4,9 +4,25 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String name;
     private Float price;
     private ProductType type;
+
+    public Product(int id, String name, Float price, ProductType type) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.type = type;
+    }
 
     public Product(String name, Float price, ProductType type) {
         this.name = name;

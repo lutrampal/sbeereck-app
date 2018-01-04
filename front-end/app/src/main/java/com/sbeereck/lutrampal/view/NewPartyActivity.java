@@ -2,6 +2,7 @@ package com.sbeereck.lutrampal.view;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +16,9 @@ import android.widget.BaseAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.PartyController;
 import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Product;
@@ -24,7 +27,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -39,6 +44,7 @@ public class NewPartyActivity extends AppCompatActivity {
     private EditText normalPriceEt;
     private EditText specialPriceEt;
     private DatePickerDialog currentDatePicker = null;
+    private PartyController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +55,13 @@ public class NewPartyActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        controller = new PartyController(Placeholders.getPlaceHolderDataManager());
+
         nameEt = findViewById(R.id.party_name);
         normalPriceEt = findViewById(R.id.normal_beer_price);
+        normalPriceEt.setText(String.valueOf(Placeholders.getPlaceHolderDefaultNormalBeerPrice()));
         specialPriceEt = findViewById(R.id.special_beer_price);
+        specialPriceEt.setText(String.valueOf(Placeholders.getPlaceHolderDefaultSpecialBeerPrice()));
         dateEt = findViewById(R.id.party_date);
 
         if (getIntent().getSerializableExtra("party") != null) {
@@ -173,6 +183,8 @@ public class NewPartyActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    private boolean added = false;
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -182,7 +194,12 @@ public class NewPartyActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.validate:
-                finish();
+                if (!added) {
+                    // prevents sending several add requests in case of network lag and user
+                    // clicking several times the validate button
+                    added = true;
+                    addParty();
+                }
                 break;
             case android.R.id.home:
                 onBackPressed();
@@ -190,5 +207,62 @@ public class NewPartyActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addParty() {
+        String name = nameEt.getText().toString();
+        Date date;
+        try {
+            DateFormat df = new SimpleDateFormat("dd/MM/yy");
+            date = df.parse(dateEt.getText().toString());
+        } catch (Exception e){
+            date = new Date();
+        }
+        float normalBeerPrice;
+        try {
+            normalBeerPrice = Float.valueOf(normalPriceEt.getText().toString());
+        } catch (Exception e) {
+            normalBeerPrice = Placeholders.getPlaceHolderDefaultNormalBeerPrice();
+        }
+        float specialBeerPrice;
+        try {
+            specialBeerPrice = Float.valueOf(specialPriceEt.getText().toString());
+        } catch (Exception e) {
+            specialBeerPrice = Placeholders.getPlaceHolderDefaultSpecialBeerPrice();
+        }
+        party = new Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers);
+        new AddPartyTask().execute();
+    }
+
+
+    private class AddPartyTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                int id = controller.addParty(party);
+                party.setId(id);
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void obj) {
+            if (e != null) {
+                Toast.makeText(getApplicationContext(),
+                        R.string.party_adding_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                added = false;
+                return;
+            }
+            Intent resultIntent = new Intent();
+            resultIntent.putExtra("party", party);
+            setResult(1, resultIntent);
+            finish();
+        }
     }
 }
