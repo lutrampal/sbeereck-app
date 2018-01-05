@@ -1,7 +1,9 @@
 package com.sbeereck.lutrampal.controller;
 
+import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Product;
+import com.sbeereck.lutrampal.model.ProductType;
 
 import org.json.simple.JSONObject;
 
@@ -57,6 +59,15 @@ public class PartyController {
     }
 
     public int addParty(Party party) throws Exception {
+        Map<String, Object> jsonParty = partyToJsonObject(party);
+        Map<String, Object> res = getDataManager().post("/parties", jsonParty);
+        if (res != null && res.containsKey("id")) {
+            return ((Number)res.get("id")).intValue();
+        }
+        return -1;
+    }
+
+    private Map<String, Object> partyToJsonObject(Party party) {
         Map<String, Object> jsonParty = new HashMap<>();
         jsonParty.put("name", party.getName());
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,10 +82,38 @@ public class PartyController {
             jsonServedBeers.add(jsonServedBeer);
         }
         jsonParty.put("served_beers", jsonServedBeers);
-        Map<String, Object> res = getDataManager().post("/parties", jsonParty);
-        if (res != null && res.containsKey("id")) {
-            return ((Number)res.get("id")).intValue();
+        return jsonParty;
+    }
+
+    public void editParty(Party party) throws Exception {
+        Map<String, Object> jsonParty = partyToJsonObject(party);
+        getDataManager().put("/parties/" + party.getId(), jsonParty);
+    }
+
+    public Party getParty(int id) throws Exception {
+        Map<String, Object> jsonParty = getDataManager().getObject("/parties/" + id);
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Map<Product, BeerCategory> servedBeers = new HashMap<>();
+        for (Map<String, Object> value : (List<Map<String, Object>>) jsonParty.get("served_beers")) {
+            Product beer = new Product(((Number)value.get("id")).intValue(),
+                    (String) value.get("name"),
+                    ((Number) value.get("price")).floatValue(),
+                    ProductType.BEER);
+            String category = (String) value.get("category");
+            BeerCategory beerCategory;
+            if (category.equals("normal")) {
+                beerCategory = BeerCategory.NORMAL;
+            } else {
+                beerCategory = BeerCategory.SPECIAL;
+            }
+            servedBeers.put(beer, beerCategory);
         }
-        return -1;
+        Party party = new Party((String) jsonParty.get("name"),
+                df.parse((String) jsonParty.get("date")),
+                ((Number)jsonParty.get("normal_beer_price")).floatValue(),
+                ((Number)jsonParty.get("special_beer_price")).floatValue(),
+                servedBeers);
+        party.setId(id);
+        return party;
     }
 }

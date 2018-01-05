@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class NewPartyActivity extends AppCompatActivity {
 
@@ -64,11 +65,11 @@ public class NewPartyActivity extends AppCompatActivity {
         specialPriceEt.setText(String.valueOf(Placeholders.getPlaceHolderDefaultSpecialBeerPrice()));
         dateEt = findViewById(R.id.party_date);
 
+        servedBeers = new TreeMap<>();
         if (getIntent().getSerializableExtra("party") != null) {
             makeEditPartyActivity();
         } else {
             party = null;
-            servedBeers = new HashMap<>();
             getSupportActionBar().setTitle(R.string.title_activity_new_party);
         }
 
@@ -101,15 +102,46 @@ public class NewPartyActivity extends AppCompatActivity {
         }
     }
 
+    private Boolean isEditPartyActivity = false;
+
     private void makeEditPartyActivity() {
+        isEditPartyActivity = true;
         party = (Party) getIntent().getSerializableExtra("party");
-        servedBeers = party.getServedBeers();
         getSupportActionBar().setTitle(R.string.title_activity_edit_party);
         nameEt.setText(party.getName());
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
         dateEt.setText(df.format(party.getDate()));
-        normalPriceEt.setText(String.valueOf(party.getNormalBeerPrice()));
-        specialPriceEt.setText(String.valueOf(party.getSpecialBeerPrice()));
+        new FetchPartyTask().execute();
+    }
+
+    private class FetchPartyTask extends AsyncTask<Void, Integer, Party> {
+
+        private Exception e = null;
+
+        @Override
+        protected Party doInBackground(Void ... voids) {
+            try {
+                return controller.getParty(party.getId());
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Party party) {
+            if (e != null) {
+                Toast.makeText(getApplicationContext(),
+                        R.string.party_loading_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            normalPriceEt.setText(String.valueOf(party.getNormalBeerPrice()));
+            specialPriceEt.setText(String.valueOf(party.getSpecialBeerPrice()));
+            servedBeers.clear();
+            servedBeers.putAll(party.getServedBeers());
+            ((BaseAdapter) beersListView.getAdapter()).notifyDataSetChanged();
+        }
     }
 
     private void setupDatePicker() {
@@ -230,7 +262,15 @@ public class NewPartyActivity extends AppCompatActivity {
         } catch (Exception e) {
             specialBeerPrice = Placeholders.getPlaceHolderDefaultSpecialBeerPrice();
         }
-        party = new Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers);
+        if (party == null) {
+            party = new Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers);
+        } else {
+            party.setName(name);
+            party.setDate(date);
+            party.setNormalBeerPrice(normalBeerPrice);
+            party.setSpecialBeerPrice(specialBeerPrice);
+            party.setServedBeers(servedBeers);
+        }
         new AddPartyTask().execute();
     }
 
@@ -242,8 +282,12 @@ public class NewPartyActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void ... voids) {
             try {
-                int id = controller.addParty(party);
-                party.setId(id);
+                if (isEditPartyActivity) {
+                    controller.editParty(party);
+                } else {
+                    int id = controller.addParty(party);
+                    party.setId(id);
+                }
             } catch (Exception e) {
                 this.e = e;
             }
@@ -261,6 +305,7 @@ public class NewPartyActivity extends AppCompatActivity {
             }
             Intent resultIntent = new Intent();
             resultIntent.putExtra("party", party);
+            resultIntent.putExtra("wasEditing", isEditPartyActivity);
             setResult(1, resultIntent);
             finish();
         }

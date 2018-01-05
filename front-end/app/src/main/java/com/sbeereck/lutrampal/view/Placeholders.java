@@ -22,19 +22,7 @@ import java.util.List;
 public class Placeholders {
 
     public static RESTDataManager getPlaceHolderDataManager() {
-        return new RESTfulDataManager("192.168.1.69", "8081", "0001password");
-    }
-
-    public static List<Party> getPlaceHolderParties() {
-        List<Party> parties = new ArrayList<>();
-        parties.add(new Party("Soirée 1", new Date(2017, 12, 25), 200, 2000, 1.35f, 1.70f));
-        parties.get(0).setTransactions(getPlaceHolderTransactions());
-        List<Product> beers = getPlaceHolderBeers();
-        parties.get(0).getServedBeers().put(beers.get(0), BeerCategory.SPECIAL);
-        parties.get(0).getServedBeers().put(beers.get(2), BeerCategory.NORMAL);
-        parties.add(new Party("Soirée 2", new Date(2017, 12, 24), 50, 2000, 1.35f, 1.70f));
-        parties.add(new Party("Soirée 3", new Date(2017, 12, 11), 50, -8000, 1.35f, 1.70f));
-        return parties;
+        return new RESTfulDataManager("192.168.43.54", "8081", "0001password");
     }
 
     public static List<Member> getPlaceHolderMembers() {
@@ -67,16 +55,6 @@ public class Placeholders {
         products.add(new Product("Caution pichet", 3f, ProductType.DEPOSIT));
         products.add(new Product("Saucisson", 3f, ProductType.FOOD));
         return products;
-    }
-
-    public static List<Transaction> getPlaceHolderTransactions() {
-        List<Member> members = getPlaceHolderMembers();
-        List<Transaction> transactions = new LinkedList<>();
-        transactions.add(new Transaction(members.get(0), -8f, "2 pintes de chouffe", System.currentTimeMillis()));
-        transactions.add(new Transaction(members.get(1), +1f, "1 caution pinte rendue", System.currentTimeMillis() - 60000));
-        transactions.add(new Transaction(members.get(1), -1f, "1 caution pinte", System.currentTimeMillis() - 60000 * 2));
-        transactions.add(new Transaction(members.get(2), -4f, "1 demi de Triple K", System.currentTimeMillis() - 60000 * 3));
-        return transactions;
     }
 
     public static List<Product> getPlaceHolderBeers() {

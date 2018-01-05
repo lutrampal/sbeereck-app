@@ -32,6 +32,7 @@
 	* /parties/<id>  
 		GET : return the desired party
 			{  
+				"id":
 				"name":  
 				"date":  
 				"normal_beer_price":  
@@ -40,7 +41,8 @@
 					[ {  
 						"id":  
 						"name":  
-						"category":  
+						"category":
+						"price":  
 					  }, ... ]  
 			}
 		PUT : update the desired party, note that all served beers will be replaced by the sent ones

@@ -8,9 +8,9 @@ public enum BeerCategory {
     public String toString() {
         switch (this) {
             case NORMAL:
-                return "Normale";
+                return "normal";
             case SPECIAL:
-                return "Spéciale";
+                return "special";
             default:
                 return "";
         }

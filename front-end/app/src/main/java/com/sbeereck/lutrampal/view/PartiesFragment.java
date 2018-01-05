@@ -20,17 +20,12 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
-import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.Party;
-import com.sbeereck.lutrampal.model.Product;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -38,7 +33,7 @@ import java.util.Map;
  */
 public class PartiesFragment extends GeneralMainViewFragment {
 
-    private List<Party> parties = new ArrayList<>();
+    private List<Party> products = new ArrayList<>();
     private PartyController controller;
 
     private class GetAllPartiesTask extends AsyncTask<Void, Integer, List<Party>> {
@@ -64,8 +59,8 @@ public class PartiesFragment extends GeneralMainViewFragment {
                         R.string.parties_loading_error + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
-            PartiesFragment.this.parties.clear();
-            PartiesFragment.this.parties.addAll(parties);
+            PartiesFragment.this.products.clear();
+            PartiesFragment.this.products.addAll(parties);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -81,7 +76,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         controller = new PartyController(Placeholders.getPlaceHolderDataManager());
         new GetAllPartiesTask().execute();
-        mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
+        mListview.setAdapter(new PartyListItemAdapter(getActivity(), products));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mActivity.getSupportActionBar().setTitle(R.string.parties_fragment_name);
         mFabAdd.setOnClickListener(getFabAddOnClickListener());
@@ -102,8 +97,11 @@ public class PartiesFragment extends GeneralMainViewFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == requestCode) {
             Party newParty = (Party) data.getSerializableExtra("party");
-            parties.add(newParty);
-            Collections.sort(parties);
+            if (data.getBooleanExtra("wasEditing", false)) {
+                products.remove(newParty);
+            }
+            products.add(newParty);
+            Collections.sort(products);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -154,7 +152,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         Party partyToEdit = filteredParties.get(position);
         Intent intent = new Intent(mActivity, NewPartyActivity.class);
         intent.putExtra("party", partyToEdit);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
 
     private class DeletePartyTask extends AsyncTask<Void, Integer, Void> {
@@ -190,7 +188,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
                     .getFilteredParties();
             Party partyToRemove = filteredParties.get(selectedPartyIdx);
             filteredParties.remove(selectedPartyIdx);
-            parties.remove(partyToRemove);
+            products.remove(partyToRemove);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -200,7 +198,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         Dialog d = builder.setMessage(R.string.delete_party_confirm)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        new DeletePartyTask(parties.get(partyIndex).getId(), partyIndex).execute();
+                        new DeletePartyTask(products.get(partyIndex).getId(), partyIndex).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

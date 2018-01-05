@@ -64,6 +64,7 @@ package Controller {
 		+ getAllParties(): List<Party>
 		+ addParty(party: Party): int
 		+ editParty(party: Party)
+		+ getParty(id: int): Party
 	}
 
 	RESTDataManager "- dataManager" <- PartyController

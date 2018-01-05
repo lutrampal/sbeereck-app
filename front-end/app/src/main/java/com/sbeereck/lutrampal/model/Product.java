@@ -1,8 +1,10 @@
 package com.sbeereck.lutrampal.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
 
-public class Product implements Serializable {
+public class Product implements Serializable, Comparable {
 
     private int id;
 
@@ -79,5 +81,13 @@ public class Product implements Serializable {
         int result = getName() != null ? getName().hashCode() : 0;
         result = 31 * result + (getType() != null ? getType().hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if (o instanceof Product) {
+            return getName().compareTo(((Product)o).getName());
+        }
+        return 0;
     }
 }
