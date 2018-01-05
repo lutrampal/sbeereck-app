@@ -3,6 +3,7 @@ package com.sbeereck.lutrampal.view;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -16,9 +17,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.ProductController;
 import com.sbeereck.lutrampal.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,10 +31,40 @@ import java.util.List;
  */
 public class BeersAndOthersFragment extends GeneralMainViewFragment {
 
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
+    private ProductController controller;
 
     public BeersAndOthersFragment() {
         // Required empty public constructor
+    }
+
+    private class GetAllProductsTask extends AsyncTask<Void, Integer, List<Product>> {
+
+        private Exception e = null;
+
+        @Override
+        protected List<Product> doInBackground(Void ... voids) {
+            List<Product> products = null;
+            try {
+                products = controller.getAllProducts();
+            } catch (Exception e) {
+                this.e = e;
+                products = new ArrayList<>();
+            }
+            return products;
+        }
+
+        @Override
+        protected void onPostExecute(List<Product> products) {
+            if (e != null) {
+                Toast.makeText(mActivity.getApplicationContext(),
+                        R.string.parties_loading_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            BeersAndOthersFragment.this.products.clear();
+            BeersAndOthersFragment.this.products.addAll(products);
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
     }
 
 
@@ -38,11 +72,12 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_beers_and_others, container, false);
-        products = Placeholders.getPlaceHolderProducts();
         super.onCreateView(inflater, container, savedInstanceState);
         mListview.setAdapter(new ProductListItemAdapter(getActivity(), products));
         mActivity.getSupportActionBar().setTitle(R.string.beer_and_other_fragment_name);
         mFabAdd.setOnClickListener(getFabAddClickListener());
+        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
+        new GetAllProductsTask().execute();
         return view;
     }
 

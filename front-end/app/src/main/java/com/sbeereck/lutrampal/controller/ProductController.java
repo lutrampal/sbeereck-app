@@ -43,4 +43,12 @@ public class ProductController {
         return products;
 
     }
+
+    public List<Product> getAllProducts() throws Exception {
+        List<Product> products = new ArrayList<>();
+        for (ProductType type : ProductType.values()) {
+            products.addAll(getProductsByType(type));
+        }
+        return products;
+    }
 }
