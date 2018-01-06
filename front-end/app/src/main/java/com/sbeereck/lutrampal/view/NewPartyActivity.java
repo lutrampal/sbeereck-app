@@ -285,8 +285,7 @@ public class NewPartyActivity extends AppCompatActivity {
                 if (isEditPartyActivity) {
                     controller.editParty(party);
                 } else {
-                    int id = controller.addParty(party);
-                    party.setId(id);
+                    party.setId(controller.addParty(party));
                 }
             } catch (Exception e) {
                 this.e = e;

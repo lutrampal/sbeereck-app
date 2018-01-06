@@ -86,7 +86,11 @@ public class Product implements Serializable, Comparable {
     @Override
     public int compareTo(@NonNull Object o) {
         if (o instanceof Product) {
-            return getName().compareTo(((Product)o).getName());
+            int cmp = getType().compareTo(((Product) o).getType());
+            if (cmp == 0) {
+                return getName().compareTo(((Product)o).getName());
+            }
+            return cmp;
         }
         return 0;
     }

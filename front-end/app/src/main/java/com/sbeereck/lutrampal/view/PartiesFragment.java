@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class PartiesFragment extends GeneralMainViewFragment {
 
-    private List<Party> products = new ArrayList<>();
+    private List<Party> parties = new ArrayList<>();
     private PartyController controller;
 
     private class GetAllPartiesTask extends AsyncTask<Void, Integer, List<Party>> {
@@ -59,8 +59,8 @@ public class PartiesFragment extends GeneralMainViewFragment {
                         R.string.parties_loading_error + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
-            PartiesFragment.this.products.clear();
-            PartiesFragment.this.products.addAll(parties);
+            PartiesFragment.this.parties.clear();
+            PartiesFragment.this.parties.addAll(parties);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -76,7 +76,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         super.onCreateView(inflater, container, savedInstanceState);
         controller = new PartyController(Placeholders.getPlaceHolderDataManager());
         new GetAllPartiesTask().execute();
-        mListview.setAdapter(new PartyListItemAdapter(getActivity(), products));
+        mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mActivity.getSupportActionBar().setTitle(R.string.parties_fragment_name);
         mFabAdd.setOnClickListener(getFabAddOnClickListener());
@@ -98,10 +98,10 @@ public class PartiesFragment extends GeneralMainViewFragment {
         if (resultCode == requestCode) {
             Party newParty = (Party) data.getSerializableExtra("party");
             if (data.getBooleanExtra("wasEditing", false)) {
-                products.remove(newParty);
+                parties.remove(newParty);
             }
-            products.add(newParty);
-            Collections.sort(products);
+            parties.add(newParty);
+            Collections.sort(parties);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -188,7 +188,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
                     .getFilteredParties();
             Party partyToRemove = filteredParties.get(selectedPartyIdx);
             filteredParties.remove(selectedPartyIdx);
-            products.remove(partyToRemove);
+            parties.remove(partyToRemove);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -198,7 +198,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         Dialog d = builder.setMessage(R.string.delete_party_confirm)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        new DeletePartyTask(products.get(partyIndex).getId(), partyIndex).execute();
+                        new DeletePartyTask(parties.get(partyIndex).getId(), partyIndex).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

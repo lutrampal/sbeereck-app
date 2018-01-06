@@ -2,7 +2,10 @@ package com.sbeereck.lutrampal.view;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -11,9 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.ProductController;
 import com.sbeereck.lutrampal.model.Product;
+import com.sbeereck.lutrampal.model.ProductType;
 
 
 /**
@@ -21,7 +28,17 @@ import com.sbeereck.lutrampal.model.Product;
  */
 public class NewProductDialogFragment extends DialogFragment {
 
-    Product p = null;
+    public interface OnOkButtonClickListener {
+        void onOkButtonClick(Product product, Boolean wasEditing);
+    }
+
+    private OnOkButtonClickListener mOnOkButtonClickListener;
+    private Boolean isEditProductDialog = false;
+    private ProductController controller;
+    private Product product = null;
+    private EditText nameEt;
+    private RadioGroup typeRg;
+    private EditText priceEt;
 
     public NewProductDialogFragment() {
         // Required empty public constructor
@@ -32,16 +49,21 @@ public class NewProductDialogFragment extends DialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.fragment_new_product_dialog, null);
+        nameEt = v.findViewById(R.id.name_et);
+        typeRg = v.findViewById(R.id.type_rg);
+        priceEt = v.findViewById(R.id.price_et);
+        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
         int positiveButtonId = R.string.add;
         if (getArguments() != null && getArguments().getSerializable("product") != null) {
             positiveButtonId = R.string.edit;
-            p = (Product) getArguments().getSerializable("product");
+            product = (Product) getArguments().getSerializable("product");
             makeEditDialog(v);
         }
         return builder.setView(v)
                 .setPositiveButton(positiveButtonId, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked add button
+                        addProduct();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -52,15 +74,81 @@ public class NewProductDialogFragment extends DialogFragment {
                 .create();
     }
 
+    private void addProduct() {
+        String name = nameEt.getText().toString();
+        Float price;
+        try {
+            price = Float.valueOf(priceEt.getText().toString());
+        } catch (Exception e) {
+            price = 0f;
+        }
+        ProductType type = null;
+        switch (typeRg.getCheckedRadioButtonId()) {
+            case R.id.beer_radio_button:
+                type = ProductType.BEER;
+                break;
+            case R.id.deposit_radio_button:
+                type = ProductType.DEPOSIT;
+                break;
+            case R.id.food_radio_button:
+                type = ProductType.FOOD;
+                break;
+        }
+        if (product == null) {
+            product = new Product(name, price, type);
+        } else {
+            product.setName(name);
+            product.setPrice(price);
+            product.setType(type);
+        }
+        new AddProductTask().execute();
+    }
+
+    private class AddProductTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                if (isEditProductDialog) {
+                    // controller.editParty(party);
+                } else {
+                    product.setId(controller.addProduct(product));
+                }
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void obj) {
+            if (e != null) {
+                Toast.makeText(getContext(),
+                        R.string.product_adding_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (mOnOkButtonClickListener != null) {
+                mOnOkButtonClickListener.onOkButtonClick(product, isEditProductDialog);
+            }
+        }
+    }
+
+    public void setOnOkButtonClickListener(NewProductDialogFragment.OnOkButtonClickListener listener) {
+        mOnOkButtonClickListener = listener;
+    }
+
     private void makeEditDialog(View v) {
         TextView tvTitle = v.findViewById(R.id.title_tv);
         tvTitle.setText(R.string.edit_product_dialog_title);
         EditText etName = v.findViewById(R.id.name_et);
-        etName.setText(p.getName());
+        etName.setText(product.getName());
         EditText etPrice = v.findViewById(R.id.price_et);
-        etPrice.setText(String.valueOf(p.getPrice()));
+        etPrice.setText(String.valueOf(product.getPrice()));
         RadioButton rb = null;
-        switch (p.getType()) {
+        switch (product.getType()) {
             case BEER:
                 rb = v.findViewById(R.id.beer_radio_button);
                 break;
@@ -68,11 +156,9 @@ public class NewProductDialogFragment extends DialogFragment {
                 rb = v.findViewById(R.id.deposit_radio_button);
                 break;
             case FOOD:
-                rb = v.findViewById(R.id.other_radio_button);
+                rb = v.findViewById(R.id.food_radio_button);
                 break;
         }
         rb.setChecked(true);
     }
-
-
 }

@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/mendatory_name"
-        android:inputType="textPersonName" />
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/textView4"
@@ -40,11 +40,12 @@
         android:orientation="horizontal">
 
         <RadioGroup
+            android:id="@+id/type_rg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:checkedButton="@+id/beer_radio_button"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <RadioButton
                 android:id="@+id/beer_radio_button"
@@ -61,11 +62,11 @@
                 android:text="@string/deposit" />
 
             <RadioButton
-                android:id="@+id/other_radio_button"
+                android:id="@+id/food_radio_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/other" />
+                android:text="@string/food" />
 
         </RadioGroup>
 

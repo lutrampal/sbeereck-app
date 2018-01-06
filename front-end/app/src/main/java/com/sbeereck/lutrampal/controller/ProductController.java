@@ -1,13 +1,23 @@
 package com.sbeereck.lutrampal.controller;
 
+import android.os.AsyncTask;
+import android.widget.BaseAdapter;
+import android.widget.Toast;
+
 import com.sbeereck.lutrampal.model.Product;
 import com.sbeereck.lutrampal.model.ProductType;
+import com.sbeereck.lutrampal.view.R;
 
 import org.json.simple.JSONObject;
 
 import java.net.URLEncoder;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by lutrampal on 03/01/18 for S'Beer Eck.
@@ -50,5 +60,26 @@ public class ProductController {
             products.addAll(getProductsByType(type));
         }
         return products;
+    }
+
+    public void deleteProduct(int id) throws Exception {
+        getDataManager().delete("/products/" + id);
+    }
+
+    public int addProduct(Product product) throws Exception {
+        Map<String, Object> jsonProduct = productToJsonObject(product);
+        Map<String, Object> res = getDataManager().post("/products", jsonProduct);
+        if (res != null && res.containsKey("id")) {
+            return ((Number)res.get("id")).intValue();
+        }
+        return -1;
+    }
+
+    private Map<String, Object> productToJsonObject(Product product) {
+        Map<String, Object> jsonProduct = new HashMap<>();
+        jsonProduct.put("name", product.getName());
+        jsonProduct.put("price", product.getPrice());
+        jsonProduct.put("type", product.getType().toString());
+        return jsonProduct;
     }
 }

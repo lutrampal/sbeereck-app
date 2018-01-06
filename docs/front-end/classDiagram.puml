@@ -73,6 +73,8 @@ package Controller {
 		+ ProductController(dataManager: RESTDataManager)
 		+ getAllProducts(): List<Product>
 		+ getProductsByType(type: string): List<Product>
+		+ deleteProduct(id: int)
+		+ addProduct(product: Product): int
 	}
 
 	RESTDataManager "- dataManager" <-- ProductController

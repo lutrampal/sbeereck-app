@@ -22,7 +22,7 @@ import java.util.List;
 public class Placeholders {
 
     public static RESTDataManager getPlaceHolderDataManager() {
-        return new RESTfulDataManager("192.168.43.54", "8081", "0001password");
+        return new RESTfulDataManager("192.168.1.42", "8081", "0001password");
     }
 
     public static List<Member> getPlaceHolderMembers() {

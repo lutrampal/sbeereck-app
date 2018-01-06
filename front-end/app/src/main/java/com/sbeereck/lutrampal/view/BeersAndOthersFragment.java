@@ -22,20 +22,37 @@ import android.widget.Toast;
 import com.sbeereck.lutrampal.controller.ProductController;
 import com.sbeereck.lutrampal.model.Product;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BeersAndOthersFragment extends GeneralMainViewFragment {
+public class BeersAndOthersFragment extends GeneralMainViewFragment
+        implements NewProductDialogFragment.OnOkButtonClickListener {
 
     private List<Product> products = new ArrayList<>();
     private ProductController controller;
 
     public BeersAndOthersFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onOkButtonClick(Product product, Boolean wasEditing) {
+        if (wasEditing) {
+            products.remove(product);
+        }
+        products.add(product);
+        Collections.sort(products);
+        ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
     }
 
     private class GetAllProductsTask extends AsyncTask<Void, Integer, List<Product>> {
@@ -85,12 +102,14 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment dialog = new NewProductDialogFragment();
+                NewProductDialogFragment dialog = new NewProductDialogFragment();
                 Bundle args = new Bundle();
                 args.putBoolean("isEditDialog", false);
                 dialog.setArguments(args);
+                dialog.setOnOkButtonClickListener(BeersAndOthersFragment.this);
                 dialog.show(mActivity.getSupportFragmentManager(),
                         "NewProductDialogFragment");
+                System.out.println("coucou");
             }
         };
     }
@@ -132,18 +151,51 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment {
                 "EditProductDialogFragment");
     }
 
+    private class DeleteProductTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+        private int selectedProductId;
+        private int selectedProductIdx;
+
+        public DeleteProductTask(int selectedProductId, int selectedProductIdx) {
+            this.selectedProductId = selectedProductId;
+            this.selectedProductIdx = selectedProductIdx;
+        }
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                controller.deleteProduct(selectedProductId);
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void voidObj) {
+            if (e != null) {
+                Toast.makeText(mActivity.getApplicationContext(),
+                        R.string.product_delete_error + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            List<Product> filteredProducts = ((ProductListItemAdapter) mListview.getAdapter())
+                    .getFilteredProducts();
+            Product productToRemove = filteredProducts.get(selectedProductIdx);
+            filteredProducts.remove(selectedProductIdx);
+            products.remove(productToRemove);
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
+    }
+
     private void deleteProduct(final int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         Dialog d = builder.setMessage(R.string.delete_product_confirm)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked delete button
-                        List<Product> filteredProducts = ((ProductListItemAdapter) mListview.getAdapter())
-                                .getFilteredProducts();
-                        Product productToRemove = filteredProducts.get(position);
-                        filteredProducts.remove(position);
-                        products.remove(productToRemove);
-                        ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+                        new DeleteProductTask(products.get(position).getId(), position).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

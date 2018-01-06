@@ -76,8 +76,19 @@
 			}
 	
 		
-			
-			
+	* /products/<id>
+		DELETE : delete the desired product
+		POST: insert a new product, the sent product object should be as follows  
+			{
+				"name":  
+				"price":  
+				"type":
+			}  
+			the response, in case of success, contains the product id  
+				{  
+					"id":  
+				}  
+		
 			
 			
 			
