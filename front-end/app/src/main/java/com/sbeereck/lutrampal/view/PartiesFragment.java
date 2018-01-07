@@ -56,7 +56,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         protected void onPostExecute(List<Party> parties) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        R.string.parties_loading_error + " : " + e.getMessage(),
+                        getString(R.string.parties_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
             PartiesFragment.this.parties.clear();
@@ -113,7 +113,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
                 Intent intent = new Intent(mActivity, PartyActivity.class);
                 intent.putExtra("party", ((PartyListItemAdapter) mListview.getAdapter())
                         .getFilteredParties().get(i));
-                intent.putExtra("members", (ArrayList<Member>) Placeholders.getPlaceHolderMembers());
+                // intent.putExtra("members", (ArrayList<Member>) Placeholders.getPlaceHolderMembers());
                 startActivity(intent);
             }
         };
@@ -180,7 +180,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         protected void onPostExecute(Void voidObj) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        R.string.party_delete_error + " : " + e.getMessage(),
+                        getString(R.string.party_delete_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
             }

@@ -132,7 +132,7 @@ public class NewPartyActivity extends AppCompatActivity {
         protected void onPostExecute(Party party) {
             if (e != null) {
                 Toast.makeText(getApplicationContext(),
-                        R.string.party_loading_error + " : " + e.getMessage(),
+                        getString(R.string.party_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -297,7 +297,7 @@ public class NewPartyActivity extends AppCompatActivity {
         protected void onPostExecute(Void obj) {
             if (e != null) {
                 Toast.makeText(getApplicationContext(),
-                        R.string.party_adding_error + " : " + e.getMessage(),
+                        getString(R.string.party_adding_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 added = false;
                 return;

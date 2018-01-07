@@ -21,6 +21,7 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
     protected List<Member> members;
     protected List<Member> filteredMembers;
     protected Context context;
+
     public MemberListItemAdapter(Context context, List<Member> members) {
         this.context = context;
         this.members = members;
@@ -54,15 +55,15 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
         TextView tvMemberName = convertView.findViewById(R.id.member_name_tv);
         TextView tvMemberBalance = convertView.findViewById(R.id.member_balance_tv);
         Member m = filteredMembers.get(i);
-        tvMemberName.setText(m.getName());
+        tvMemberName.setText(m.getFirstName() + " " + m.getLastName());
         tvMemberBalance.setText(m.getBalance() + "€");
         tvMemberName.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
         tvMemberBalance.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
-        if (m.getBalance() < 10) { // threshold should be changed dynamically in the future.
+        if (m.getBalance() < Placeholders.getPlaceHolderBalanceTooLowThreshold()) { // threshold should be changed dynamically in the future.
             tvMemberName.setTextColor(context.getResources().getColor(R.color.colorBalanceTooLow));
             tvMemberBalance.setTextColor(context.getResources().getColor(R.color.colorBalanceTooLow));
         }
-        if (!m.getMembership()) {
+        if (!m.isMembershipValid()) {
             tvMemberName.setTextColor(context.getResources().getColor(R.color.colorOutdatedMembership));
         }
         return convertView;
@@ -82,7 +83,7 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
                     List<Member> filteredMembers = new ArrayList<>();
 
                     for (Member m : members) {
-                        if (m.getName().toLowerCase().contains(constraint.toString().toLowerCase()))
+                        if ((m.getLastName() + m.getFirstName()).toLowerCase().contains(constraint.toString().toLowerCase()))
                             filteredMembers.add(m);
                     }
 

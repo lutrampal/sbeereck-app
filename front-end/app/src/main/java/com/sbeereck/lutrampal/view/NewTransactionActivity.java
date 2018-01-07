@@ -3,6 +3,7 @@ package com.sbeereck.lutrampal.view;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,9 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
+import android.widget.BaseAdapter;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.MemberController;
 import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.Party;
@@ -36,6 +40,7 @@ public class NewTransactionActivity extends AppCompatActivity {
     private TextView tvBalanceTitle;
     private AutoCompleteTextView tvMemberName;
     private float transactionAmount = 0;
+    private MemberController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +66,40 @@ public class NewTransactionActivity extends AppCompatActivity {
         f.setArguments(args);
         getFragmentManager().beginTransaction().replace(R.id.type_content_frame, f)
                 .commit();
-
-        setUpMemberSelection();
+        controller = new MemberController(Placeholders.getPlaceHolderDataManager());
+        new SetUpMemberSelectionTask().execute();
     }
 
-    private void setUpMemberSelection() {
-        tvMemberName = findViewById(R.id.member_name);
-        tvMemberName.setAdapter(new MemberAutocompleteTextViewAdapter(this, members));
-        tvMemberName.setOnItemClickListener(getOnAutocompleteItemClickListener());
-        tvMemberName.addTextChangedListener(getMemberNameTextChangedListener());
+    private class SetUpMemberSelectionTask extends AsyncTask<Void, Integer, List<Member>> {
+
+        private Exception e = null;
+
+        @Override
+        protected List<Member> doInBackground(Void ... voids) {
+            List<Member> members = null;
+            try {
+                members = controller.getAllMembers();
+            } catch (Exception e) {
+                this.e = e;
+                members = new ArrayList<>();
+            }
+            return members;
+        }
+
+        @Override
+        protected void onPostExecute(List<Member> members) {
+            if (e != null) {
+                Toast.makeText(NewTransactionActivity.this,
+                        getString(R.string.parties_loading_error) + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            NewTransactionActivity.this.members = members;
+            tvMemberName = findViewById(R.id.member_name);
+            tvMemberName.setAdapter(new MemberAutocompleteTextViewAdapter(NewTransactionActivity.this,
+                    members));
+            tvMemberName.setOnItemClickListener(getOnAutocompleteItemClickListener());
+            tvMemberName.addTextChangedListener(getMemberNameTextChangedListener());
+        }
     }
 
     private TextWatcher getMemberNameTextChangedListener() {
@@ -87,8 +117,8 @@ public class NewTransactionActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (selectedMember!= null &&
-                        !selectedMember.getName().toLowerCase()
-                                .equals(s.toString().toLowerCase().trim())) {
+                        !(selectedMember.getFirstName() + " " + selectedMember.getLastName())
+                                .toLowerCase().equals(s.toString().toLowerCase().trim())) {
                     selectedMember = null;
                     tvBalance.setText("");
                     tvBalanceTitle.setVisibility(View.INVISIBLE);
@@ -102,8 +132,10 @@ public class NewTransactionActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 selectedMember = (Member) tvMemberName.getAdapter().getItem(position);
-                tvMemberName.setText(selectedMember.getName());
+                tvMemberName.setText(selectedMember.getFirstName() + " "
+                        + selectedMember.getLastName());
                 tvMemberName.setSelection(tvMemberName.getText().toString().length());
+                selectedMember = (Member) tvMemberName.getAdapter().getItem(position);
                 updateBalanceTextView();
             }
         };
@@ -176,7 +208,9 @@ public class NewTransactionActivity extends AppCompatActivity {
                 if (selectedMember.getBalance() < -10 && transactionAmount <= 0) { // threshold should be changed dynamically
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     builder.setTitle(R.string.transaction_balance_too_low_title)
-                            .setMessage(selectedMember.getName() + " devrait penser à recharger son compte... (" + selectedMember.getBalance() + "€)")
+                            .setMessage(selectedMember.getFirstName()
+                                    + " devrait penser à recharger son compte... ("
+                                    + selectedMember.getBalance() + "€)")
                             .setPositiveButton(R.string.add_transaction_anyway, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     validateTransaction();

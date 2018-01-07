@@ -110,18 +110,6 @@ public class Party implements Comparable, Serializable {
         this.normalBeerPrice = normalBeerPrice;
     }
 
-    public Party(String name, Date date, int numberOfAttendees, float balance,
-                 float normalBeerPrice, float specialBeerPrice) {
-        this.name = name;
-        this.date = date;
-        this.numberOfAttendees = numberOfAttendees;
-        this.balance = balance;
-        this.specialBeerPrice = specialBeerPrice;
-        this.normalBeerPrice = normalBeerPrice;
-        this.servedBeers = new HashMap<>();
-        this.transactions = new ArrayList<>();
-    }
-
     public Party(int id, String name, Date date, int numberOfAttendees, float balance) {
         this.id = id;
         this.name = name;

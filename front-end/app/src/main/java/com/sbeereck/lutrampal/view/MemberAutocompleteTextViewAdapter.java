@@ -20,7 +20,9 @@ public class MemberAutocompleteTextViewAdapter extends MemberListItemAdapter {
         if (convertView == null) {
             convertView = inflater.inflate(android.R.layout.simple_list_item_1, null);
         }
-        ((TextView) convertView.findViewById(android.R.id.text1)).setText(filteredMembers.get(position).getName());
+        ((TextView) convertView.findViewById(android.R.id.text1))
+                .setText(filteredMembers.get(position).getFirstName() + " "
+                        + filteredMembers.get(position).getLastName());
         return convertView;
     }
 }

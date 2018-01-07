@@ -11,8 +11,10 @@ package Model {
 		- date: Date
 		- numberOfAttendees: int
 		- balance: float
+		- normalBeerPrice: float
+		- specialBeerPrice: float
 		+ Party(id, name, date, numberOfAttendees, balance)
-		+ Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers)
+		+ Party(id, name, date, normalBeerPrice, specialBeerPrice, servedBeers)
 	}
 
 	class Product {
@@ -45,9 +47,26 @@ package Model {
 		- lastName: String
 		- balance: float
 		- lastMembershipPayment: Date
-		+ Member(id, firstName, lastName, balance, lastMembershipPayment)
+		- formerStaff: boolean
+		- email: String
+		- phone: String
+		+ Member(id, firstName, lastName, balance, lastMembershipPayment, formerStaff)
+		
 		+ isMembershipValid(): Boolean
 	}
+
+	enum School {
+		CPP,
+		ENSE3,
+		ENSIMAG,
+		ESISAR,
+		GI,
+		PAPET,
+		PHELMA
+		+ {static} getSchool(name: String): School
+	}
+
+	Member -> "- school" School
 }
 
 package Controller {
@@ -75,6 +94,7 @@ package Controller {
 		+ addParty(party: Party): int
 		+ editParty(party: Party)
 		+ getParty(id: int): Party
+		+ deleteParty(id: int)
 		+ getDefaultNormalBeerPrice(): float
 		+ setDefaultNormalBeerPrice(newPrice: float)
 		+ getDefaultSpecialBeerPrice(): float
@@ -99,6 +119,10 @@ package Controller {
 		+ getAllMembers(): List<Member>
 		+ getBalanceTooLowThreshold(): float
 		+ setBalanceTooLowThreshold(newThreshold: float)
+		+ getMember(id: int): Member
+		+ deleteMember(id: int)
+		+ addMember(member: Member): int
+		+ renewMembership(id: int)
 	}
 	
 	RESTDataManager "- dataManager" <-- MemberController

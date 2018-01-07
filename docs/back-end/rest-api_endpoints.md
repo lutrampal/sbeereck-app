@@ -101,9 +101,39 @@
 				"first_name":  
 				"last_name":  
 				"balance":  
-				"last_membership_payment":  
+				"last_membership_payment":
+				"is_former_staff":
 			  }, ... ]  
-			
+		POST create a new member
+			{
+				"first_name":  
+				"last_name":
+				"school":
+				"email":
+				"phone":
+			}
+			the response, in case of success, contains the member id  
+				{  
+					"id":  
+				}  
+
+	* /members/<id>
+		GET return the desired member	
+			{  
+				"id":  
+				"first_name":  
+				"last_name":  
+				"balance":  
+				"last_membership_payment":
+				"school":
+				"email":
+				"phone":
+				"is_former_staff":
+			}
+		DELETE delete the desired member
+	* /members/<id>/membership
+		PUT renew the membership of this member, no body is required, the last_membership_payment field will be set to the current timestamp
+
 			
 			
 			

@@ -52,10 +52,7 @@ public class PartyController {
     }
 
     public void deleteParty(int partyId) throws Exception {
-        Object deletedParty = getDataManager().delete("/parties/" + partyId);
-        if (deletedParty == null) {
-            throw new Exception("Party not found");
-        }
+        getDataManager().delete("/parties/" + partyId);
     }
 
     public int addParty(Party party) throws Exception {

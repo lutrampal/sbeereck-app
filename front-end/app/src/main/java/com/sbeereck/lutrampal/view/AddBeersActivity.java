@@ -50,7 +50,7 @@ public class AddBeersActivity extends AppCompatActivity {
         protected void onPostExecute(List<Product> beers) {
             if (e != null) {
                 Toast.makeText(getApplicationContext(),
-                        R.string.beers_loading_error + " : " + e.getMessage(),
+                        getString(R.string.beers_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
             AddBeersActivity.this.beers.clear();

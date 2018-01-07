@@ -6,7 +6,8 @@ public enum School {
     ESISAR, //lol
     GI,
     PAPET,
-    PHELMA;
+    PHELMA,
+    CPP;
 
     public static School getSchool(String name) {
         if (name.equals("Ense3"))
@@ -19,7 +20,9 @@ public enum School {
             return GI;
         if (name.equals("Papet"))
             return PAPET;
-        return PHELMA;
+        if (name.equals("CPP"))
+            return CPP;
+        return null;
     }
 
     @Override
@@ -37,6 +40,8 @@ public enum School {
                 return "Papet";
             case PHELMA:
                 return "Phelma";
+            case CPP:
+                return "CPP";
             default:
                 return "";
         }

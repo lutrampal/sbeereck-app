@@ -36,7 +36,7 @@ import java.util.Map;
  * A simple {@link Fragment} subclass.
  */
 public class BeersAndOthersFragment extends GeneralMainViewFragment
-        implements NewProductDialogFragment.OnOkButtonClickListener {
+        implements OnOkButtonClickListener<Product> {
 
     private List<Product> products = new ArrayList<>();
     private ProductController controller;
@@ -75,7 +75,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         protected void onPostExecute(List<Product> products) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        R.string.parties_loading_error + " : " + e.getMessage(),
+                        getString(R.string.parties_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
             BeersAndOthersFragment.this.products.clear();
@@ -176,7 +176,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         protected void onPostExecute(Void voidObj) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        R.string.product_delete_error + " : " + e.getMessage(),
+                        getString(R.string.product_delete_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
             }

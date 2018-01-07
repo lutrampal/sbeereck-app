@@ -60,7 +60,7 @@ public class TransactionListItemAdapter extends BaseAdapter implements Filterabl
         TextView tvLabel = convertView.findViewById(R.id.label_tv);
         Transaction t = filteredTransactions.get(i);
 
-        tvMember.setText(t.getMember().getName());
+        tvMember.setText(t.getMember().getFirstName() + " " + t.getMember().getLastName());
         String sign;
         if (t.getTotalAmount() < 0) {
             sign = "";
@@ -87,7 +87,9 @@ public class TransactionListItemAdapter extends BaseAdapter implements Filterabl
                     List<Transaction> filteredTransactions = new ArrayList<>();
 
                     for (Transaction t : transactions) {
-                        if ((t.getMember().getName() + t.getLabel()).toLowerCase().contains(constraint.toString().toLowerCase()))
+                        if ((t.getMember().getLastName() + t.getMember().getFirstName()
+                                + t.getLabel()).toLowerCase()
+                                .contains(constraint.toString().toLowerCase()))
                             filteredTransactions.add(t);
                     }
 

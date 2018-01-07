@@ -29,11 +29,7 @@ import com.sbeereck.lutrampal.model.ProductType;
  */
 public class NewProductDialogFragment extends DialogFragment {
 
-    public interface OnOkButtonClickListener {
-        void onOkButtonClick(Product product, Boolean wasEditing);
-    }
-
-    private OnOkButtonClickListener mOnOkButtonClickListener;
+    private OnOkButtonClickListener<Product> mOnOkButtonClickListener;
     private Boolean isEditProductDialog = false;
     private ProductController controller;
     private Product product = null;
@@ -129,7 +125,7 @@ public class NewProductDialogFragment extends DialogFragment {
         protected void onPostExecute(Void obj) {
             if (e != null) {
                 Toast.makeText(context,
-                        R.string.product_adding_error + " : " + e.getMessage(),
+                        getString(R.string.product_adding_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -139,7 +135,7 @@ public class NewProductDialogFragment extends DialogFragment {
         }
     }
 
-    public void setOnOkButtonClickListener(NewProductDialogFragment.OnOkButtonClickListener listener) {
+    public void setOnOkButtonClickListener(OnOkButtonClickListener listener) {
         mOnOkButtonClickListener = listener;
     }
 

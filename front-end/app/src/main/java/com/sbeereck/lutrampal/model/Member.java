@@ -15,14 +15,73 @@ public class Member implements Serializable, Comparable {
     private String lastName = "";
     private float balance = 0;
     private Date lastMembershipPayment = new Date();
+    private boolean formerStaff = false;
+    private String phone;
+    private String email;
+    private School school;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
+    }
+
+    public boolean isFormerStaff() {
+        return formerStaff;
+    }
+
+    public void setFormerStaff(boolean formerStaff) {
+        this.formerStaff = formerStaff;
+    }
 
     public Member(int id, String firstName, String lastName, float balance,
-                  Date lastMembershipPayment) {
+                  Date lastMembershipPayment, boolean formerStaff, String phone,
+                  String email, School school) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.balance = balance;
         this.lastMembershipPayment = lastMembershipPayment;
+        this.formerStaff = formerStaff;
+        this.phone = phone;
+        this.email = email;
+        this.school = school;
+    }
+
+    public Member(int id, String firstName, String lastName, float balance,
+                  Date lastMembershipPayment, boolean formerStaff) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.balance = balance;
+        this.lastMembershipPayment = lastMembershipPayment;
+        this.formerStaff = formerStaff;
+    }
+
+    public Member(String firstName, String lastName, String phone, String email, School school) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.school = school;
     }
 
     public int getId() {
@@ -66,6 +125,9 @@ public class Member implements Serializable, Comparable {
     }
 
     public boolean isMembershipValid() {
+        if (isFormerStaff()) {
+            return true;
+        }
         Date today = new Date();
         Date twentyFifthOfAugust = new Date(today.getYear(), 8, 25);
         if (today.before(twentyFifthOfAugust)) {

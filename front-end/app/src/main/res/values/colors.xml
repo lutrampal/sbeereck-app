@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#263238</color>
     <color name="colorAccent">#fdd835</color>
     <color name="colorBalanceTooLow">#c62828</color>
-    <color name="colorPositiveBalance">#80FF00</color>
+    <color name="colorPositiveBalance">#62c200</color>
     <color name="colorOutdatedMembership">#64b5f6</color>
     <color name="colorDeposit">#00897b</color>
     <color name="colorOther">#795548</color>

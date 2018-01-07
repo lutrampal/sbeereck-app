@@ -28,7 +28,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_member_title">Nouvel adhérent</string>
-    <string name="mendatory_name">Nom</string>
+    <string name="last_name">Nom</string>
     <string name="school">École</string>
     <string name="mendatory_email">Email</string>
     <string name="phone">Téléphone</string>
@@ -87,4 +87,9 @@
     <string name="party_loading_error">Impossible de charger la soirée</string>
     <string name="product_delete_error">Impossible de supprimer le produit</string>
     <string name="product_adding_error">Impossible d\'ajouter le produit</string>
+    <string name="member_loading_error">Impossible de charger le membre</string>
+    <string name="member_delete_error">Impossible de supprimer le membre</string>
+    <string name="first_name">Prénom</string>
+    <string name="member_adding_error">Impossible d\'ajouter le membre</string>
+    <string name="renew_membership_error">Impossible de renouveller l\'adhésion</string>
 </resources>
