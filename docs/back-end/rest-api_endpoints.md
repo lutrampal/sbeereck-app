@@ -96,6 +96,13 @@
 			}
 	* /members
 		GET return all the members	
+			[ {  
+				"id":  
+				"first_name":  
+				"last_name":  
+				"balance":  
+				"last_membership_payment":  
+			  }, ... ]  
 			
 			
 			

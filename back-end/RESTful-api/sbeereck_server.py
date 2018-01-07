@@ -4,6 +4,7 @@ from parties import Parties
 from party import Party
 from products import Products
 from product import Product
+from members import Members
 
 app = Flask(__name__)
 api = Api(app)
@@ -11,6 +12,7 @@ parser = reqparse.RequestParser()
 
 api.add_resource(Parties, '/parties')
 api.add_resource(Products, '/products')
+api.add_resource(Members, '/members')
 api.add_resource(Party, '/parties/<party_id>')
 api.add_resource(Product, '/products/<product_id>')
 

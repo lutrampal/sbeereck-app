@@ -2,17 +2,12 @@ package com.sbeereck.lutrampal.view;
 
 import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.RESTfulDataManager;
-import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Member;
-import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Product;
 import com.sbeereck.lutrampal.model.ProductType;
 import com.sbeereck.lutrampal.model.School;
-import com.sbeereck.lutrampal.model.Transaction;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,7 +17,7 @@ import java.util.List;
 public class Placeholders {
 
     public static RESTDataManager getPlaceHolderDataManager() {
-        return new RESTfulDataManager("192.168.1.42", "8081", "0001password");
+        return new RESTfulDataManager("192.168.0.13", "8081", "0001password");
     }
 
     public static List<Member> getPlaceHolderMembers() {

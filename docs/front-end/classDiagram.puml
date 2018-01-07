@@ -38,6 +38,16 @@ package Model {
 	Product "- servedBeers: Map<Product, BeerCategory>" <--o Party
 
 	BeerCategory <. Party: Uses
+	
+	class Member {
+		- id: int
+		- firstName: String
+		- lastName: String
+		- balance: float
+		- lastMembershipPayment: Date
+		+ Member(id, firstName, lastName, balance, lastMembershipPayment)
+		+ isMembershipValid(): Boolean
+	}
 }
 
 package Controller {
@@ -65,6 +75,10 @@ package Controller {
 		+ addParty(party: Party): int
 		+ editParty(party: Party)
 		+ getParty(id: int): Party
+		+ getDefaultNormalBeerPrice(): float
+		+ setDefaultNormalBeerPrice(newPrice: float)
+		+ getDefaultSpecialBeerPrice(): float
+		+ setDefaultSpecialBeerPrice(newPrice: float)
 	}
 
 	RESTDataManager "- dataManager" <- PartyController
@@ -79,9 +93,19 @@ package Controller {
 	}
 
 	RESTDataManager "- dataManager" <-- ProductController
+
+	class MemberController {
+		+ MemberController(dataManager: RESTDataManager)
+		+ getAllMembers(): List<Member>
+		+ getBalanceTooLowThreshold(): float
+		+ setBalanceTooLowThreshold(newThreshold: float)
+	}
+	
+	RESTDataManager "- dataManager" <-- MemberController
 }
 
-PartyController .> Party: Uses
-ProductController .> Product: Uses
+PartyController ..> Party: Uses
+ProductController ..> Product: Uses
+MemberController ..> Member: Uses
 
 @enduml

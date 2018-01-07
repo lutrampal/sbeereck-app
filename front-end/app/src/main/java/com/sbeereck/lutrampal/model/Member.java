@@ -1,79 +1,77 @@
 package com.sbeereck.lutrampal.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * A class to represent a member of the association who attends parties.
  */
-public class Member implements Serializable {
+public class Member implements Serializable, Comparable {
 
-    private String mName;
-    private float mBalance;
-    private School mSchool;
-    private String mEmail;
-    private String mPhone;
-    /**
-     * Indicates whether or not the member has payed its membership fee this year.
-     */
-    private Boolean mMembership;
+    private int id = -1;
+    private String firstName = "";
+    private String lastName = "";
+    private float balance = 0;
+    private Date lastMembershipPayment = new Date();
 
-    public Member(String mName, float mBalance, School mSchool, String mEmail, String mPhone,
-                  Boolean mMembership) {
-        this.mName = mName;
-        this.mBalance = mBalance;
-        this.mSchool = mSchool;
-        this.mEmail = mEmail;
-        this.mPhone = mPhone;
-        this.mMembership = mMembership;
+    public Member(int id, String firstName, String lastName, float balance,
+                  Date lastMembershipPayment) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.balance = balance;
+        this.lastMembershipPayment = lastMembershipPayment;
     }
 
-    public Boolean getMembership() {
-        return mMembership;
+    public int getId() {
+        return id;
     }
 
-    public void setMembership(Boolean mMembershipFee) {
-        this.mMembership = mMembershipFee;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getName() {
-
-        return mName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String mName) {
-        this.mName = mName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public float getBalance() {
-        return mBalance;
+        return balance;
     }
 
-    public void setBalance(float mBalance) {
-        this.mBalance = mBalance;
+    public void setBalance(float balance) {
+        this.balance = balance;
     }
 
-    public School getSchool() {
-        return mSchool;
+    public Date getLastMembershipPayment() {
+        return lastMembershipPayment;
     }
 
-    public void setSchool(School mSchool) {
-        this.mSchool = mSchool;
+    public void setLastMembershipPayment(Date lastMembershipPayment) {
+        this.lastMembershipPayment = lastMembershipPayment;
     }
 
-    public String getEmail() {
-        return mEmail;
-    }
-
-    public void setEmail(String mEmail) {
-        this.mEmail = mEmail;
-    }
-
-    public String getPhone() {
-        return mPhone;
-    }
-
-    public void setPhone(String mPhone) {
-        this.mPhone = mPhone;
+    public boolean isMembershipValid() {
+        Date today = new Date();
+        Date twentyFifthOfAugust = new Date(today.getYear(), 8, 25);
+        if (today.before(twentyFifthOfAugust)) {
+            twentyFifthOfAugust.setYear(twentyFifthOfAugust.getYear() - 1);
+        }
+        return getLastMembershipPayment().after(twentyFifthOfAugust);
     }
 
     @Override
@@ -83,26 +81,24 @@ public class Member implements Serializable {
 
         Member member = (Member) o;
 
-        if (getName() != null ? !getName().equals(member.getName()) : member.getName() != null)
-            return false;
-        return getEmail() != null ? getEmail().equals(member.getEmail()) : member.getEmail() == null;
+        return getId() == member.getId();
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
-        return result;
+        return getId();
     }
 
+
     @Override
-    public String toString() {
-        return "Member{" +
-                "mName='" + mName + '\'' +
-                ", mBalance=" + mBalance +
-                ", mSchool=" + mSchool +
-                ", mEmail='" + mEmail + '\'' +
-                ", mPhone='" + mPhone + '\'' +
-                '}';
+    public int compareTo(@NonNull Object o) {
+        if (o instanceof Member) {
+            int cmp = getLastName().compareTo(((Member) o).getLastName());
+            if (cmp == 0) {
+                return getFirstName().compareTo(((Member) o).getFirstName());
+            }
+            return cmp;
+        }
+        return 0;
     }
 }
