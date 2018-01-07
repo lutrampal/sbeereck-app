@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a534bd28-2271-4bfa-bebe-ce33713345dc" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/parties.py" afterPath="$PROJECT_DIR$/parties.py" />
-      <change beforePath="$PROJECT_DIR$/products.py" afterPath="$PROJECT_DIR$/products.py" />
-      <change beforePath="$PROJECT_DIR$/sbeereck_server.py" afterPath="$PROJECT_DIR$/sbeereck_server.py" />
+      <change beforePath="$PROJECT_DIR$/party.py" afterPath="$PROJECT_DIR$/party.py" />
       <change beforePath="$PROJECT_DIR$/../../docs/back-end/rest-api_endpoints.md" afterPath="$PROJECT_DIR$/../../docs/back-end/rest-api_endpoints.md" />
+      <change beforePath="$PROJECT_DIR$/../../docs/front-end/classDiagram.puml" afterPath="$PROJECT_DIR$/../../docs/front-end/classDiagram.puml" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/ProductController.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/ProductController.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1515270325341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1515280400667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -36,53 +31,64 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="parties.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/parties.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="812">
-              <caret line="48" column="80" lean-forward="false" selection-start-line="48" selection-start-column="80" selection-end-line="48" selection-end-column="80" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <marker date="1515274597576" expanded="true" signature="448:542" ph="SELECT party... party_list" />
-                <marker date="1515274597576" expanded="true" signature="1798:1868" ph="INSERT INTO parties... " />
-                <marker date="1515274597576" expanded="true" signature="1798:1921" ph="INSERT INTO parties... " />
-                <marker date="1515274597576" expanded="true" signature="1798:1927" ph="INSERT INTO parties... " />
-                <marker date="1515274597576" expanded="true" signature="1798:1976" ph="INSERT INTO parties... " />
-                <marker date="1515274597576" expanded="true" signature="2007:2072" ph="INSERT INTO served_beers_at_party... " />
-                <marker date="1515274597576" expanded="true" signature="2007:2156" ph="INSERT INTO served_beers_at_party... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="products.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/products.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="686">
-              <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <marker date="1515274662392" expanded="true" signature="511:561" ph="SELECT produ... products" />
-                <marker date="1515274662392" expanded="true" signature="1579:1692" ph="INSERT INTO products... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sbeereck_server.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="product.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/product.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="384">
+                  <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                    <marker date="1515280385668" expanded="true" signature="525:545" ph="DELETE FROM products... " />
+                    <marker date="1515280385668" expanded="true" signature="525:570" ph="SELECT produ... products" />
+                    <marker date="1515280385668" expanded="true" signature="525:571" ph="DELETE FROM products... " />
+                    <marker date="1515280385668" expanded="true" signature="1310:1367" ph="SELECT produ... products" />
+                    <marker date="1515280385668" expanded="true" signature="1401:1570" ph="UPDATE products... " />
+                    <marker date="1515280385668" expanded="true" signature="1408:1545" ph="INSERT INTO products... " />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="party.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/party.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1086">
+                  <caret line="96" column="19" lean-forward="false" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                    <marker date="1515280330860" expanded="true" signature="470:570" ph="SELECT party... party_list" />
+                    <marker date="1515280330860" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
+                    <marker date="1515280330860" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
+                    <marker date="1515280330860" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
+                    <marker date="1515280330860" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+                    <marker date="1515280330860" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
+                    <marker date="1515280330860" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
+                    <marker date="1515280330860" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
+                    <marker date="1515280330860" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
+                    <marker date="1515280330860" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
+                    <marker date="1515280330860" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -112,10 +118,10 @@
         <option value="$PROJECT_DIR$/Party.py" />
         <option value="$PROJECT_DIR$/../database/generate_test_samples.py" />
         <option value="$PROJECT_DIR$/sbeereck_server.py" />
-        <option value="$PROJECT_DIR$/product.py" />
-        <option value="$PROJECT_DIR$/party.py" />
         <option value="$PROJECT_DIR$/parties.py" />
         <option value="$PROJECT_DIR$/products.py" />
+        <option value="$PROJECT_DIR$/party.py" />
+        <option value="$PROJECT_DIR$/product.py" />
       </list>
     </option>
   </component>
@@ -125,7 +131,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="959" />
     <option name="width" value="968" />
     <option name="height" value="1047" />
@@ -253,14 +259,14 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="959" y="0" width="1920" height="1082" extended-state="7" />
+    <frame x="959" y="0" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958805" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3285273" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285273" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10104167" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -288,16 +294,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/product.py</url>
-          <line>18</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/sbeereck_server.py</url>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -337,24 +338,24 @@
           <caret line="101" column="12" lean-forward="false" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="12" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515175458820" expanded="true" signature="470:570" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
-            <marker date="1515175458820" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
-            <marker date="1515175458820" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
-            <marker date="1515175458820" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="470:570" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
+            <marker date="1515280330860" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
+            <marker date="1515280330860" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
+            <marker date="1515280330860" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
           </folding>
         </state>
       </provider>
@@ -394,24 +395,24 @@
           <caret line="29" column="15" lean-forward="false" selection-start-line="29" selection-start-column="15" selection-end-line="29" selection-end-column="15" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515175458820" expanded="true" signature="470:570" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
-            <marker date="1515175458820" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
-            <marker date="1515175458820" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
-            <marker date="1515175458820" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="470:570" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
+            <marker date="1515280330860" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
+            <marker date="1515280330860" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
+            <marker date="1515280330860" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
           </folding>
         </state>
       </provider>
@@ -422,24 +423,24 @@
           <caret line="65" column="52" lean-forward="false" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515175458820" expanded="true" signature="470:570" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
-            <marker date="1515175458820" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
-            <marker date="1515175458820" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
-            <marker date="1515175458820" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="470:570" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
+            <marker date="1515280330860" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
+            <marker date="1515280330860" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
+            <marker date="1515280330860" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
           </folding>
         </state>
       </provider>
@@ -697,47 +698,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515274433168" expanded="true" signature="525:545" ph="DELETE FROM products... " />
-            <marker date="1515274433168" expanded="true" signature="525:570" ph="SELECT produ... products" />
-            <marker date="1515274433168" expanded="true" signature="525:571" ph="DELETE FROM products... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/party.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1800">
-          <caret line="100" column="52" lean-forward="true" selection-start-line="100" selection-start-column="52" selection-end-line="100" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515175458820" expanded="true" signature="470:570" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
-            <marker date="1515175458820" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
-            <marker date="1515175458820" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515175458820" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
-            <marker date="1515175458820" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
-            <marker date="1515175458820" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515175458820" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="812">
@@ -757,12 +717,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/products.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="48" column="32" lean-forward="false" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+        <state relative-caret-position="470">
+          <caret line="48" column="38" lean-forward="false" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <marker date="1515274662392" expanded="true" signature="511:561" ph="SELECT produ... products" />
             <marker date="1515274662392" expanded="true" signature="1579:1692" ph="INSERT INTO products... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/party.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1086">
+          <caret line="96" column="19" lean-forward="false" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515280330860" expanded="true" signature="470:570" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="470:619" ph="SELECT party... party_listWHERE" />
+            <marker date="1515280330860" expanded="true" signature="470:631" ph="SELECT name,... partiesWHERE" />
+            <marker date="1515280330860" expanded="true" signature="670:949" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515280330860" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="2152:2273" ph="SELECT party... party_list" />
+            <marker date="1515280330860" expanded="true" signature="3420:3472" ph="SELECT party... parties" />
+            <marker date="1515280330860" expanded="true" signature="3504:3573" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3590" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3633" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3689" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3711" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3763" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3504:3769" ph="UPDATE parties... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3833" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3800:3857" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515280330860" expanded="true" signature="3888:4037" ph="INSERT INTO served_beers_at_party... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="42" column="26" lean-forward="true" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515280385668" expanded="true" signature="525:545" ph="DELETE FROM products... " />
+            <marker date="1515280385668" expanded="true" signature="525:570" ph="SELECT produ... products" />
+            <marker date="1515280385668" expanded="true" signature="525:571" ph="DELETE FROM products... " />
+            <marker date="1515280385668" expanded="true" signature="1310:1367" ph="SELECT produ... products" />
+            <marker date="1515280385668" expanded="true" signature="1401:1570" ph="UPDATE products... " />
+            <marker date="1515280385668" expanded="true" signature="1408:1545" ph="INSERT INTO products... " />
           </folding>
         </state>
       </provider>

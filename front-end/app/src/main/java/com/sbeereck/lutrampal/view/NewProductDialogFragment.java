@@ -1,6 +1,7 @@
 package com.sbeereck.lutrampal.view;
 
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -94,14 +95,16 @@ public class NewProductDialogFragment extends DialogFragment {
                 type = ProductType.FOOD;
                 break;
         }
-        if (product == null) {
-            product = new Product(name, price, type);
-        } else {
-            product.setName(name);
-            product.setPrice(price);
-            product.setType(type);
-        }
+        product = new Product(product.getId(), name, price, type);
         new AddProductTask().execute();
+    }
+
+    private Context context;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        context = activity;
     }
 
     private class AddProductTask extends AsyncTask<Void, Integer, Void> {
@@ -112,7 +115,7 @@ public class NewProductDialogFragment extends DialogFragment {
         protected Void doInBackground(Void ... voids) {
             try {
                 if (isEditProductDialog) {
-                    // controller.editParty(party);
+                    controller.editProduct(product);
                 } else {
                     product.setId(controller.addProduct(product));
                 }
@@ -125,7 +128,7 @@ public class NewProductDialogFragment extends DialogFragment {
         @Override
         protected void onPostExecute(Void obj) {
             if (e != null) {
-                Toast.makeText(getContext(),
+                Toast.makeText(context,
                         R.string.product_adding_error + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
@@ -147,6 +150,7 @@ public class NewProductDialogFragment extends DialogFragment {
         etName.setText(product.getName());
         EditText etPrice = v.findViewById(R.id.price_et);
         etPrice.setText(String.valueOf(product.getPrice()));
+        isEditProductDialog = true;
         RadioButton rb = null;
         switch (product.getType()) {
             case BEER:

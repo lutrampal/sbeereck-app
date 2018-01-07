@@ -72,15 +72,12 @@ public class Product implements Serializable, Comparable {
 
         Product product = (Product) o;
 
-        return (getName() != null ? getName().equals(product.getName()) : product.getName() == null)
-                && getType() == product.getType();
+        return id == product.id;
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
-        return result;
+        return id;
     }
 
     @Override

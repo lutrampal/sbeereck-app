@@ -88,7 +88,14 @@
 				{  
 					"id":  
 				}  
-		
+		PUT: update a product, the sent product object should be as follows  
+			{
+				"name":  
+				"price":  
+				"type":
+			}
+	* /members
+		GET return all the members	
 			
 			
 			

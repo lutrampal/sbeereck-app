@@ -82,4 +82,11 @@ public class ProductController {
         jsonProduct.put("type", product.getType().toString());
         return jsonProduct;
     }
+
+    public void editProduct(Product product) throws Exception {
+        Map<String, Object> jsonProduct = productToJsonObject(product);
+        Map<String, Object> res = getDataManager().put("/products/" + product.getId(),
+                jsonProduct);
+
+    }
 }

@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity
                     byte[] b = {(byte) 0xF0, (byte) 0x9F, (byte) 0x8D, (byte) 0xBB};
                     String beers = new String(b, "UTF8");
                     Toast.makeText(getApplicationContext(), "!! " + beers + beers + beers + " !!", Toast.LENGTH_SHORT).show();
-                } catch (Exception e) {
-                }
+                } catch (Exception e) { }
             }
         };
     }

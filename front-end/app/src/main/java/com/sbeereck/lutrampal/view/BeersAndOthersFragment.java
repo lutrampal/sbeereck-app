@@ -109,7 +109,6 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
                 dialog.setOnOkButtonClickListener(BeersAndOthersFragment.this);
                 dialog.show(mActivity.getSupportFragmentManager(),
                         "NewProductDialogFragment");
-                System.out.println("coucou");
             }
         };
     }
@@ -143,10 +142,11 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
     private void editProduct(int position) {
         Product productToEdit = ((ProductListItemAdapter) mListview.getAdapter())
                 .getFilteredProducts().get(position);
-        DialogFragment dialog = new NewProductDialogFragment();
+        NewProductDialogFragment dialog = new NewProductDialogFragment();
         Bundle args = new Bundle();
         args.putSerializable("product", productToEdit);
         dialog.setArguments(args);
+        dialog.setOnOkButtonClickListener(BeersAndOthersFragment.this);
         dialog.show(mActivity.getSupportFragmentManager(),
                 "EditProductDialogFragment");
     }

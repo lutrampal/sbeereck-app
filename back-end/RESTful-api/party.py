@@ -94,8 +94,7 @@ class Party(Resource):
             'special_beer_price': request.json['special_beer_price']
         }
         with connection.cursor() as cursor:
-            number_of_selected_rows = cursor.execute(check_party_exist_query, party)
-            if number_of_selected_rows < 1:
+            if not cursor.execute(check_party_exist_query, party):
                 connection.close()
                 abort(404)
             cursor.execute(update_party_query, party)
