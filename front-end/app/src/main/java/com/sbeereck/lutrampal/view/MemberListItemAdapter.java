@@ -56,7 +56,7 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
         TextView tvMemberBalance = convertView.findViewById(R.id.member_balance_tv);
         Member m = filteredMembers.get(i);
         tvMemberName.setText(m.getFirstName() + " " + m.getLastName());
-        tvMemberBalance.setText(m.getBalance() + "€");
+        tvMemberBalance.setText(String.format("%.2f", m.getBalance()) + "€");
         tvMemberName.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
         tvMemberBalance.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
         if (m.getBalance() < Placeholders.getPlaceHolderBalanceTooLowThreshold()) { // threshold should be changed dynamically in the future.
@@ -83,7 +83,8 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
                     List<Member> filteredMembers = new ArrayList<>();
 
                     for (Member m : members) {
-                        if ((m.getLastName() + m.getFirstName()).toLowerCase().contains(constraint.toString().toLowerCase()))
+                        if ((m.getFirstName() + " " + m.getLastName()).toLowerCase()
+                                .contains(constraint.toString().toLowerCase()))
                             filteredMembers.add(m);
                     }
 

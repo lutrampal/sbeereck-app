@@ -20,7 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
-import com.sbeereck.lutrampal.model.Member;
+import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Party;
 
 import java.util.ArrayList;
@@ -35,6 +35,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
     private List<Party> parties = new ArrayList<>();
     private PartyController controller;
+    private TransactionController transactionController;
 
     private class GetAllPartiesTask extends AsyncTask<Void, Integer, List<Party>> {
 
@@ -75,6 +76,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
         view = inflater.inflate(R.layout.fragment_parties, container, false);
         super.onCreateView(inflater, container, savedInstanceState);
         controller = new PartyController(Placeholders.getPlaceHolderDataManager());
+        transactionController = new TransactionController(Placeholders.getPlaceHolderDataManager());
         new GetAllPartiesTask().execute();
         mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
         mListview.setOnItemClickListener(getListViewItemClickListener());
@@ -110,11 +112,8 @@ public class PartiesFragment extends GeneralMainViewFragment {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(mActivity, PartyActivity.class);
-                intent.putExtra("party", ((PartyListItemAdapter) mListview.getAdapter())
-                        .getFilteredParties().get(i));
-                // intent.putExtra("members", (ArrayList<Member>) Placeholders.getPlaceHolderMembers());
-                startActivity(intent);
+                new StartPartyActivityTask(((PartyListItemAdapter) mListview.getAdapter())
+                        .getFilteredParties().get(i).getId()).execute();
             }
         };
     }
@@ -155,21 +154,58 @@ public class PartiesFragment extends GeneralMainViewFragment {
         startActivityForResult(intent, 1);
     }
 
+    private class StartPartyActivityTask extends AsyncTask<Void, Integer, Party> {
+
+        private Exception e = null;
+        private int partyId;
+
+        public StartPartyActivityTask(int partyId) {
+            this.partyId = partyId;
+        }
+
+        @Override
+        protected Party doInBackground(Void ... voids) {
+            mListview.setEnabled(false);
+            Party party = null;
+            try {
+                party = controller.getParty(partyId);
+                party.setTransactions(transactionController.getTransactionsForParty(party));
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return party;
+        }
+
+        @Override
+        protected void onPostExecute(Party party) {
+            mListview.setEnabled(true);
+            if (e != null) {
+                Toast.makeText(mActivity.getApplicationContext(),
+                        getString(R.string.party_loading_error) + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Intent intent = new Intent(mActivity, TransactionsActivity.class);
+            intent.putExtra("party", party);
+            startActivity(intent);
+        }
+    }
+
     private class DeletePartyTask extends AsyncTask<Void, Integer, Void> {
 
         private Exception e = null;
-        private int selectedPartyId;
+        private Party selectedParty;
         private int selectedPartyIdx;
 
-        public DeletePartyTask(int selectedPartyId, int selectedPartyIdx) {
-            this.selectedPartyId = selectedPartyId;
+        public DeletePartyTask(Party selectedParty, int selectedPartyIdx) {
+            this.selectedParty = selectedParty;
             this.selectedPartyIdx = selectedPartyIdx;
         }
 
         @Override
         protected Void doInBackground(Void ... voids) {
             try {
-                controller.deleteParty(selectedPartyId);
+                controller.deleteParty(selectedParty.getId());
             } catch (Exception e) {
                 this.e = e;
             }
@@ -186,9 +222,8 @@ public class PartiesFragment extends GeneralMainViewFragment {
             }
             List<Party> filteredParties = ((PartyListItemAdapter) mListview.getAdapter())
                     .getFilteredParties();
-            Party partyToRemove = filteredParties.get(selectedPartyIdx);
             filteredParties.remove(selectedPartyIdx);
-            parties.remove(partyToRemove);
+            parties.remove(selectedParty);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -198,7 +233,10 @@ public class PartiesFragment extends GeneralMainViewFragment {
         Dialog d = builder.setMessage(R.string.delete_party_confirm)
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        new DeletePartyTask(parties.get(partyIndex).getId(), partyIndex).execute();
+                        List<Party> filteredParties = ((PartyListItemAdapter) mListview.getAdapter())
+                                .getFilteredParties();
+                        Party partyToRemove = filteredParties.get(partyIndex);
+                        new DeletePartyTask(partyToRemove, partyIndex).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

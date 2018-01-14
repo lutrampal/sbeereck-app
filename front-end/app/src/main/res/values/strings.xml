@@ -92,4 +92,9 @@
     <string name="first_name">Prénom</string>
     <string name="member_adding_error">Impossible d\'ajouter le membre</string>
     <string name="renew_membership_error">Impossible de renouveller l\'adhésion</string>
+    <string name="transactions_loading_error">Impossible de charger les transactions</string>
+    <string name="transaction_delete_error">Impossible de supprimer la transaction</string>
+    <string name="food_loading_error">Impossible de charger la nourriture</string>
+    <string name="deposits_loading_error">Impossible de charger les cautions</string>
+    <string name="transaction_add_error">Impossible d\'ajouter la transaction</string>
 </resources>

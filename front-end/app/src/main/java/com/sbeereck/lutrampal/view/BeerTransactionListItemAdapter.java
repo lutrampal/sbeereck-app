@@ -19,14 +19,9 @@ import java.util.Map;
 public class BeerTransactionListItemAdapter extends BeerListItemAdapter {
 
     private LayoutInflater inflater;
-    private float normalPrice;
-    private float specialPrice;
 
-    public BeerTransactionListItemAdapter(Context context, Map<Product, BeerCategory> servedBeers
-            , float normalPrice, float specialPrice) {
+    public BeerTransactionListItemAdapter(Context context, Map<Product, BeerCategory> servedBeers) {
         super(context, servedBeers);
-        this.normalPrice = normalPrice;
-        this.specialPrice = specialPrice;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -37,17 +32,6 @@ public class BeerTransactionListItemAdapter extends BeerListItemAdapter {
         }
         CheckedTextView tv = convertView.findViewById(android.R.id.text1);
         super.getView(position, tv, parent);
-
-        Map.Entry<Product, BeerCategory> item = (Map.Entry<Product, BeerCategory>) getItem(position);
-        ((TextView) convertView).setText(item.getKey().getName());
-        switch (item.getValue()) {
-            case NORMAL:
-                tv.setText(tv.getText() + " (" + normalPrice + "€/demi)");
-                break;
-            case SPECIAL:
-                tv.setText(tv.getText() + " (" + specialPrice + "€/demi)");
-                break;
-        }
         return convertView;
     }
 }

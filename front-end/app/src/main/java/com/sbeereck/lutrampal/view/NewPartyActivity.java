@@ -29,7 +29,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
@@ -60,9 +59,11 @@ public class NewPartyActivity extends AppCompatActivity {
 
         nameEt = findViewById(R.id.party_name);
         normalPriceEt = findViewById(R.id.normal_beer_price);
-        normalPriceEt.setText(String.valueOf(Placeholders.getPlaceHolderDefaultNormalBeerPrice()));
+        normalPriceEt.setText(String.format("%.2f",
+                Placeholders.getPlaceHolderDefaultNormalBeerPrice()));
         specialPriceEt = findViewById(R.id.special_beer_price);
-        specialPriceEt.setText(String.valueOf(Placeholders.getPlaceHolderDefaultSpecialBeerPrice()));
+        specialPriceEt.setText(String.format("%.2f",
+                Placeholders.getPlaceHolderDefaultSpecialBeerPrice()));
         dateEt = findViewById(R.id.party_date);
 
         servedBeers = new TreeMap<>();
@@ -73,7 +74,7 @@ public class NewPartyActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(R.string.title_activity_new_party);
         }
 
-        beersListView = findViewById(R.id.beers_list_view);
+        beersListView = findViewById(R.id.products_listview);
         beersListView.setAdapter(new BeerListItemAdapter(this, servedBeers));
         registerForContextMenu(beersListView);
 
@@ -88,7 +89,7 @@ public class NewPartyActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(NewPartyActivity.this, AddBeersActivity.class);
                 intent.putExtra("beers", (ArrayList<Product>) Placeholders.getPlaceHolderBeers());
-                intent.putExtra("alreadySelectedBeers", (HashMap<Product, BeerCategory>) servedBeers);
+                intent.putExtra("alreadySelectedBeers", (TreeMap<Product, BeerCategory>) servedBeers);
                 startActivityForResult(intent, 1);
             }
         };
@@ -184,7 +185,7 @@ public class NewPartyActivity extends AppCompatActivity {
                                     ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
-        if (v.getId() == R.id.beers_list_view) {
+        if (v.getId() == R.id.products_listview) {
             inflater.inflate(R.menu.menu_delete, menu);
         }
     }

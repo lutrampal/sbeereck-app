@@ -7,6 +7,9 @@ from product import Product
 from members import Members
 from member import Member
 from membership import Membership
+from party_transactions import PartyTransactions
+from transaction import Transaction
+from transactions import Transactions
 
 app = Flask(__name__)
 api = Api(app)
@@ -19,6 +22,9 @@ api.add_resource(Party, '/parties/<party_id>')
 api.add_resource(Product, '/products/<product_id>')
 api.add_resource(Member, '/members/<member_id>')
 api.add_resource(Membership, '/members/<member_id>/membership')
+api.add_resource(PartyTransactions, "/parties/<party_id>/transactions")
+api.add_resource(Transaction, "/transactions/<transaction_id>")
+api.add_resource(Transactions, "/transactions")
 
 if __name__ == '__main__':
     app.run(debug=True, port=8081, host='0.0.0.0')

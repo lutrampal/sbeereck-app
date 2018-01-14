@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.sbeereck.lutrampal.view.PartyActivity"
+            android:name="com.sbeereck.lutrampal.view.TransactionsActivity"
             android:label="@string/title_activity_party"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -51,11 +51,11 @@
         <activity
             android:name="com.sbeereck.lutrampal.view.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
-            android:parentActivityName="com.sbeereck.lutrampal.view.PartyActivity"
+            android:parentActivityName="com.sbeereck.lutrampal.view.TransactionsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.sbeereck.lutrampal.view.PartyActivity" />
+                android:value="com.sbeereck.lutrampal.view.TransactionsActivity" />
         </activity>
     </application>
 

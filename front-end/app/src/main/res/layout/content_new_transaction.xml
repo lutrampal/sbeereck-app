@@ -82,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="false"
             android:text="@string/deposit" />
 
         <RadioButton
@@ -89,6 +90,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:enabled="false"
             android:text="@string/food" />
 
         <RadioButton
@@ -112,7 +114,6 @@
         android:id="@+id/type_content_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="20dp"
         android:layout_weight="1">
 
     </FrameLayout>

@@ -61,17 +61,17 @@ public class ProductListItemAdapter extends BaseAdapter implements Filterable {
         tvProductName.setText(p.getName());
         switch (p.getType()) {
             case BEER:
-                tvProductPrice.setText(p.getPrice() + "€/demi");
+                tvProductPrice.setText(String.format("%.2f", p.getPrice()) + "€/demi");
                 tvProductName.setTextColor(context.getResources().getColor(R.color.colorBeer));
                 tvProductPrice.setTextColor(context.getResources().getColor(R.color.colorBeer));
                 break;
             case DEPOSIT:
-                tvProductPrice.setText(p.getPrice() + "€");
+                tvProductPrice.setText(String.format("%.2f", p.getPrice()) + "€");
                 tvProductName.setTextColor(context.getResources().getColor(R.color.colorDeposit));
                 tvProductPrice.setTextColor(context.getResources().getColor(R.color.colorDeposit));
                 break;
             case FOOD:
-                tvProductPrice.setText(p.getPrice() + "€");
+                tvProductPrice.setText(String.format("%.2f", p.getPrice()) + "€");
                 tvProductName.setTextColor(context.getResources().getColor(R.color.colorOther));
                 tvProductPrice.setTextColor(context.getResources().getColor(R.color.colorOther));
                 break;

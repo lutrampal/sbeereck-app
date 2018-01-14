@@ -84,6 +84,12 @@ public class Member implements Serializable, Comparable {
         this.school = school;
     }
 
+    public Member(int id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public int getId() {
         return id;
     }

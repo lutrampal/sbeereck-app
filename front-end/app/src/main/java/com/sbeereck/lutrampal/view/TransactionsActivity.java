@@ -1,6 +1,7 @@
 package com.sbeereck.lutrampal.view;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
@@ -16,21 +17,23 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Filterable;
 import android.widget.ListView;
+import android.widget.Toast;
 
-import com.sbeereck.lutrampal.model.Member;
+import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Transaction;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class PartyActivity extends AppCompatActivity {
+public class TransactionsActivity extends AppCompatActivity {
 
     protected ListView mListview;
     protected SearchView mSearchView;
     protected FloatingActionButton mFabAdd;
     private Party party = null;
-    private ArrayList<Member> members;
+    private TransactionController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,9 @@ public class PartyActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        controller = new TransactionController(Placeholders.getPlaceHolderDataManager());
+        party = (Party) getIntent().getSerializableExtra("party");
+
         mListview = findViewById(R.id.main_listview);
         registerForContextMenu(mListview);
         mListview.setTextFilterEnabled(true);
@@ -46,8 +52,6 @@ public class PartyActivity extends AppCompatActivity {
         mFabAdd = findViewById(R.id.fab_add);
         mFabAdd.setOnClickListener(getFabAddOnClickListener());
 
-        party = (Party) getIntent().getSerializableExtra("party");
-        members = (ArrayList<Member>) getIntent().getSerializableExtra("members");
         mListview.setAdapter(new TransactionListItemAdapter(this, party.getTransactions()));
         getSupportActionBar().setTitle(party.getName());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -58,12 +62,21 @@ public class PartyActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PartyActivity.this, NewTransactionActivity.class);
+                Intent intent = new Intent(TransactionsActivity.this,
+                        NewTransactionActivity.class);
                 intent.putExtra("party", party);
-                intent.putExtra("members", members);
                 startActivityForResult(intent, 1);
             }
         };
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == requestCode) {
+            party.getTransactions().add(0,
+                    (Transaction) data.getSerializableExtra("transaction"));
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -89,13 +102,48 @@ public class PartyActivity extends AppCompatActivity {
         }
     }
 
+    private class DeleteTransactionTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+        private Transaction selectedTransaction;
+        private int selectedTransactionIdx;
+
+        public DeleteTransactionTask(Transaction selectedTransaction, int selectedTransactionIdx) {
+            this.selectedTransaction = selectedTransaction;
+            this.selectedTransactionIdx = selectedTransactionIdx;
+        }
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                controller.deleteTransaction(selectedTransaction.getId());
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void voidObj) {
+            if (e != null) {
+                Toast.makeText(TransactionsActivity.this,
+                        getString(R.string.transaction_delete_error) + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+            List<Transaction> filteredTransactions = ((TransactionListItemAdapter) mListview.getAdapter())
+                    .getFilteredTransactions();
+            filteredTransactions.remove(selectedTransactionIdx);
+            party.getTransactions().remove(selectedTransaction);
+            ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        }
+    }
+
     private void deleteTransaction(final int position) {
         List<Transaction> filteredTransactions = ((TransactionListItemAdapter) mListview.getAdapter())
                 .getFilteredTransactions();
         Transaction transactionToRemove = filteredTransactions.get(position);
-        filteredTransactions.remove(position);
-        party.getTransactions().remove(transactionToRemove);
-        ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
+        new DeleteTransactionTask(transactionToRemove, position).execute();
     }
 
     @Override

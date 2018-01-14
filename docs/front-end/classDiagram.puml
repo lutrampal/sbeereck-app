@@ -67,6 +67,17 @@ package Model {
 	}
 
 	Member -> "- school" School
+
+	class Transaction {
+		- id: int
+		- label: String
+		- timestamp: Date
+		- amount: float
+		Transaction(id, label, timestamp, amount, party, member)
+	}
+
+	Party "- party 0..1" <- Transaction
+	Member "- member" <-- Transaction
 }
 
 package Controller {
@@ -125,11 +136,22 @@ package Controller {
 		+ renewMembership(id: int)
 	}
 	
-	RESTDataManager "- dataManager" <-- MemberController
+	MemberController -> "- dataManager" RESTDataManager
+
+	Class TransactionController {
+		+ TransactionController(dataManager: RESTDataManager)
+		+ getTransactionsForParty(party: Party): List<Transaction>
+		+ deleteTransaction(id: int)
+		+ addTransaction(transaction: Transaction): int
+	}
+	
+	RESTDataManager "- dataManager" <-- TransactionController
+
 }
 
 PartyController ..> Party: Uses
 ProductController ..> Product: Uses
 MemberController ..> Member: Uses
+TransactionController ..> Transaction: Uses
 
 @enduml

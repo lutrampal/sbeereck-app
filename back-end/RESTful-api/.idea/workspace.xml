@@ -2,36 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a534bd28-2271-4bfa-bebe-ce33713345dc" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/OnOkButtonClickListener.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/TransactionController.java" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/party.py" afterPath="$PROJECT_DIR$/party.py" />
       <change beforePath="$PROJECT_DIR$/sbeereck_server.py" afterPath="$PROJECT_DIR$/sbeereck_server.py" />
-      <change beforePath="$PROJECT_DIR$/../database/sbeereck-db.mwb" afterPath="$PROJECT_DIR$/../database/sbeereck-db.mwb" />
-      <change beforePath="$PROJECT_DIR$/../database/sbeereck-db.mwb.bak" afterPath="$PROJECT_DIR$/../database/sbeereck-db.mwb.bak" />
       <change beforePath="$PROJECT_DIR$/../../docs/back-end/rest-api_endpoints.md" afterPath="$PROJECT_DIR$/../../docs/back-end/rest-api_endpoints.md" />
       <change beforePath="$PROJECT_DIR$/../../docs/front-end/classDiagram.puml" afterPath="$PROJECT_DIR$/../../docs/front-end/classDiagram.puml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/MemberController.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/MemberController.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/PartyController.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/PartyController.java" />
+      <change beforePath="$PROJECT_DIR$/../../docs/front-end/classDiagram.svg" afterPath="$PROJECT_DIR$/../../docs/front-end/classDiagram.svg" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/AndroidManifest.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Member.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Member.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Party.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Party.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/School.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/School.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Transaction.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/model/Transaction.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeerTransactionFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeerTransactionFragment.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeerTransactionListItemAdapter.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeerTransactionListItemAdapter.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberAutocompleteTextViewAdapter.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberAutocompleteTextViewAdapter.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberListItemAdapter.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberListItemAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/DepositTransactionFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/DepositTransactionFragment.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/FoodTransactionFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/FoodTransactionFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartyActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionsActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionListItemAdapter.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionListItemAdapter.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/activity_party.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/activity_party.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_add_beers.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_add_beers.xml" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_new_party.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_new_party.xml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_new_member_dialog.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_new_member_dialog.xml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_new_product_dialog.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_new_product_dialog.xml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/colors.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_new_transaction.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/content_new_transaction.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_beer_transaction.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_beer_transaction.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_deposit_transaction.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_deposit_transaction.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_food_transaction.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_food_transaction.xml" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_other_transaction.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_other_transaction.xml" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,7 +44,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1515364980730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1515940897731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -58,25 +60,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="sbeereck_server.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+      <file leaf-file-name="party.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/party.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+            <state relative-caret-position="198">
+              <caret line="17" column="85" lean-forward="true" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
               <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="membership.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/membership.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <marker date="1515365018633" expanded="true" signature="516:594" ph="UPDATE members... " />
+                <element signature="e#0#41#0" expanded="true" />
+                <marker date="1515344594676" expanded="true" signature="470:631" ph="SELECT name,... parties" />
+                <marker date="1515344594676" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+                <marker date="1515344594676" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+                <marker date="1515344594676" expanded="true" signature="2888:2940" ph="SELECT party... parties" />
+                <marker date="1515344594676" expanded="true" signature="2972:3237" ph="UPDATE parties... " />
+                <marker date="1515344594676" expanded="true" signature="3268:3325" ph="DELETE FROM served_beers_at_party... " />
+                <marker date="1515344594676" expanded="true" signature="3356:3505" ph="INSERT INTO served_beers_at_party... " />
               </folding>
             </state>
           </provider>
@@ -114,11 +111,15 @@
         <option value="$PROJECT_DIR$/parties.py" />
         <option value="$PROJECT_DIR$/products.py" />
         <option value="$PROJECT_DIR$/product.py" />
-        <option value="$PROJECT_DIR$/party.py" />
         <option value="$PROJECT_DIR$/member.py" />
         <option value="$PROJECT_DIR$/members.py" />
-        <option value="$PROJECT_DIR$/sbeereck_server.py" />
         <option value="$PROJECT_DIR$/membership.py" />
+        <option value="$PROJECT_DIR$/PartyTransactions.py" />
+        <option value="$PROJECT_DIR$/party_transactions.py" />
+        <option value="$PROJECT_DIR$/transaction.py" />
+        <option value="$PROJECT_DIR$/transactions.py" />
+        <option value="$PROJECT_DIR$/sbeereck_server.py" />
+        <option value="$PROJECT_DIR$/party.py" />
       </list>
     </option>
   </component>
@@ -170,8 +171,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -294,37 +295,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/parties.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="33" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515274597576" expanded="true" signature="448:542" ph="SELECT party... party_list" />
-            <marker date="1515274597576" expanded="true" signature="1798:1976" ph="INSERT INTO parties... " />
-            <marker date="1515274597576" expanded="true" signature="2007:2156" ph="INSERT INTO served_beers_at_party... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/products.py" />
-    <entry file="file://$PROJECT_DIR$/party.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1782">
-          <caret line="101" column="12" lean-forward="false" selection-start-line="101" selection-start-column="12" selection-end-line="101" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515344594676" expanded="true" signature="470:631" ph="SELECT name,... parties" />
-            <marker date="1515344594676" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515344594676" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515344594676" expanded="true" signature="2888:2940" ph="SELECT party... parties" />
-            <marker date="1515344594676" expanded="true" signature="2972:3237" ph="UPDATE parties... " />
-            <marker date="1515344594676" expanded="true" signature="3268:3325" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515344594676" expanded="true" signature="3356:3505" ph="INSERT INTO served_beers_at_party... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -600,35 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/party.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="40" column="25" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="104" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515344594676" expanded="true" signature="470:631" ph="SELECT name,... parties" />
-            <marker date="1515344594676" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-            <marker date="1515344594676" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-            <marker date="1515344594676" expanded="true" signature="2888:2940" ph="SELECT party... parties" />
-            <marker date="1515344594676" expanded="true" signature="2972:3237" ph="UPDATE parties... " />
-            <marker date="1515344594676" expanded="true" signature="3268:3325" ph="DELETE FROM served_beers_at_party... " />
-            <marker date="1515344594676" expanded="true" signature="3356:3505" ph="INSERT INTO served_beers_at_party... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/member.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="36" column="32" lean-forward="true" selection-start-line="36" selection-start-column="32" selection-end-line="50" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1515345518888" expanded="true" signature="473:717" ph="SELECT name,... parties" />
-            <marker date="1515345518888" expanded="true" signature="1632:1686" ph="UPDATE parties... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/members.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="702">
@@ -644,10 +585,81 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/membership.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515365018633" expanded="true" signature="516:594" ph="UPDATE members... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/party_transactions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515946239408" expanded="true" signature="468:475" ph="SELECT party... party_list" />
+            <marker date="1515946239408" expanded="true" signature="468:632" ph="SELECT trans... transactions" />
+            <marker date="1515946239408" expanded="true" signature="468:682" ph="SELECT trans... transactions" />
+            <marker date="1515946239408" expanded="true" signature="468:721" ph="SELECT trans... transactions" />
+            <marker date="1515946239408" expanded="true" signature="468:768" ph="SELECT trans... transactions" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/member.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="34" column="20" lean-forward="false" selection-start-line="34" selection-start-column="20" selection-end-line="50" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515345518888" expanded="true" signature="473:717" ph="SELECT name,... parties" />
+            <marker date="1515345518888" expanded="true" signature="1632:1686" ph="UPDATE parties... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="26" column="45" lean-forward="true" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transaction.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515943597736" expanded="true" signature="478:528" ph="DELETE FROM transactions... " />
+            <marker date="1515943597736" expanded="true" signature="489:528" ph="UPDATE members... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/transactions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="26" column="42" lean-forward="true" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515946144388" expanded="true" signature="733:892" ph="INSERT INTO transactions... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/parties.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="66" selection-end-column="36" />
+        <state relative-caret-position="588">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
             <marker date="1515274597576" expanded="true" signature="448:542" ph="SELECT party... party_list" />
@@ -657,22 +669,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+    <entry file="file://$PROJECT_DIR$/party.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="20" column="61" lean-forward="false" selection-start-line="20" selection-start-column="61" selection-end-line="20" selection-end-column="61" />
+        <state relative-caret-position="198">
+          <caret line="17" column="85" lean-forward="true" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/membership.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <marker date="1515365018633" expanded="true" signature="516:594" ph="UPDATE members... " />
+            <element signature="e#0#41#0" expanded="true" />
+            <marker date="1515344594676" expanded="true" signature="470:631" ph="SELECT name,... parties" />
+            <marker date="1515344594676" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
+            <marker date="1515344594676" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
+            <marker date="1515344594676" expanded="true" signature="2888:2940" ph="SELECT party... parties" />
+            <marker date="1515344594676" expanded="true" signature="2972:3237" ph="UPDATE parties... " />
+            <marker date="1515344594676" expanded="true" signature="3268:3325" ph="DELETE FROM served_beers_at_party... " />
+            <marker date="1515344594676" expanded="true" signature="3356:3505" ph="INSERT INTO served_beers_at_party... " />
           </folding>
         </state>
       </provider>

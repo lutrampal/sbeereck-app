@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.sbeereck.lutrampal.model.BeerCategory;
@@ -25,6 +26,10 @@ public class BeerTransactionFragment extends Fragment {
     private ListView servedBeersListView;
     private int quantity = 1;
     private TextView quantityTv;
+    private TextView normalBeerPriceTv;
+    private TextView specialBeerPriceTv;
+    private float normalBeerPrice;
+    private float specialBeerPrice;
 
     public BeerTransactionFragment() {
     }
@@ -33,19 +38,56 @@ public class BeerTransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_beer_transaction, container, false);
-        servedBeersListView = view.findViewById(R.id.beers_list_view);
+        servedBeersListView = view.findViewById(R.id.products_listview);
         servedBeers = (Map<Product, BeerCategory>) getArguments()
                 .getSerializable("servedBeers");
-        float normalBeerPrice = getArguments().getFloat("normalPrice");
-        float specialBeerPrice = getArguments().getFloat("specialPrice");
+        normalBeerPrice = getArguments().getFloat("normalPrice");
+        specialBeerPrice = getArguments().getFloat("specialPrice");
         servedBeersListView.setAdapter(
-                new BeerTransactionListItemAdapter(getActivity(),
-                        servedBeers, normalBeerPrice, specialBeerPrice));
+                new BeerTransactionListItemAdapter(getActivity(), servedBeers));
         servedBeersListView.setItemChecked(0, true);
         quantityTv = view.findViewById(R.id.quantity_tv);
+        normalBeerPriceTv = view.findViewById(R.id.normal_beer_price_tv);
+        specialBeerPriceTv = view.findViewById(R.id.special_beer_price_tv);
+        normalBeerPriceTv.setText(String.format("%.2f", normalBeerPrice) + "€/demi normal");
+        specialBeerPriceTv.setText(String.format("%.2f", specialBeerPrice) + "€/demi spécial");
         view.findViewById(R.id.plus_quantity_button).setOnClickListener(getPlusQuantityClickListener());
         view.findViewById(R.id.minus_quantity_button).setOnClickListener(getMinusQuantityClickListener());
+        ((RadioGroup) view.findViewById(R.id.glass_size_rg))
+                .setOnCheckedChangeListener(getOnGlassSizeChangeListenener());
         return view;
+    }
+
+    private RadioGroup.OnCheckedChangeListener getOnGlassSizeChangeListenener() {
+        return new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.half_pint_rb:
+                        normalBeerPriceTv.setText(String.format("%.2f", normalBeerPrice)
+                                + "€/demi normal");
+                        specialBeerPriceTv.setText(String.format("%.2f", specialBeerPrice)
+                                + "€/demi spécial");
+                        break;
+                    case R.id.pint_rb:
+                        normalBeerPriceTv.setText(String.format("%.2f",
+                                normalBeerPrice*Product.NB_HALF_PINTS_FOR_A_PINT)
+                                + "€/pinte normale");
+                        specialBeerPriceTv.setText(String.format("%.2f",
+                                specialBeerPrice*Product.NB_HALF_PINTS_FOR_A_PINT)
+                                + "€/pinte spéciale");
+                        break;
+                    case R.id.pitcher_rb:
+                        normalBeerPriceTv.setText(String.format("%.2f",
+                                normalBeerPrice*Product.NB_HALF_PINTS_FOR_A_PITCHER)
+                                + "€/pichet normal");
+                        specialBeerPriceTv.setText(String.format("%.2f",
+                                specialBeerPrice*Product.NB_HALF_PINTS_FOR_A_PITCHER)
+                                + "€/pichet spécial");
+                        break;
+                }
+            }
+        };
     }
 
     private View.OnClickListener getMinusQuantityClickListener() {

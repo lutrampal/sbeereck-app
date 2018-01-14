@@ -73,7 +73,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/deposits_listview"
+        android:id="@+id/products_listview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"

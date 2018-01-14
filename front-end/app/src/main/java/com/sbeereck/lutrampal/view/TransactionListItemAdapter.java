@@ -62,14 +62,14 @@ public class TransactionListItemAdapter extends BaseAdapter implements Filterabl
 
         tvMember.setText(t.getMember().getFirstName() + " " + t.getMember().getLastName());
         String sign;
-        if (t.getTotalAmount() < 0) {
+        if (t.getAmount() < 0) {
             sign = "";
             tvAmount.setTextColor(context.getResources().getColor(R.color.colorBalanceTooLow));
         } else {
             sign = "+";
             tvAmount.setTextColor(context.getResources().getColor(R.color.colorPositiveBalance));
         }
-        tvAmount.setText(sign + t.getTotalAmount() + "€");
+        tvAmount.setText(sign + String.format("%.2f", t.getAmount()) + "€");
         tvLabel.setText(t.getLabel());
         return convertView;
     }
@@ -87,7 +87,7 @@ public class TransactionListItemAdapter extends BaseAdapter implements Filterabl
                     List<Transaction> filteredTransactions = new ArrayList<>();
 
                     for (Transaction t : transactions) {
-                        if ((t.getMember().getLastName() + t.getMember().getFirstName()
+                        if ((t.getMember().getFirstName() + " " + t.getMember().getLastName()
                                 + t.getLabel()).toLowerCase()
                                 .contains(constraint.toString().toLowerCase()))
                             filteredTransactions.add(t);

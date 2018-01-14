@@ -66,7 +66,7 @@ public class PartyListItemAdapter extends BaseAdapter implements Filterable {
         Party p = filteredParties.get(position);
         tvNbAttendees.setText(p.getNumberOfAttendees() + " participants");
         tvDate.setText(df.format(p.getDate()));
-        tvincome.setText(p.getIncome() + "€");
+        tvincome.setText(String.format("%.2f", p.getIncome()) + "€");
         tvName.setText(p.getName());
         return vi;
     }

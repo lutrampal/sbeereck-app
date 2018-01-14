@@ -8,6 +8,9 @@ public class Product implements Serializable, Comparable {
 
     private int id;
 
+    public static final int NB_HALF_PINTS_FOR_A_PINT = 2;
+    public static final int NB_HALF_PINTS_FOR_A_PITCHER = 5;
+
     public int getId() {
         return id;
     }

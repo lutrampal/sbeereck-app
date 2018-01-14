@@ -10,7 +10,7 @@
     tools:showIn="@layout/activity_add_beers">
 
     <ListView
-        android:id="@+id/beers_list_view"
+        android:id="@+id/products_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </android.support.constraint.ConstraintLayout>

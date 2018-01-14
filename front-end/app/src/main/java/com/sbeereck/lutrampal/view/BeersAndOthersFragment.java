@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
@@ -22,14 +21,9 @@ import android.widget.Toast;
 import com.sbeereck.lutrampal.controller.ProductController;
 import com.sbeereck.lutrampal.model.Product;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 
 /**
@@ -154,18 +148,18 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
     private class DeleteProductTask extends AsyncTask<Void, Integer, Void> {
 
         private Exception e = null;
-        private int selectedProductId;
+        private Product selectedProduct;
         private int selectedProductIdx;
 
-        public DeleteProductTask(int selectedProductId, int selectedProductIdx) {
-            this.selectedProductId = selectedProductId;
+        public DeleteProductTask(Product selectedProduct, int selectedProductIdx) {
+            this.selectedProduct = selectedProduct;
             this.selectedProductIdx = selectedProductIdx;
         }
 
         @Override
         protected Void doInBackground(Void ... voids) {
             try {
-                controller.deleteProduct(selectedProductId);
+                controller.deleteProduct(selectedProduct.getId());
             } catch (Exception e) {
                 this.e = e;
             }
@@ -182,9 +176,8 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
             }
             List<Product> filteredProducts = ((ProductListItemAdapter) mListview.getAdapter())
                     .getFilteredProducts();
-            Product productToRemove = filteredProducts.get(selectedProductIdx);
             filteredProducts.remove(selectedProductIdx);
-            products.remove(productToRemove);
+            products.remove(selectedProduct);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -195,7 +188,10 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
                 .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User clicked delete button
-                        new DeleteProductTask(products.get(position).getId(), position).execute();
+                        List<Product> filteredProducts = ((ProductListItemAdapter) mListview.getAdapter())
+                                .getFilteredProducts();
+                        Product productToRemove = filteredProducts.get(position);
+                        new DeleteProductTask(productToRemove, position).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -207,6 +203,5 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         d.requestWindowFeature(Window.FEATURE_NO_TITLE);
         d.show();
     }
-
-
+    
 }

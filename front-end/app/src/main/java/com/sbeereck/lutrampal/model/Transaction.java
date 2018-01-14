@@ -1,27 +1,48 @@
 package com.sbeereck.lutrampal.model;
 
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
+import java.util.Date;
 
-public class Transaction implements Serializable {
+public class Transaction implements Serializable, Comparable {
 
+    private int id;
     private Member member;
     private Party party;
-    private float totalAmount;
+    private float amount;
     private String label;
-    private long timestamp;
+    private Date timestamp;
 
-    public Transaction(Member member, float totalAmount, String label, long timestamp) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Transaction(int id, Member member, Party party, float amount, String label, Date timestamp) {
+        this.id = id;
         this.member = member;
-        this.totalAmount = totalAmount;
+        this.party = party;
+        this.amount = amount;
         this.label = label;
         this.timestamp = timestamp;
     }
 
-    public long getTimestamp() {
+    public Transaction(Member member, Party party, float amount, String label) {
+        this.member = member;
+        this.party = party;
+        this.amount = amount;
+        this.label = label;
+    }
+
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(long timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -49,11 +70,35 @@ public class Transaction implements Serializable {
         this.party = party;
     }
 
-    public float getTotalAmount() {
-        return totalAmount;
+    public float getAmount() {
+        return amount;
     }
 
-    public void setTotalAmount(float totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Transaction that = (Transaction) o;
+
+        return id == that.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
+
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        if (o instanceof Transaction) {
+            return -getTimestamp().compareTo(((Transaction)o).getTimestamp());
+        }
+        return 0;
     }
 }

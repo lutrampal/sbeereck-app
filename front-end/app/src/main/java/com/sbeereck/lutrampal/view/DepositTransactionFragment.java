@@ -33,8 +33,8 @@ public class DepositTransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_deposit_transaction, container, false);
-        depositsListView = view.findViewById(R.id.deposits_listview);
-        deposits = Placeholders.getPlaceHolderDeposits();
+        depositsListView = view.findViewById(R.id.products_listview);
+        deposits = (List<Product>) getArguments().getSerializable("deposits");
         depositsListView.setAdapter(new ProductSingleChoiceListItemAdapter(getActivity(), deposits));
         depositsListView.setItemChecked(0, true);
         quantityTv = view.findViewById(R.id.quantity_tv);

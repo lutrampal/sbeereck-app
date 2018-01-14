@@ -80,7 +80,7 @@ public class AddBeersActivity extends AppCompatActivity {
         } else {
             alreadySelectedBeers = new HashMap<>();
         }
-        beersListView = findViewById(R.id.beers_list_view);
+        beersListView = findViewById(R.id.products_listview);
         beersListView.setAdapter(new AddBeerListItemAdapter(this, beers,
                 alreadySelectedBeers));
     }

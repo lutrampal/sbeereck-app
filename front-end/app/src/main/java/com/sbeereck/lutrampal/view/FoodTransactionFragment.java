@@ -33,8 +33,8 @@ public class FoodTransactionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_food_transaction, container, false);
-        foodListView = view.findViewById(R.id.food_listview);
-        food = Placeholders.getPlaceHolderFood();
+        foodListView = view.findViewById(R.id.products_listview);
+        food = (List<Product>) getArguments().getSerializable("food");
         foodListView.setAdapter(new ProductSingleChoiceListItemAdapter(getActivity(), food));
         foodListView.setItemChecked(0, true);
         quantityTv = view.findViewById(R.id.quantity_tv);

@@ -133,9 +133,42 @@
 		DELETE delete the desired member
 	* /members/<id>/membership
 		PUT renew the membership of this member, no body is required, the last_membership_payment field will be set to the current timestamp
-
-			
-			
+	* /parties/<id>/transactions
+		GET return all the transactions for the desired party
+			[ {  
+				"id":  
+				"member_id":
+				"first_name":  
+				"last_name":  
+				"amount":  
+				"label":
+				"timestamp":
+			  }, ... ]  
+	* /parties/<id>/served_beers
+		GET return all the served beers for the desired party
+			[ {  
+				"id":  
+				"name":
+				"category":  
+				"last_name":  
+				"amount":  
+				"label":
+				"timestamp":
+			  }, ... ]  
+	* /transactions/<id>
+		DELETE delete the desired transaction
+	* /transactions
+		POST create a new transaction
+			{
+				"member_id":  
+				"party_id": (optional, nullable)
+				"label":
+				"amount":
+			}
+			the response, in case of success, contains the transaction id  
+				{  
+					"id":  
+				}  
 			
 			
 			

@@ -57,6 +57,7 @@
         </LinearLayout>
 
         <RadioGroup
+            android:id="@+id/glass_size_rg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -88,8 +89,23 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/normal_beer_price_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/special_beer_price_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/colorBeer"
+        android:textStyle="italic" />
+
     <ListView
-        android:id="@+id/beers_list_view"
+        android:id="@+id/products_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="5dp"

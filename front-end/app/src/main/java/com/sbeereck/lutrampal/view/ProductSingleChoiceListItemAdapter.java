@@ -40,10 +40,12 @@ public class ProductSingleChoiceListItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = inflater.inflate(android.R.layout.simple_list_item_single_choice, null);
+            convertView = inflater.inflate(
+                    android.R.layout.simple_list_item_single_choice, null);
         }
         CheckedTextView tv = convertView.findViewById(android.R.id.text1);
-        tv.setText(products.get(position).getName() + " (" + products.get(position).getPrice() + "€)");
+        tv.setText(products.get(position).getName() + " ("
+                + String.format("%.2f", products.get(position).getPrice()) + "€)");
         return convertView;
     }
 

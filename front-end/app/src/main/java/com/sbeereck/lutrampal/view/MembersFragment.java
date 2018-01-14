@@ -186,7 +186,10 @@ public class MembersFragment extends GeneralMainViewFragment
         Dialog d = builder.setMessage(R.string.delete_member_confirm)
                 .setPositiveButton(R.string.delete_member, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        new DeleteMemberTask(members.get(position).getId(), position).execute();
+                        List<Member> filteredMembers = ((MemberListItemAdapter) mListview.getAdapter())
+                                .getFilteredMembers();
+                        Member memberToRemove = filteredMembers.get(position);
+                        new DeleteMemberTask(memberToRemove, position).execute();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -202,18 +205,18 @@ public class MembersFragment extends GeneralMainViewFragment
     private class DeleteMemberTask extends AsyncTask<Void, Integer, Void> {
 
         private Exception e = null;
-        private int selectedMemberId;
+        private Member selectedMember;
         private int selectedMemberIdx;
 
-        public DeleteMemberTask(int selectedMemberId, int selectedMemberIdx) {
-            this.selectedMemberId = selectedMemberId;
+        public DeleteMemberTask(Member selectedMember, int selectedMemberIdx) {
+            this.selectedMember = selectedMember;
             this.selectedMemberIdx = selectedMemberIdx;
         }
 
         @Override
         protected Void doInBackground(Void ... voids) {
             try {
-                controller.deleteMember(selectedMemberId);
+                controller.deleteMember(selectedMember.getId());
             } catch (Exception e) {
                 this.e = e;
             }
@@ -230,9 +233,8 @@ public class MembersFragment extends GeneralMainViewFragment
             }
             List<Member> filteredMembers = ((MemberListItemAdapter) mListview.getAdapter())
                     .getFilteredMembers();
-            Member memberToRemove = filteredMembers.get(selectedMemberIdx);
             filteredMembers.remove(selectedMemberIdx);
-            members.remove(memberToRemove);
+            members.remove(selectedMember);
             ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
         }
     }
