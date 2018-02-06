@@ -49,8 +49,8 @@ public class BeerTransactionFragment extends Fragment {
         quantityTv = view.findViewById(R.id.quantity_tv);
         normalBeerPriceTv = view.findViewById(R.id.normal_beer_price_tv);
         specialBeerPriceTv = view.findViewById(R.id.special_beer_price_tv);
-        normalBeerPriceTv.setText(String.format("%.2f", normalBeerPrice) + "€/demi normal");
-        specialBeerPriceTv.setText(String.format("%.2f", specialBeerPrice) + "€/demi spécial");
+        normalBeerPriceTv.setText(String.format("%.2f", normalBeerPrice) + "€/demi");
+        specialBeerPriceTv.setText(String.format("%.2f", specialBeerPrice) + "€/demi");
         view.findViewById(R.id.plus_quantity_button).setOnClickListener(getPlusQuantityClickListener());
         view.findViewById(R.id.minus_quantity_button).setOnClickListener(getMinusQuantityClickListener());
         ((RadioGroup) view.findViewById(R.id.glass_size_rg))
@@ -65,25 +65,25 @@ public class BeerTransactionFragment extends Fragment {
                 switch (checkedId) {
                     case R.id.half_pint_rb:
                         normalBeerPriceTv.setText(String.format("%.2f", normalBeerPrice)
-                                + "€/demi normal");
+                                + "€/demi");
                         specialBeerPriceTv.setText(String.format("%.2f", specialBeerPrice)
-                                + "€/demi spécial");
+                                + "€/demi");
                         break;
                     case R.id.pint_rb:
                         normalBeerPriceTv.setText(String.format("%.2f",
                                 normalBeerPrice*Product.NB_HALF_PINTS_FOR_A_PINT)
-                                + "€/pinte normale");
+                                + "€/pinte");
                         specialBeerPriceTv.setText(String.format("%.2f",
                                 specialBeerPrice*Product.NB_HALF_PINTS_FOR_A_PINT)
-                                + "€/pinte spéciale");
+                                + "€/pinte");
                         break;
                     case R.id.pitcher_rb:
                         normalBeerPriceTv.setText(String.format("%.2f",
                                 normalBeerPrice*Product.NB_HALF_PINTS_FOR_A_PITCHER)
-                                + "€/pichet normal");
+                                + "€/pichet");
                         specialBeerPriceTv.setText(String.format("%.2f",
                                 specialBeerPrice*Product.NB_HALF_PINTS_FOR_A_PITCHER)
-                                + "€/pichet spécial");
+                                + "€/pichet");
                         break;
                 }
             }

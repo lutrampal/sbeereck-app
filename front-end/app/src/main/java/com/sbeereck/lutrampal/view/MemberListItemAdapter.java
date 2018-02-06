@@ -55,7 +55,7 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
         TextView tvMemberName = convertView.findViewById(R.id.member_name_tv);
         TextView tvMemberBalance = convertView.findViewById(R.id.member_balance_tv);
         Member m = filteredMembers.get(i);
-        tvMemberName.setText(m.getFirstName() + " " + m.getLastName());
+        tvMemberName.setText(m.getLastName() + " " + m.getFirstName());
         tvMemberBalance.setText(String.format("%.2f", m.getBalance()) + "€");
         tvMemberName.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
         tvMemberBalance.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));

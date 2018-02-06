@@ -89,20 +89,32 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/normal_beer_price_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/special_beer_price_tv"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:textColor="@color/colorBeer"
-        android:textStyle="italic" />
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/normal_beer_price_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/special_beer_price_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textColor="@color/colorBeer"
+            android:textStyle="italic" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/products_listview"

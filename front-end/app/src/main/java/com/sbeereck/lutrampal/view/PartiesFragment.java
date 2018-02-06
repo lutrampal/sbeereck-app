@@ -165,7 +165,6 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected Party doInBackground(Void ... voids) {
-            mListview.setEnabled(false);
             Party party = null;
             try {
                 party = controller.getParty(partyId);
@@ -178,7 +177,6 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected void onPostExecute(Party party) {
-            mListview.setEnabled(true);
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
                         getString(R.string.party_loading_error) + " : " + e.getMessage(),
