@@ -15,7 +15,8 @@
         <activity
             android:name="com.sbeereck.lutrampal.view.MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +26,8 @@
         <activity
             android:name="com.sbeereck.lutrampal.view.TransactionsActivity"
             android:label="@string/title_activity_party"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sbeereck.lutrampal.view.MainActivity" />
@@ -34,7 +36,8 @@
             android:name="com.sbeereck.lutrampal.view.NewPartyActivity"
             android:label="@string/title_activity_new_party"
             android:parentActivityName="com.sbeereck.lutrampal.view.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sbeereck.lutrampal.view.MainActivity" />
@@ -43,7 +46,8 @@
             android:name="com.sbeereck.lutrampal.view.AddBeersActivity"
             android:label="@string/title_activity_add_beers"
             android:parentActivityName="com.sbeereck.lutrampal.view.NewPartyActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sbeereck.lutrampal.view.NewPartyActivity" />
@@ -52,7 +56,8 @@
             android:name="com.sbeereck.lutrampal.view.NewTransactionActivity"
             android:label="@string/title_activity_new_transaction"
             android:parentActivityName="com.sbeereck.lutrampal.view.TransactionsActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.sbeereck.lutrampal.view.TransactionsActivity" />

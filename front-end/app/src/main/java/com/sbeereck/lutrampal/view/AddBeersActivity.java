@@ -89,8 +89,14 @@ public class AddBeersActivity extends AppCompatActivity {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DialogFragment dialog = new NewProductDialogFragment();
+                NewProductDialogFragment dialog = new NewProductDialogFragment();
                 dialog.show(getSupportFragmentManager(), "NewProductDialogFragment");
+                dialog.setOnOkButtonClickListener(new OnOkButtonClickListener() {
+                    @Override
+                    public void onOkButtonClick(Object obj, Boolean wasEditing) {
+                        new GetAllBeersTask().execute();
+                    }
+                });
             }
         };
     }

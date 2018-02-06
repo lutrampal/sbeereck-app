@@ -91,7 +91,11 @@ public class NewProductDialogFragment extends DialogFragment {
                 type = ProductType.FOOD;
                 break;
         }
-        product = new Product(product.getId(), name, price, type);
+        int id = -1;
+        if (product != null) {
+            id = product.getId();
+        }
+        product = new Product(id, name, price, type);
         new AddProductTask().execute();
     }
 
