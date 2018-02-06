@@ -28,7 +28,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/amount"
-            android:inputType="numberSigned|numberDecimal" />
+            android:inputType="numberSigned|numberDecimal"
+            android:textAlignment="textEnd" />
 
         <TextView
             android:id="@+id/textView14"

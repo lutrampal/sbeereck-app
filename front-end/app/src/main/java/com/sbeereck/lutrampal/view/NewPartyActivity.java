@@ -59,11 +59,8 @@ public class NewPartyActivity extends AppCompatActivity {
 
         nameEt = findViewById(R.id.party_name);
         normalPriceEt = findViewById(R.id.normal_beer_price);
-        normalPriceEt.setText(String.format("%.2f",
-                Placeholders.getPlaceHolderDefaultNormalBeerPrice()));
         specialPriceEt = findViewById(R.id.special_beer_price);
-        specialPriceEt.setText(String.format("%.2f",
-                Placeholders.getPlaceHolderDefaultSpecialBeerPrice()));
+        new GetDefaultBeerPricesTask().execute();
         dateEt = findViewById(R.id.party_date);
 
         servedBeers = new TreeMap<>();
@@ -275,6 +272,35 @@ public class NewPartyActivity extends AppCompatActivity {
         new AddPartyTask().execute();
     }
 
+    private class GetDefaultBeerPricesTask extends AsyncTask<Void, Integer, Void> {
+
+        private Exception e = null;
+        private float normalPrice;
+        private float specialPrice;
+
+        @Override
+        protected Void doInBackground(Void ... voids) {
+            try {
+                normalPrice = controller.getDefaultNormalBeerPrice();
+                specialPrice = controller.getDefaultSpecialBeerPrice();
+            } catch (Exception e) {
+                this.e = e;
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void v) {
+            if (e != null) {
+                Toast.makeText(NewPartyActivity.this,
+                        getString(R.string.default_beer_price_loading_error) + " : "
+                                + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            normalPriceEt.setText(String.valueOf(normalPrice));
+            specialPriceEt.setText(String.valueOf(specialPrice));
+        }
+    }
 
     private class AddPartyTask extends AsyncTask<Void, Integer, Void> {
 

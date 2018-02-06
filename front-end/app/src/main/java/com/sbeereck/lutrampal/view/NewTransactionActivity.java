@@ -390,7 +390,7 @@ public class NewTransactionActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void ... voids) {
             try {
-                transactionController.addTransaction(newTransaction);
+                newTransaction.setId(transactionController.addTransaction(newTransaction));
             } catch (Exception e) {
                 this.e = e;
             }

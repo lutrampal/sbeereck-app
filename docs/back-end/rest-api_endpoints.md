@@ -178,6 +178,15 @@
 			{
 				"balance_too_low_threshold":	
 			}
+	* /default_prices/<product>
+		GET return the default price for the requested product, valid options are "normal_beer" and "special_beer"
+			{
+				"default_product_price":	
+			}
+		PUT update the default price for the requested
+			{
+				"default_product_price":	
+			}
 			
 			
 			

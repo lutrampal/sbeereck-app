@@ -92,6 +92,7 @@
             android:ems="10"
             android:hint="@string/price"
             android:inputType="none|numberDecimal"
+            android:textAlignment="textEnd"
             android:textStyle="italic" />
 
         <TextView

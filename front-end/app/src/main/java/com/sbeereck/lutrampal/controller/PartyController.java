@@ -92,7 +92,7 @@ public class PartyController {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Map<Product, BeerCategory> servedBeers = new HashMap<>();
         for (Map<String, Object> value : (List<Map<String, Object>>) jsonParty.get("served_beers")) {
-            Product beer = new Product(((Number)value.get("id")).intValue(),
+            Product beer = new Product(((Number) value.get("id")).intValue(),
                     (String) value.get("name"),
                     ((Number) value.get("price")).floatValue(),
                     ProductType.BEER);
@@ -107,10 +107,38 @@ public class PartyController {
         }
         Party party = new Party((String) jsonParty.get("name"),
                 df.parse((String) jsonParty.get("date")),
-                ((Number)jsonParty.get("normal_beer_price")).floatValue(),
-                ((Number)jsonParty.get("special_beer_price")).floatValue(),
+                ((Number) jsonParty.get("normal_beer_price")).floatValue(),
+                ((Number) jsonParty.get("special_beer_price")).floatValue(),
                 servedBeers);
         party.setId(id);
         return party;
+    }
+
+    public float getDefaultNormalBeerPrice() throws Exception {
+        Map<String, Object> res = getDataManager().getObject("/default_price/normal_beer");
+        if (res != null && res.containsKey("default_product_price")) {
+            return ((Number)res.get("default_product_price")).floatValue();
+        }
+        return 0;
+    }
+
+    public float getDefaultSpecialBeerPrice() throws Exception {
+        Map<String, Object> res = getDataManager().getObject("/default_price/special_beer");
+        if (res != null && res.containsKey("default_product_price")) {
+            return ((Number)res.get("default_product_price")).floatValue();
+        }
+        return 0;
+    }
+
+    public void setDefaultNormalBeerPrice(float newPrice) throws Exception {
+        Map<String, Object> jsonReq = new HashMap<>();
+        jsonReq.put("default_product_price", newPrice);
+        getDataManager().put("/default_price/normal_beer", jsonReq);
+    }
+
+    public void setDefaultSpecialBeerPrice(float newPrice) throws Exception {
+        Map<String, Object> jsonReq = new HashMap<>();
+        jsonReq.put("default_product_price", newPrice);
+        getDataManager().put("/default_price/special_beer", jsonReq);
     }
 }
