@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -49,7 +48,7 @@ public class NewTransactionActivity extends AppCompatActivity {
     private TextView tvBalance;
     private TextView tvBalanceTitle;
     private AutoCompleteTextView tvMemberName;
-    private float transactionAmount = 0;
+    private float balanceTooLowThreshold = 0;
     private MemberController memberController;
     private ProductController productController;
     private TransactionController transactionController;
@@ -67,14 +66,17 @@ public class NewTransactionActivity extends AppCompatActivity {
     private LinkedList<Product> food = new LinkedList<>();
     private LinkedList<Product> deposits = new LinkedList<>();
 
-    private class GetProductsAndEnableRadioButtonTask extends AsyncTask<Void, Integer, List<Product>> {
+    private class GetProductsAndEnableRadioButtonTask
+            extends AsyncTask<Void, Integer, List<Product>> {
         private Exception e = null;
         private List<Product> listToAddTo = null;
         private RadioButton rbToEnable = null;
         private int errorStringId = 0;
         private ProductType type = null;
 
-        public GetProductsAndEnableRadioButtonTask(List<Product> listToAddTo, RadioButton rbToEnable, int errorStringId, ProductType type) {
+        public GetProductsAndEnableRadioButtonTask(List<Product> listToAddTo,
+                                                   RadioButton rbToEnable, int errorStringId,
+                                                   ProductType type) {
             this.listToAddTo = listToAddTo;
             this.rbToEnable = rbToEnable;
             this.errorStringId = errorStringId;
@@ -125,6 +127,7 @@ public class NewTransactionActivity extends AppCompatActivity {
         memberController = new MemberController(Placeholders.getPlaceHolderDataManager());
         productController = new ProductController(Placeholders.getPlaceHolderDataManager());
         transactionController = new TransactionController(Placeholders.getPlaceHolderDataManager());
+        new GetBalanceThresholdTask().execute();
         new GetProductsAndEnableRadioButtonTask(food, foodRb,
                 R.string.food_loading_error, ProductType.FOOD).execute();
         new GetProductsAndEnableRadioButtonTask(deposits, depositRb,
@@ -167,6 +170,31 @@ public class NewTransactionActivity extends AppCompatActivity {
                     members));
             tvMemberName.setOnItemClickListener(getOnAutocompleteItemClickListener());
             tvMemberName.addTextChangedListener(getMemberNameTextChangedListener());
+        }
+    }
+
+    private class GetBalanceThresholdTask extends AsyncTask<Void, Integer, Float> {
+
+        private Exception e = null;
+
+        @Override
+        protected Float doInBackground(Void ... voids) {
+            try {
+                return transactionController.getBalanceThreshold();
+            } catch (Exception e) {
+                this.e = e;
+                return 0f;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(Float threshold) {
+            if (e != null) {
+                Toast.makeText(NewTransactionActivity.this,
+                        getString(R.string.threshold_loading_error) + " : " + e.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            balanceTooLowThreshold = threshold;
         }
     }
 
@@ -220,9 +248,11 @@ public class NewTransactionActivity extends AppCompatActivity {
         if (selectedMember.getBalance() < 0) {
             sign = "";
         }
-        if (selectedMember.getBalance() < -10) { // this threshold should be changed dynamically
+        if (!selectedMember.isMembershipValid()) {
+            tvMemberName.setTextColor(getResources().getColor(
+                    R.color.colorOutdatedMembership));
+        } else if (selectedMember.getBalance() < balanceTooLowThreshold) {
             tvBalance.setTextColor(getResources().getColor(R.color.colorBalanceTooLow));
-        swapTransactionFragment(radioGroup.getCheckedRadioButtonId());
         } else {
             tvBalance.setTextColor(getResources().getColor(R.color.colorPositiveBalance));
         }
@@ -246,7 +276,8 @@ public class NewTransactionActivity extends AppCompatActivity {
         switch (rbId) {
             case R.id.beer_rb:
                 currentTransactionFragment = new BeerTransactionFragment();
-                args.putSerializable("servedBeers", (HashMap< Product, BeerCategory>) party.getServedBeers());
+                args.putSerializable("servedBeers",
+                        (HashMap< Product, BeerCategory>) party.getServedBeers());
                 args.putFloat("normalPrice", party.getNormalBeerPrice());
                 args.putFloat("specialPrice", party.getSpecialBeerPrice());
                 break;
@@ -317,23 +348,29 @@ public class NewTransactionActivity extends AppCompatActivity {
             return;
         }
         final Transaction newTransaction = buildTransactionFromForm();
-        if (selectedMember.getBalance() < Placeholders.getPlaceHolderBalanceTooLowThreshold()
-                && newTransaction.getAmount() <= 0) { // threshold should be changed dynamically
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setPositiveButton(R.string.add_transaction_anyway, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        new AddTransactionTask(newTransaction).execute();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+        if (!selectedMember.isMembershipValid()) {
+            builder.setTitle(R.string.transaction_outdated_membership_title)
+                    .setMessage(selectedMember.getFirstName() + " n'a pas payé sa cotisation...")
+                    .create()
+                    .show();
+
+        } else if (selectedMember.getBalance() < balanceTooLowThreshold
+                && newTransaction.getAmount() <= 0) {
             builder.setTitle(R.string.transaction_balance_too_low_title)
                     .setMessage(selectedMember.getFirstName()
                             + " devrait penser à recharger son compte... ("
                             + String.format("%.2f", selectedMember.getBalance()) + "€)")
-                    .setPositiveButton(R.string.add_transaction_anyway, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            new AddTransactionTask(newTransaction).execute();
-                        }
-                    })
-                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-
-                        }
-                    })
                     .create()
                     .show();
         } else {

@@ -63,6 +63,8 @@ class Party(Resource):
         if not is_token_valid(args['authentication-token'], connection):
             connection.close()
             abort(403)
+        if request.json is None:
+            abort(400, description="request should be json")
         for key in ['name', 'date', 'normal_beer_price', 'special_beer_price', 'served_beers']:
             if key not in request.json:
                 abort(400, description="missing " + key + " key in JSON body")

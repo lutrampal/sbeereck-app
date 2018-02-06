@@ -4,6 +4,7 @@ package com.sbeereck.lutrampal.view;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -158,8 +159,17 @@ public class MembersFragment extends GeneralMainViewFragment
     }
 
     private void updateBalance(final int position) {
-        DialogFragment infoDialog = new UpdateBalanceDialogFragment();
+        UpdateBalanceDialogFragment infoDialog = new UpdateBalanceDialogFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("member", (Member) mListview.getAdapter().getItem(position));
+        infoDialog.setArguments(args);
         infoDialog.show(mActivity.getSupportFragmentManager(), "UpdateBalanceDialogFragment");
+        infoDialog.setOnOkButtonClickListener(new OnOkButtonClickListener<Member>() {
+            @Override
+            public void onOkButtonClick(Member m, Boolean wasEditing) {
+                new GetAllMembersTask().execute();
+            }
+        });
     }
 
     private void renewMembership(final int position) {

@@ -143,6 +143,8 @@ package Controller {
 		+ getTransactionsForParty(party: Party): List<Transaction>
 		+ deleteTransaction(id: int)
 		+ addTransaction(transaction: Transaction): int
+		+ getBalanceThreshold(): float
+		+ updateBalanceThresold(newThreshold: float)
 	}
 	
 	RESTDataManager "- dataManager" <-- TransactionController

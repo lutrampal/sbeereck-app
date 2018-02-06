@@ -14,6 +14,12 @@ public class Transaction implements Serializable, Comparable {
     private String label;
     private Date timestamp;
 
+    public Transaction(Member member, float amount, String label) {
+        this.member = member;
+        this.amount = amount;
+        this.label = label;
+    }
+
     public int getId() {
         return id;
     }

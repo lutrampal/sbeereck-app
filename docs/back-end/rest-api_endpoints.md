@@ -169,6 +169,15 @@
 				{  
 					"id":  
 				}  
+	* /balance_too_low_threshold
+		GET return the minimum accepted balance for an account
+			{
+				"balance_too_low_threshold":	
+			}
+		PUT update the minimum accepted balance for an account
+			{
+				"balance_too_low_threshold":	
+			}
 			
 			
 			

@@ -35,7 +35,8 @@ public class TransactionController {
     }
 
     public List<Transaction> getTransactionsForParty(Party party) throws Exception {
-        List<Object> jsonList = getDataManager().getArray("/parties/" + party.getId() + "/transactions");
+        List<Object> jsonList = getDataManager().getArray("/parties/" + party.getId()
+                + "/transactions");
         List<Transaction> transactions = new ArrayList<>();
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         for (Object obj : jsonList) {
@@ -57,14 +58,14 @@ public class TransactionController {
     }
 
     private Map<String, Object> transactionToJsonObject(Transaction transaction) {
-        Map<String, Object> jsonParty = new HashMap<>();
-        jsonParty.put("member_id", transaction.getMember().getId());
+        Map<String, Object> jsonTransaction = new HashMap<>();
+        jsonTransaction.put("member_id", transaction.getMember().getId());
         if (transaction.getParty() != null && transaction.getParty().getId() != -1) {
-            jsonParty.put("party_id", transaction.getParty().getId());
+            jsonTransaction.put("party_id", transaction.getParty().getId());
         }
-        jsonParty.put("label", transaction.getLabel());
-        jsonParty.put("amount", transaction.getAmount());
-        return jsonParty;
+        jsonTransaction.put("label", transaction.getLabel());
+        jsonTransaction.put("amount", transaction.getAmount());
+        return jsonTransaction;
     }
 
     public int addTransaction(Transaction transaction) throws Exception {
@@ -74,5 +75,19 @@ public class TransactionController {
             return ((Number)res.get("id")).intValue();
         }
         return -1;
+    }
+
+    public float getBalanceThreshold() throws Exception {
+        Map<String, Object> res = getDataManager().getObject("/balance_too_low_threshold");
+        if (res != null && res.containsKey("balance_too_low_threshold")) {
+            return ((Number)res.get("balance_too_low_threshold")).floatValue();
+        }
+        return 0;
+    }
+
+    public void updateBalanceThreshold(float newThreshold) throws Exception {
+        Map<String, Object> jsonReq = new HashMap<>();
+        jsonReq.put("balance_too_low_threshold", newThreshold);
+        getDataManager().put("/balance_too_low_threshold", jsonReq);
     }
 }

@@ -27,9 +27,8 @@ import com.sbeereck.lutrampal.model.ProductType;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewProductDialogFragment extends DialogFragment {
+public class NewProductDialogFragment extends DialogWithOkClickListener<Product> {
 
-    private OnOkButtonClickListener<Product> mOnOkButtonClickListener;
     private Boolean isEditProductDialog = false;
     private ProductController controller;
     private Product product = null;
@@ -139,9 +138,6 @@ public class NewProductDialogFragment extends DialogFragment {
         }
     }
 
-    public void setOnOkButtonClickListener(OnOkButtonClickListener listener) {
-        mOnOkButtonClickListener = listener;
-    }
 
     private void makeEditDialog(View v) {
         TextView tvTitle = v.findViewById(R.id.title_tv);

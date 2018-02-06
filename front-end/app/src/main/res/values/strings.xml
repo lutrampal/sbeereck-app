@@ -97,4 +97,7 @@
     <string name="food_loading_error">Impossible de charger la nourriture</string>
     <string name="deposits_loading_error">Impossible de charger les cautions</string>
     <string name="transaction_add_error">Impossible d\'ajouter la transaction</string>
+    <string name="threshold_loading_error">Impossible de charger le seuil des soldes trop bas</string>
+    <string name="transaction_outdated_membership_title">Cotisation expirée</string>
+    <string name="update_balance_error">Impossible d\'ajuster le solde</string>
 </resources>

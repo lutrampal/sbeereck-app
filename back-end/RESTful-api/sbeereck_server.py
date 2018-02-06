@@ -10,6 +10,7 @@ from membership import Membership
 from party_transactions import PartyTransactions
 from transaction import Transaction
 from transactions import Transactions
+from balance_too_low_threshold import BalanceTooLowThreshold
 
 app = Flask(__name__)
 api = Api(app)
@@ -25,6 +26,7 @@ api.add_resource(Membership, '/members/<member_id>/membership')
 api.add_resource(PartyTransactions, "/parties/<party_id>/transactions")
 api.add_resource(Transaction, "/transactions/<transaction_id>")
 api.add_resource(Transactions, "/transactions")
+api.add_resource(BalanceTooLowThreshold, "/balance_too_low_threshold")
 
 if __name__ == '__main__':
     app.run(debug=True, port=8081, host='0.0.0.0')
