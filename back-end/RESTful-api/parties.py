@@ -48,7 +48,13 @@ class Parties(Resource):
         insert_beer_query = "INSERT INTO served_beers_at_party(party_id, product_id, category) " \
                             "VALUES(%(party_id)s, %(product_id)s, %(category)s)"
         with connection.cursor() as cursor:
-            cursor.execute(insert_party_query, request.json)
+            party = {
+                "name": request.json["name"],
+                "date": request.json["date"],
+                "normal_beer_price": request.json["normal_beer_price"],
+                "special_beer_price": request.json["special_beer_price"]
+            }
+            cursor.execute(insert_party_query, party)
             party_id = connection.insert_id()
             for beer in request.json['served_beers']:
                 for key in ['id', 'category']:
