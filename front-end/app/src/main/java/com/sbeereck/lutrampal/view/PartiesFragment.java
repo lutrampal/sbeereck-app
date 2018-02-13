@@ -43,6 +43,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected List<Party> doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             List<Party> parties = null;
             try {
                 parties = controller.getAllParties();
@@ -55,8 +56,11 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected void onPostExecute(List<Party> parties) {
+            if (getContext() == null) {
+                return; // the activity in which this task was started no longer exist.
+            }
             if (e != null) {
-                Toast.makeText(mActivity.getApplicationContext(),
+                Toast.makeText(getContext(),
                         getString(R.string.parties_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
@@ -165,6 +169,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected Party doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             Party party = null;
             try {
                 party = controller.getParty(partyId);
@@ -177,6 +182,9 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected void onPostExecute(Party party) {
+            if (getContext() == null) {
+                return; // the activity in which this task was started no longer exist.
+            }
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
                         getString(R.string.party_loading_error) + " : " + e.getMessage(),
@@ -202,6 +210,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 controller.deleteParty(selectedParty.getId());
             } catch (Exception e) {

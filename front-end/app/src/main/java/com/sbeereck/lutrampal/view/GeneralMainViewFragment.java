@@ -2,6 +2,7 @@ package com.sbeereck.lutrampal.view;
 
 
 import android.app.Fragment;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
@@ -18,6 +19,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filterable;
 import android.widget.ListView;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -97,5 +101,19 @@ public class GeneralMainViewFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private List<AsyncTask> tasks = new LinkedList<>();
+
+    protected void addTaskToRunningAsyncTasks(AsyncTask task) {
+        tasks.add(task);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        for (AsyncTask task: tasks) {
+            task.cancel(true);
+        }
     }
 }

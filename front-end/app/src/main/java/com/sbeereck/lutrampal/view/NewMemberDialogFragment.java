@@ -24,7 +24,7 @@ import com.sbeereck.lutrampal.model.School;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewMemberDialogFragment extends DialogFragment {
+public class NewMemberDialogFragment extends DialogFragmentWithAsyncTasks {
 
     private OnOkButtonClickListener<Member> mOnOkButtonClickListener;
     private EditText firstNameEt;
@@ -92,6 +92,7 @@ public class NewMemberDialogFragment extends DialogFragment {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 member.setId(controller.addMember(member));
             } catch (Exception e) {

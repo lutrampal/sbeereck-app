@@ -112,6 +112,7 @@ public class NewProductDialogFragment extends DialogWithOkClickListener<Product>
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 if (isEditProductDialog) {
                     controller.editProduct(product);

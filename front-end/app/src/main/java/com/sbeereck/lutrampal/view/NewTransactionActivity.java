@@ -40,7 +40,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class NewTransactionActivity extends AppCompatActivity {
+public class NewTransactionActivity extends ActivityWithAsyncTasks {
 
     private Party party = null;
     private Member selectedMember = null;
@@ -85,6 +85,7 @@ public class NewTransactionActivity extends AppCompatActivity {
 
         @Override
         protected List<Product> doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             List<Product> products = null;
             try {
                 products = productController.getProductsByType(type);
@@ -148,6 +149,7 @@ public class NewTransactionActivity extends AppCompatActivity {
 
         @Override
         protected List<Member> doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             List<Member> members = null;
             try {
                 members = memberController.getAllMembers();
@@ -179,6 +181,7 @@ public class NewTransactionActivity extends AppCompatActivity {
 
         @Override
         protected Float doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 return transactionController.getBalanceThreshold();
             } catch (Exception e) {
@@ -389,6 +392,7 @@ public class NewTransactionActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 newTransaction.setId(transactionController.addTransaction(newTransaction));
             } catch (Exception e) {

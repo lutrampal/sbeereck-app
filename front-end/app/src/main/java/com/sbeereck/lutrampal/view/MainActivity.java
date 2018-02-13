@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity
                 try {
                     byte[] b = {(byte) 0xF0, (byte) 0x9F, (byte) 0x8D, (byte) 0xBB};
                     String beers = new String(b, "UTF8");
-                    Toast.makeText(getApplicationContext(), "!! " + beers + beers + beers + " !!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "!! " + beers + beers
+                            + beers + " !!", Toast.LENGTH_SHORT).show();
                 } catch (Exception e) { }
             }
         };
@@ -53,26 +54,22 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         Fragment f = null;
-        String fragmentName = null;
         switch (item.getItemId()) {
             case R.id.action_members:
                 f = new MembersFragment();
-                fragmentName = "members";
                 break;
             case R.id.action_parties:
                 f = new PartiesFragment();
-                fragmentName = "parties";
                 break;
             case R.id.action_products:
                 f = new BeersAndOthersFragment();
-                fragmentName = "products";
                 break;
             case R.id.action_settings:
-                return true;
+                f = new SettingsFragment();
+                break;
             default:
                 break;
         }

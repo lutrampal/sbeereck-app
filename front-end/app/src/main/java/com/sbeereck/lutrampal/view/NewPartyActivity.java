@@ -33,7 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class NewPartyActivity extends AppCompatActivity {
+public class NewPartyActivity extends ActivityWithAsyncTasks {
 
     private ListView beersListView;
     private Party party;
@@ -43,6 +43,8 @@ public class NewPartyActivity extends AppCompatActivity {
     private EditText nameEt;
     private EditText normalPriceEt;
     private EditText specialPriceEt;
+    private float defaultNormalPrice;
+    private float defaultSpecialPrice;
     private DatePickerDialog currentDatePicker = null;
     private PartyController controller;
 
@@ -85,8 +87,8 @@ public class NewPartyActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewPartyActivity.this, AddBeersActivity.class);
-                intent.putExtra("beers", (ArrayList<Product>) Placeholders.getPlaceHolderBeers());
-                intent.putExtra("alreadySelectedBeers", (TreeMap<Product, BeerCategory>) servedBeers);
+                intent.putExtra("alreadySelectedBeers",
+                        (TreeMap<Product, BeerCategory>) servedBeers);
                 startActivityForResult(intent, 1);
             }
         };
@@ -118,6 +120,7 @@ public class NewPartyActivity extends AppCompatActivity {
 
         @Override
         protected Party doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 return controller.getParty(party.getId());
             } catch (Exception e) {
@@ -252,13 +255,13 @@ public class NewPartyActivity extends AppCompatActivity {
         try {
             normalBeerPrice = Float.valueOf(normalPriceEt.getText().toString());
         } catch (Exception e) {
-            normalBeerPrice = Placeholders.getPlaceHolderDefaultNormalBeerPrice();
+            normalBeerPrice = defaultNormalPrice;
         }
         float specialBeerPrice;
         try {
             specialBeerPrice = Float.valueOf(specialPriceEt.getText().toString());
         } catch (Exception e) {
-            specialBeerPrice = Placeholders.getPlaceHolderDefaultSpecialBeerPrice();
+            specialBeerPrice = defaultSpecialPrice;
         }
         if (party == null) {
             party = new Party(name, date, normalBeerPrice, specialBeerPrice, servedBeers);
@@ -275,14 +278,13 @@ public class NewPartyActivity extends AppCompatActivity {
     private class GetDefaultBeerPricesTask extends AsyncTask<Void, Integer, Void> {
 
         private Exception e = null;
-        private float normalPrice;
-        private float specialPrice;
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
-                normalPrice = controller.getDefaultNormalBeerPrice();
-                specialPrice = controller.getDefaultSpecialBeerPrice();
+                defaultNormalPrice = controller.getDefaultNormalBeerPrice();
+                defaultSpecialPrice = controller.getDefaultSpecialBeerPrice();
             } catch (Exception e) {
                 this.e = e;
             }
@@ -297,8 +299,8 @@ public class NewPartyActivity extends AppCompatActivity {
                                 + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
-            normalPriceEt.setText(String.valueOf(normalPrice));
-            specialPriceEt.setText(String.valueOf(specialPrice));
+            normalPriceEt.setText(String.valueOf(defaultNormalPrice));
+            specialPriceEt.setText(String.valueOf(defaultSpecialPrice));
         }
     }
 
@@ -308,6 +310,7 @@ public class NewPartyActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 if (isEditPartyActivity) {
                     controller.editParty(party);

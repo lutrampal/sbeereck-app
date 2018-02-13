@@ -21,6 +21,11 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
     protected List<Member> members;
     protected List<Member> filteredMembers;
     protected Context context;
+    protected float balanceTooLowThreshold = 0;
+
+    public void setBalanceTooLowThreshold(float balanceTooLowThreshold) {
+        this.balanceTooLowThreshold = balanceTooLowThreshold;
+    }
 
     public MemberListItemAdapter(Context context, List<Member> members) {
         this.context = context;
@@ -59,7 +64,7 @@ public class MemberListItemAdapter extends BaseAdapter implements Filterable {
         tvMemberBalance.setText(String.format("%.2f", m.getBalance()) + "€");
         tvMemberName.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
         tvMemberBalance.setTextColor(context.getResources().getColor(android.R.color.tab_indicator_text));
-        if (m.getBalance() < Placeholders.getPlaceHolderBalanceTooLowThreshold()) { // threshold should be changed dynamically in the future.
+        if (m.getBalance() < balanceTooLowThreshold) {
             tvMemberName.setTextColor(context.getResources().getColor(R.color.colorBalanceTooLow));
             tvMemberBalance.setTextColor(context.getResources().getColor(R.color.colorBalanceTooLow));
         }

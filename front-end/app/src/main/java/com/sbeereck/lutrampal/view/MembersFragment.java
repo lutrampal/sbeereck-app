@@ -21,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.MemberController;
+import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Member;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class MembersFragment extends GeneralMainViewFragment
 
     private List<Member> members = new ArrayList<>();
     private MemberController controller;
+    private float balanceTooLowThreshold = 0;
 
     @Override
     public void onOkButtonClick(Member obj, Boolean wasEditing) {
@@ -52,6 +54,14 @@ public class MembersFragment extends GeneralMainViewFragment
         @Override
         protected List<Member> doInBackground(Void ... voids) {
             List<Member> members = null;
+            try {
+                balanceTooLowThreshold = new TransactionController(
+                        Placeholders.getPlaceHolderDataManager()).getBalanceThreshold();
+            } catch (Exception e) {
+                balanceTooLowThreshold = 0;
+            }
+            ((MemberListItemAdapter) mListview.getAdapter())
+                    .setBalanceTooLowThreshold(balanceTooLowThreshold);
             try {
                 members = controller.getAllMembers();
             } catch (Exception e) {
@@ -98,7 +108,7 @@ public class MembersFragment extends GeneralMainViewFragment
             public void onClick(View view) {
                 NewMemberDialogFragment newMemberDialog = new NewMemberDialogFragment();
                 newMemberDialog.setOnOkButtonClickListener(MembersFragment.this);
-                newMemberDialog.show(mActivity.getSupportFragmentManager(),
+                newMemberDialog.show(mActivity.getFragmentManager(),
                         "NewMemberDialogFragment");
             }
         };
@@ -112,6 +122,7 @@ public class MembersFragment extends GeneralMainViewFragment
                 Bundle args = new Bundle();
                 Member m = (Member) mListview.getAdapter().getItem(i);
                 args.putSerializable("id", m.getId());
+                args.putSerializable("balance_too_low_threshold", balanceTooLowThreshold);
                 infoDialog.setArguments(args);
                 infoDialog.show(mActivity.getSupportFragmentManager(),
                         "MemberInfoDialogFragment");

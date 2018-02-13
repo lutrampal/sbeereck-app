@@ -101,4 +101,22 @@
     <string name="transaction_outdated_membership_title">Cotisation expirée</string>
     <string name="update_balance_error">Impossible d\'ajuster le solde</string>
     <string name="default_beer_price_loading_error">Impossible de charger les prix par défaut</string>
+    <string name="settings">Paramètres</string>
+    <string name="authentication">Authentification</string>
+    <string name="server_address">Adresse du serveur</string>
+    <string name="port">Port</string>
+    <string name="password">Mot de passe</string>
+    <string name="preferences">Préférences</string>
+    <string name="balance_too_low_alert">Alerte solde</string>
+    <string name="default_beer_price">Prix des bières par défaut</string>
+    <string name="about">A propos</string>
+    <string name="about_info">© Lucas Trampal 2018</string>
+    <string name="preferences_loading_error">Impossible de charger les préférences</string>
+    <string name="preferences_saving_error">Impossible de sauvegarder les préférences</string>
+    <string name="preferences_saved">Préférences sauvegardées avec succès</string>
+    <string name="invalid_input">Saisie invalide</string>
+    <string name="saved_server_address">saved_server_address</string>
+    <string name="app_preferences">app_preferences</string>
+    <string name="sbeereck_key">sbeereck_key</string>
+    <string name="saved_server_password">saved_server_password</string>
 </resources>

@@ -85,7 +85,7 @@ public class TransactionController {
         return 0;
     }
 
-    public void updateBalanceThreshold(float newThreshold) throws Exception {
+    public void setBalanceThreshold(float newThreshold) throws Exception {
         Map<String, Object> jsonReq = new HashMap<>();
         jsonReq.put("balance_too_low_threshold", newThreshold);
         getDataManager().put("/balance_too_low_threshold", jsonReq);

@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TransactionsActivity extends AppCompatActivity {
+public class TransactionsActivity extends ActivityWithAsyncTasks {
 
     protected ListView mListview;
     protected SearchView mSearchView;
@@ -115,6 +115,7 @@ public class TransactionsActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 controller.deleteTransaction(selectedTransaction.getId());
             } catch (Exception e) {

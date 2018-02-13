@@ -39,6 +39,7 @@ public class UpdateBalanceDialogFragment extends DialogWithOkClickListener<Membe
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             try {
                 String label = labelEt.getText().toString();
                 if (label.trim().isEmpty()) {

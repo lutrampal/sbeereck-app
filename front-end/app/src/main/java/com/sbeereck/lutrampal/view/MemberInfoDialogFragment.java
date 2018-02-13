@@ -35,6 +35,7 @@ public class MemberInfoDialogFragment extends DialogFragment {
     private TextView tvSchool;
     private TextView tvEmail;
     private TextView tvPhone;
+    private float balanceTooLowThreshold = 0;
 
     public MemberInfoDialogFragment() {
         // Required empty public constructor
@@ -77,7 +78,7 @@ public class MemberInfoDialogFragment extends DialogFragment {
             }
             tvName.setText(member.getFirstName() + " " + member.getLastName());
             tvBalance.setText(member.getBalance() + "€");
-            if (member.getBalance() < Placeholders.getPlaceHolderBalanceTooLowThreshold()) { // threshold shoud be changed dynamically in the future
+            if (member.getBalance() < balanceTooLowThreshold) {
                 tvBalance.setTextColor(getContext().getResources().getColor(R.color.colorBalanceTooLow));
             }
             if (member.getSchool() == null) {
@@ -118,6 +119,7 @@ public class MemberInfoDialogFragment extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         int id = getArguments().getInt("id");
+        balanceTooLowThreshold = getArguments().getFloat("balance_too_low_threshold");
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();

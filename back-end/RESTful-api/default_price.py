@@ -43,9 +43,7 @@ class DefaultPrice(Resource):
                              "WHERE parameters_id = 1"
         with connection.cursor() as cursor:
             request.json['product'] = product
-            if not cursor.execute(update_price_query, request.json):
-                connection.close()
-                abort(404)
+            cursor.execute(update_price_query, request.json)
         connection.commit()
         connection.close()
         return 200

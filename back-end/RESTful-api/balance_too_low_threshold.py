@@ -36,9 +36,7 @@ class BalanceTooLowThreshold(Resource):
                                  "SET balance_too_low_threshold = %(balance_too_low_threshold)s " \
                                  "WHERE parameters_id = 1"
         with connection.cursor() as cursor:
-            if not cursor.execute(update_threshold_query, request.json):
-                connection.close()
-                abort(404)
+            cursor.execute(update_threshold_query, request.json)
         connection.commit()
         connection.close()
         return 201

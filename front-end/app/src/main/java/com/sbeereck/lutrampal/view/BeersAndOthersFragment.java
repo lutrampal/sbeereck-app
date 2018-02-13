@@ -55,6 +55,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
 
         @Override
         protected List<Product> doInBackground(Void ... voids) {
+            addTaskToRunningAsyncTasks(this);
             List<Product> products = null;
             try {
                 products = controller.getAllProducts();

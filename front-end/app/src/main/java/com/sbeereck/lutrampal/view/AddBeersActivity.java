@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddBeersActivity extends AppCompatActivity {
+public class AddBeersActivity extends ActivityWithAsyncTasks {
 
     private ListView beersListView;
     private List<Product> beers = new ArrayList<>();
@@ -36,7 +34,7 @@ public class AddBeersActivity extends AppCompatActivity {
 
         @Override
         protected List<Product> doInBackground(Void ... voids) {
-            List<Product> beers = null;
+            addTaskToRunningAsyncTasks(this);
             try {
                 beers = controller.getProductsByType(ProductType.BEER);
             } catch (Exception e) {
