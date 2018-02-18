@@ -2,6 +2,7 @@ package com.sbeereck.lutrampal.view;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -34,9 +35,13 @@ public class UpdateBalanceDialogFragment extends DialogWithOkClickListener<Membe
         // Required empty public constructor
     }
 
-    private class UpdateBalanceTask extends AsyncTask<Void, Integer, Void> {
+    private class UpdateBalanceTask extends AsyncTaskWithLoadAnimation<Void, Integer, Void> {
 
         private Exception e = null;
+
+        public UpdateBalanceTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected Void doInBackground(Void ... voids) {
@@ -62,6 +67,7 @@ public class UpdateBalanceDialogFragment extends DialogWithOkClickListener<Membe
 
         @Override
         protected void onPostExecute(Void voidObj) {
+            super.onPostExecute(voidObj);
             if (e != null) {
                 Toast.makeText(getActivity(),
                         getString(R.string.update_balance_error) + " : " + e.getMessage(),
@@ -90,7 +96,7 @@ public class UpdateBalanceDialogFragment extends DialogWithOkClickListener<Membe
                 .setPositiveButton(R.string.validate, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         if (dataManager != null) {
-                            new UpdateBalanceTask().execute();
+                            new UpdateBalanceTask(getActivity()).execute();
                         }
                     }
                 })

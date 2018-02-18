@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * A class to represent a party organized by S'Beer Eck.
@@ -36,7 +37,7 @@ public class Party implements Comparable, Serializable {
     private float specialBeerPrice = 0;
     private float normalBeerPrice = 0;
 
-    private Map<Product, BeerCategory> servedBeers = new HashMap<>();
+    private HashMap<Product, BeerCategory> servedBeers = new HashMap<>();
 
     public int getId() {
         return id;
@@ -86,11 +87,11 @@ public class Party implements Comparable, Serializable {
         this.numberOfAttendees = mNumberOfAttendees;
     }
 
-    public Map<Product, BeerCategory> getServedBeers() {
+    public HashMap<Product, BeerCategory> getServedBeers() {
         return servedBeers;
     }
 
-    public void setServedBeers(Map<Product, BeerCategory> servedBeers) {
+    public void setServedBeers(HashMap<Product, BeerCategory> servedBeers) {
         this.servedBeers = servedBeers;
     }
 
@@ -119,7 +120,7 @@ public class Party implements Comparable, Serializable {
     }
 
     public Party(String name, Date date, float normalBeerPrice, float specialBeerPrice,
-                 Map<Product, BeerCategory> servedBeers) {
+                 HashMap<Product, BeerCategory> servedBeers) {
         this.name = name;
         this.date = date;
         this.specialBeerPrice = specialBeerPrice;

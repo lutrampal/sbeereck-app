@@ -2,6 +2,7 @@ package com.sbeereck.lutrampal.view;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -50,9 +51,13 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
     }
 
-    private class GetAllProductsTask extends AsyncTask<Void, Integer, List<Product>> {
+    private class GetAllProductsTask extends AsyncTaskWithLoadAnimation<Void, Integer, List<Product>> {
 
         private Exception e = null;
+
+        public GetAllProductsTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected List<Product> doInBackground(Void ... voids) {
@@ -69,6 +74,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
 
         @Override
         protected void onPostExecute(List<Product> products) {
+            super.onPostExecute(products);
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
                         getString(R.string.products_loading_error) + " : " + e.getMessage(),
@@ -93,7 +99,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
                 .getDataManager(getActivity());
         if (dataManager != null) {
             controller = new ProductController(dataManager);
-            new GetAllProductsTask().execute();
+            new GetAllProductsTask(getActivity()).execute();
         } else {
             mFabAdd.setEnabled(false);
         }

@@ -133,7 +133,7 @@ public class NewProductDialogFragment extends DialogWithOkClickListener<Product>
         @Override
         protected void onPostExecute(Void obj) {
             if (e != null) {
-                Toast.makeText(context,
+                Toast.makeText(getActivity(),
                         getString(R.string.product_adding_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;

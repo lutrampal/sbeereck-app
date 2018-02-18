@@ -1,5 +1,6 @@
 package com.sbeereck.lutrampal.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class AddBeersActivity extends ActivityWithAsyncTasks {
 
@@ -29,31 +31,33 @@ public class AddBeersActivity extends ActivityWithAsyncTasks {
     private List<Product> beers = new ArrayList<>();
     private ProductController controller;
 
-    private class GetAllBeersTask extends AsyncTask<Void, Integer, List<Product>> {
+    private class GetAllBeersTask extends AsyncTaskWithLoadAnimation<Void, Integer, List<Product>> {
 
         private Exception e = null;
+
+        public GetAllBeersTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected List<Product> doInBackground(Void ... voids) {
             addTaskToRunningAsyncTasks(this);
             try {
-                beers = controller.getProductsByType(ProductType.BEER);
+                beers.addAll(controller.getProductsByType(ProductType.BEER));
             } catch (Exception e) {
                 this.e = e;
-                beers = new ArrayList<>();
             }
             return beers;
         }
 
         @Override
         protected void onPostExecute(List<Product> beers) {
+            super.onPostExecute(beers);
             if (e != null) {
                 Toast.makeText(getApplicationContext(),
                         getString(R.string.beers_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
-            AddBeersActivity.this.beers.clear();
-            AddBeersActivity.this.beers.addAll(beers);
             ((BaseAdapter) beersListView.getAdapter()).notifyDataSetChanged();
         }
     }
@@ -75,11 +79,11 @@ public class AddBeersActivity extends ActivityWithAsyncTasks {
             return;
         }
         controller = new ProductController(dataManager);
-        new GetAllBeersTask().execute();
+        new GetAllBeersTask(this).execute();
 
-        Map<Product, BeerCategory> alreadySelectedBeers;
+        HashMap<Product, BeerCategory> alreadySelectedBeers;
         if (getIntent().getSerializableExtra("alreadySelectedBeers") != null) {
-            alreadySelectedBeers = (Map<Product, BeerCategory>) getIntent()
+            alreadySelectedBeers = (HashMap<Product, BeerCategory>) getIntent()
                     .getSerializableExtra("alreadySelectedBeers");
         } else {
             alreadySelectedBeers = new HashMap<>();
@@ -98,7 +102,7 @@ public class AddBeersActivity extends ActivityWithAsyncTasks {
                 dialog.setOnOkButtonClickListener(new OnOkButtonClickListener() {
                     @Override
                     public void onOkButtonClick(Object obj, Boolean wasEditing) {
-                        new GetAllBeersTask().execute();
+                        new GetAllBeersTask(getApplicationContext()).execute();
                     }
                 });
             }
@@ -134,8 +138,8 @@ public class AddBeersActivity extends ActivityWithAsyncTasks {
     }
 
     private HashMap<Product, BeerCategory> getSelectedBeersMap() {
-        return (HashMap<Product, BeerCategory>) ((AddBeerListItemAdapter) beersListView
-                .getAdapter()).getSelectedBeers();
+        return (HashMap<Product, BeerCategory>) ((AddBeerListItemAdapter)
+                beersListView.getAdapter()).getSelectedBeers();
     }
 
 }

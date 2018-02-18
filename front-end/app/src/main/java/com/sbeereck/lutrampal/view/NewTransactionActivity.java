@@ -138,7 +138,7 @@ public class NewTransactionActivity extends ActivityWithAsyncTasks {
                 R.string.food_loading_error, ProductType.FOOD).execute();
         new GetProductsAndEnableRadioButtonTask(deposits, depositRb,
                 R.string.deposits_loading_error, ProductType.DEPOSIT).execute();
-        new SetUpMemberSelectionTask().execute();
+        new SetUpMemberSelectionTask(this).execute();
     }
 
     @Override
@@ -148,9 +148,14 @@ public class NewTransactionActivity extends ActivityWithAsyncTasks {
         swapTransactionFragment(radioGroup.getCheckedRadioButtonId());
     }
 
-    private class SetUpMemberSelectionTask extends AsyncTask<Void, Integer, List<Member>> {
+    private class SetUpMemberSelectionTask
+            extends AsyncTaskWithLoadAnimation<Void, Integer, List<Member>> {
 
         private Exception e = null;
+
+        public SetUpMemberSelectionTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected List<Member> doInBackground(Void ... voids) {
@@ -167,6 +172,7 @@ public class NewTransactionActivity extends ActivityWithAsyncTasks {
 
         @Override
         protected void onPostExecute(List<Member> members) {
+            super.onPostExecute(members);
             if (e != null) {
                 Toast.makeText(NewTransactionActivity.this,
                         getString(R.string.parties_loading_error) + " : " + e.getMessage(),

@@ -109,7 +109,7 @@ public class NewMemberDialogFragment extends DialogFragmentWithAsyncTasks {
         @Override
         protected void onPostExecute(Void obj) {
             if (e != null) {
-                Toast.makeText(context,
+                Toast.makeText(getActivity(),
                         getString(R.string.member_adding_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;

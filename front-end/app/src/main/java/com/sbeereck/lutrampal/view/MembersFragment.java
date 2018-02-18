@@ -3,6 +3,7 @@ package com.sbeereck.lutrampal.view;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -49,9 +50,13 @@ public class MembersFragment extends GeneralMainViewFragment
         ((BaseAdapter) mListview.getAdapter()).notifyDataSetChanged();
     }
 
-    private class GetAllMembersTask extends AsyncTask<Void, Integer, List<Member>> {
+    private class GetAllMembersTask extends AsyncTaskWithLoadAnimation<Void, Integer, List<Member>> {
 
         private Exception e = null;
+
+        public GetAllMembersTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected List<Member> doInBackground(Void ... voids) {
@@ -79,6 +84,7 @@ public class MembersFragment extends GeneralMainViewFragment
 
         @Override
         protected void onPostExecute(List<Member> members) {
+            super.onPostExecute(members);
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
                         getString(R.string.members_loading_error) + " : " + e.getMessage(),
@@ -103,7 +109,7 @@ public class MembersFragment extends GeneralMainViewFragment
         RESTDataManager dataManager = RESTDataManagerSingleton.getDataManager(getActivity());
         if (dataManager != null) {
             controller = new MemberController(dataManager);
-            new GetAllMembersTask().execute();
+            new GetAllMembersTask(getActivity()).execute();
         } else {
             mFabAdd.setEnabled(false);
             mFabExport.setEnabled(false);
@@ -191,7 +197,7 @@ public class MembersFragment extends GeneralMainViewFragment
         infoDialog.setOnOkButtonClickListener(new OnOkButtonClickListener<Member>() {
             @Override
             public void onOkButtonClick(Member m, Boolean wasEditing) {
-                new GetAllMembersTask().execute();
+                new GetAllMembersTask(getActivity()).execute();
             }
         });
     }

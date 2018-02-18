@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by lutrampal on 02/01/18 for S'Beer Eck.
@@ -90,7 +91,7 @@ public class PartyController {
     public Party getParty(int id) throws Exception {
         Map<String, Object> jsonParty = getDataManager().getObject("/parties/" + id);
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        Map<Product, BeerCategory> servedBeers = new HashMap<>();
+        HashMap<Product, BeerCategory> servedBeers = new HashMap<>();
         for (Map<String, Object> value : (List<Map<String, Object>>) jsonParty.get("served_beers")) {
             Product beer = new Product(((Number) value.get("id")).intValue(),
                     (String) value.get("name"),

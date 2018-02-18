@@ -1,6 +1,7 @@
 package com.sbeereck.lutrampal.view;
 
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -38,7 +39,7 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
 
     private ListView beersListView;
     private Party party;
-    private Map<Product, BeerCategory> servedBeers;
+    private HashMap<Product, BeerCategory> servedBeers;
     private Calendar calendar;
     private EditText dateEt;
     private EditText nameEt;
@@ -69,7 +70,7 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
         new GetDefaultBeerPricesTask().execute();
         dateEt = findViewById(R.id.party_date);
 
-        servedBeers = new TreeMap<>();
+        servedBeers = new HashMap<>();
         if (getIntent().getSerializableExtra("party") != null) {
             makeEditPartyActivity();
         } else {
@@ -91,8 +92,7 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NewPartyActivity.this, AddBeersActivity.class);
-                intent.putExtra("alreadySelectedBeers",
-                        (TreeMap<Product, BeerCategory>) servedBeers);
+                intent.putExtra("alreadySelectedBeers", servedBeers);
                 startActivityForResult(intent, 1);
             }
         };
@@ -101,7 +101,8 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == requestCode) {
-            servedBeers = (Map<Product, BeerCategory>) data.getSerializableExtra("selectedBeers");
+            servedBeers = (HashMap<Product, BeerCategory>)
+                    data.getSerializableExtra("selectedBeers");
             beersListView.setAdapter(new BeerListItemAdapter(this, servedBeers));
         }
     }
@@ -115,12 +116,16 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
         nameEt.setText(party.getName());
         DateFormat df = new SimpleDateFormat("dd/MM/yy");
         dateEt.setText(df.format(party.getDate()));
-        new FetchPartyTask().execute();
+        new FetchPartyTask(this).execute();
     }
 
-    private class FetchPartyTask extends AsyncTask<Void, Integer, Party> {
+    private class FetchPartyTask extends AsyncTaskWithLoadAnimation<Void, Integer, Party> {
 
         private Exception e = null;
+
+        public FetchPartyTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected Party doInBackground(Void ... voids) {
@@ -135,6 +140,7 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
 
         @Override
         protected void onPostExecute(Party party) {
+            super.onPostExecute(party);
             if (e != null) {
                 Toast.makeText(getApplicationContext(),
                         getString(R.string.party_loading_error) + " : " + e.getMessage(),

@@ -129,7 +129,8 @@ public class PartiesFragment extends GeneralMainViewFragment {
         return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                new StartPartyActivityTask(((PartyListItemAdapter) mListview.getAdapter())
+                new StartPartyActivityTask(getActivity(),
+                        ((PartyListItemAdapter) mListview.getAdapter())
                         .getFilteredParties().get(i).getId()).execute();
             }
         };
@@ -171,12 +172,13 @@ public class PartiesFragment extends GeneralMainViewFragment {
         startActivityForResult(intent, 1);
     }
 
-    private class StartPartyActivityTask extends AsyncTask<Void, Integer, Party> {
+    private class StartPartyActivityTask extends AsyncTaskWithLoadAnimation<Void, Integer, Party> {
 
         private Exception e = null;
         private int partyId;
 
-        public StartPartyActivityTask(int partyId) {
+        public StartPartyActivityTask(Context context, int partyId) {
+            super(context);
             this.partyId = partyId;
         }
 
@@ -195,6 +197,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected void onPostExecute(Party party) {
+            super.onPostExecute(party);
             if (getContext() == null) {
                 return; // the activity in which this task was started no longer exist.
             }

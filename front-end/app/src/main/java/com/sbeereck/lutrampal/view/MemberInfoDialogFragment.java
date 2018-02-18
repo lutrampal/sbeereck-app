@@ -50,12 +50,13 @@ public class MemberInfoDialogFragment extends DialogFragment {
         context = activity;
     }
 
-    private class FetchMemberTask extends AsyncTask<Void, Integer, Member> {
+    private class FetchMemberTask extends AsyncTaskWithLoadAnimation<Void, Integer, Member> {
 
         private final int memberId;
         private Exception e = null;
 
-        public FetchMemberTask(int memberId) {
+        public FetchMemberTask(Context context, int memberId) {
+            super(context);
             this.memberId = memberId;
         }
 
@@ -71,8 +72,9 @@ public class MemberInfoDialogFragment extends DialogFragment {
 
         @Override
         protected void onPostExecute(Member member) {
+            super.onPostExecute(member);
             if (e != null) {
-                Toast.makeText(context,
+                Toast.makeText(getActivity(),
                         getString(R.string.member_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
                 return;
@@ -135,7 +137,7 @@ public class MemberInfoDialogFragment extends DialogFragment {
                 .getDataManager(getActivity());
         if (dataManager != null) {
             controller = new MemberController(dataManager);
-            new FetchMemberTask(id).execute();
+            new FetchMemberTask(getActivity(), id).execute();
         }
         return builder.setView(v)
                 .create();

@@ -105,7 +105,7 @@ public class SettingsFragment extends Fragment {
         if (dataManager != null) {
             transactionController = new TransactionController(dataManager);
             partyController = new PartyController(dataManager);
-            new GetPreferencesTask().execute();
+            new GetPreferencesTask(getActivity()).execute();
         }
         recoverCredentials();
         return view;
@@ -158,16 +158,20 @@ public class SettingsFragment extends Fragment {
                             Float.parseFloat(defaultSpecialPriceEt.getText().toString());
                     balanceTooLowThreshold =
                             Float.parseFloat(balanceThresholdEt.getText().toString());
-                    new SavePreferencesTask().execute();
+                    new SavePreferencesTask(getActivity()).execute();
                 } catch (Exception e) { }
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private class GetPreferencesTask extends AsyncTask<Void, Integer, Void> {
+    private class GetPreferencesTask extends AsyncTaskWithLoadAnimation<Void, Integer, Void> {
 
         private Exception e = null;
+
+        public GetPreferencesTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected Void doInBackground(Void ... voids) {
@@ -187,6 +191,7 @@ public class SettingsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
             if (e != null) {
                 Toast.makeText(getContext(),
                         getString(R.string.preferences_loading_error) + " : " + e.getMessage(),
@@ -198,9 +203,13 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    private class SavePreferencesTask extends AsyncTask<Void, Integer, Void> {
+    private class SavePreferencesTask extends AsyncTaskWithLoadAnimation<Void, Integer, Void> {
 
         private Exception e = null;
+
+        public SavePreferencesTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected Void doInBackground(Void ... voids) {
@@ -223,6 +232,7 @@ public class SettingsFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Void v) {
+            super.onPostExecute(v);
             if (e != null) {
                 Toast.makeText(getContext(),
                         getString(R.string.preferences_saving_error) + " : " + e.getMessage(),
@@ -235,7 +245,7 @@ public class SettingsFragment extends Fragment {
                 if (dataManager != null) {
                     transactionController = new TransactionController(dataManager);
                     partyController = new PartyController(dataManager);
-                    new GetPreferencesTask().execute();
+                    new GetPreferencesTask(getActivity()).execute();
                 }
             }
         }
