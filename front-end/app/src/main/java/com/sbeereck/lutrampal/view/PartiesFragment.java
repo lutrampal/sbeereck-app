@@ -3,6 +3,7 @@ package com.sbeereck.lutrampal.view;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Party;
 
@@ -37,9 +39,13 @@ public class PartiesFragment extends GeneralMainViewFragment {
     private PartyController controller;
     private TransactionController transactionController;
 
-    private class GetAllPartiesTask extends AsyncTask<Void, Integer, List<Party>> {
+    private class GetAllPartiesTask extends AsyncTaskWithLoadAnimation<Void, Integer, List<Party>> {
 
         private Exception e = null;
+
+        public GetAllPartiesTask(Context context) {
+            super(context);
+        }
 
         @Override
         protected List<Party> doInBackground(Void ... voids) {
@@ -56,6 +62,7 @@ public class PartiesFragment extends GeneralMainViewFragment {
 
         @Override
         protected void onPostExecute(List<Party> parties) {
+            super.onPostExecute(parties);
             if (getContext() == null) {
                 return; // the activity in which this task was started no longer exist.
             }
@@ -79,9 +86,15 @@ public class PartiesFragment extends GeneralMainViewFragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_parties, container, false);
         super.onCreateView(inflater, container, savedInstanceState);
-        controller = new PartyController(Placeholders.getPlaceHolderDataManager());
-        transactionController = new TransactionController(Placeholders.getPlaceHolderDataManager());
-        new GetAllPartiesTask().execute();
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new PartyController(dataManager);
+            transactionController = new TransactionController(dataManager);
+            new GetAllPartiesTask(getActivity()).execute();
+        } else {
+            mFabAdd.setEnabled(false);
+        }
         mListview.setAdapter(new PartyListItemAdapter(getActivity(), parties));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mActivity.getSupportActionBar().setTitle(R.string.parties_fragment_name);

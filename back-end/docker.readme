@@ -1,0 +1,16 @@
+To run the containers (on the same host) use the following commands:
+
+docker run --name sbeereck-mysql -e MYSQL_ROOT_PASSWORD=toor -d -v <local_data_dir>:/var/lib/mysql mysql:5.7
+
+docker run -d -p443:443 -v <local_ssl_dir>:/var/run/apache2/ssl --name sbeereck-webservice lutrampal/sbeereck 
+
+Note that users on host systems with SELinux enabled may see issues with this. The current workaround is to assign the relevant SELinux policy type to the new data directory so that the container will be allowed to access it:
+
+chcon -Rt svirt_sandbox_file_t <local_data_dir>
+chcon -Rt svirt_sandbox_file_t <local_ssl_dir>
+
+local_data_dir: The directory where all databases will be read and saved.
+local_ssl_dir: Should contain a "sbeereck.cert" file and a "sbeereck.key" file to use for SSL encryption.
+
+Note that the sbeereck-webservice will try to connect to the database using IP 172.17.0.2 so the mysql container should be the first container to be ran. (no other container should be present on the host)
+

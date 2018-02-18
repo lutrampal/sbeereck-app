@@ -19,6 +19,8 @@ import android.widget.Filterable;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.PartyController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Transaction;
@@ -42,7 +44,11 @@ public class TransactionsActivity extends ActivityWithAsyncTasks {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        controller = new TransactionController(Placeholders.getPlaceHolderDataManager());
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getApplicationContext());
+        if (dataManager != null) {
+            controller = new TransactionController(dataManager);
+        }
         party = (Party) getIntent().getSerializableExtra("party");
 
         mListview = findViewById(R.id.main_listview);

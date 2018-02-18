@@ -2,31 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a534bd28-2271-4bfa-bebe-ce33713345dc" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/ActivityWithAsyncTasks.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/DialogFragmentWithAsyncTasks.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/SettingsFragment.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/fragment_settings.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AsyncTaskWithLoadAnimation.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/progress_bar.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/balance_too_low_threshold.py" afterPath="$PROJECT_DIR$/balance_too_low_threshold.py" />
-      <change beforePath="$PROJECT_DIR$/default_price.py" afterPath="$PROJECT_DIR$/default_price.py" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/.idea/modules.xml" afterPath="$PROJECT_DIR$/../../front-end/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/TransactionController.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/TransactionController.java" />
+      <change beforePath="$PROJECT_DIR$/create_db.sql" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/utilities.py" afterPath="$PROJECT_DIR$/utilities.py" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/RESTfulDataManager.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/RESTfulDataManager.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/DialogWithOkClickListener.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/DialogWithOkClickListener.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/GeneralMainViewFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/GeneralMainViewFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MainActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MainActivity.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/SettingsFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/SettingsFragment.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionsActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionsActivity.java" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/UpdateBalanceDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/UpdateBalanceDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/activity_main.xml" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/ic_launcher_background.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/ic_launcher_background.xml" />
       <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,7 +32,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1518545510985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/RESTful_api$RESTful_api.coverage" NAME="RESTful-api Coverage Results" MODIFIED="1518727571099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -74,8 +69,8 @@
       <file leaf-file-name="sbeereck_server.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="30" column="58" lean-forward="false" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
+            <state relative-caret-position="594">
+              <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -83,10 +78,32 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="utilities.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/utilities.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+              <folding>
+                <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sbeereck.wsgi" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sbeereck.wsgi">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="default_price.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/default_price.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="774">
               <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
@@ -97,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="balance_too_low_threshold.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="balance_too_low_threshold.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/balance_too_low_threshold.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
+            <state relative-caret-position="648">
               <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
               <folding>
                 <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
@@ -136,7 +153,6 @@
         <option value="$PROJECT_DIR$/../database/generateTestSamples.py" />
         <option value="$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
         <option value="$PROJECT_DIR$/authentication.py" />
-        <option value="$PROJECT_DIR$/utilities.py" />
         <option value="$PROJECT_DIR$/Party.py" />
         <option value="$PROJECT_DIR$/../database/generate_test_samples.py" />
         <option value="$PROJECT_DIR$/member.py" />
@@ -154,6 +170,8 @@
         <option value="$PROJECT_DIR$/sbeereck_server.py" />
         <option value="$PROJECT_DIR$/default_price.py" />
         <option value="$PROJECT_DIR$/balance_too_low_threshold.py" />
+        <option value="$PROJECT_DIR$/sbeereck.wsgi" />
+        <option value="$PROJECT_DIR$/utilities.py" />
       </list>
     </option>
   </component>
@@ -205,6 +223,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -217,7 +236,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -260,7 +278,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -291,22 +309,22 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-2" width="1920" height="1082" extended-state="7" />
+    <frame x="959" y="0" width="1920" height="1082" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958805" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32749742" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32749742" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32934782" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14270833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958805" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39958805" sideWeight="0.49791667" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -329,13 +347,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="23" lean-forward="true" selection-start-line="0" selection-start-column="23" selection-end-line="0" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -347,7 +358,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="11" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="82" />
-          <folding />
+          <folding>
+            <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -377,7 +390,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="38" />
-          <folding />
+          <folding>
+            <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -399,7 +414,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="38" />
-          <folding />
+          <folding>
+            <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -520,14 +537,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="36" column="11" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="82" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/party_transactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -591,16 +600,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="58" lean-forward="false" selection-start-line="30" selection-start-column="58" selection-end-line="30" selection-end-column="58" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/party.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="774">
@@ -617,9 +616,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/balance_too_low_threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <folding>
+            <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
+            <marker date="1518545510941" expanded="true" signature="1338:1517" ph="UPDATE parameters... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/default_price.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
+        <state relative-caret-position="774">
           <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
@@ -629,13 +639,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/balance_too_low_threshold.py">
+    <entry file="file://$PROJECT_DIR$/sbeereck.wsgi">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
           <folding>
-            <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
-            <marker date="1518545510941" expanded="true" signature="1338:1517" ph="UPDATE parameters... " />
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utilities.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding>
+            <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
           </folding>
         </state>
       </provider>

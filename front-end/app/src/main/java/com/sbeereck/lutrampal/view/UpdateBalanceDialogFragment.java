@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.Transaction;
@@ -81,11 +82,16 @@ public class UpdateBalanceDialogFragment extends DialogWithOkClickListener<Membe
         labelEt = v.findViewById(R.id.label_et);
         amountEt = v.findViewById(R.id.amount_et);
         member = (Member) getArguments().getSerializable("member");
-        transactionController = new TransactionController(Placeholders.getPlaceHolderDataManager());
+        final RESTDataManager dataManager = RESTDataManagerSingleton.getDataManager(getActivity());
+        if (dataManager != null) {
+            transactionController = new TransactionController(dataManager);
+        }
         return builder.setView(v)
                 .setPositiveButton(R.string.validate, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        new UpdateBalanceTask().execute();
+                        if (dataManager != null) {
+                            new UpdateBalanceTask().execute();
+                        }
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

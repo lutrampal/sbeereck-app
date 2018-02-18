@@ -19,6 +19,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Party;
 import com.sbeereck.lutrampal.model.Product;
@@ -57,8 +58,11 @@ public class NewPartyActivity extends ActivityWithAsyncTasks {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        controller = new PartyController(Placeholders.getPlaceHolderDataManager());
-
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getApplicationContext());
+        if (dataManager != null) {
+            controller = new PartyController(dataManager);
+        }
         nameEt = findViewById(R.id.party_name);
         normalPriceEt = findViewById(R.id.normal_beer_price);
         specialPriceEt = findViewById(R.id.special_beer_price);

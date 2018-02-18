@@ -19,6 +19,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.ProductController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.Product;
 
 import java.util.ArrayList;
@@ -70,7 +71,7 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         protected void onPostExecute(List<Product> products) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        getString(R.string.parties_loading_error) + " : " + e.getMessage(),
+                        getString(R.string.products_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
             BeersAndOthersFragment.this.products.clear();
@@ -88,8 +89,14 @@ public class BeersAndOthersFragment extends GeneralMainViewFragment
         mListview.setAdapter(new ProductListItemAdapter(getActivity(), products));
         mActivity.getSupportActionBar().setTitle(R.string.beer_and_other_fragment_name);
         mFabAdd.setOnClickListener(getFabAddClickListener());
-        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
-        new GetAllProductsTask().execute();
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new ProductController(dataManager);
+            new GetAllProductsTask().execute();
+        } else {
+            mFabAdd.setEnabled(false);
+        }
         return view;
     }
 

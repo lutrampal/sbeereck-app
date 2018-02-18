@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.ProductController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.Product;
 import com.sbeereck.lutrampal.model.ProductType;
 
@@ -48,7 +49,11 @@ public class NewProductDialogFragment extends DialogWithOkClickListener<Product>
         nameEt = v.findViewById(R.id.name_et);
         typeRg = v.findViewById(R.id.type_rg);
         priceEt = v.findViewById(R.id.price_et);
-        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new ProductController(dataManager);
+        }
         int positiveButtonId = R.string.add;
         if (getArguments() != null && getArguments().getSerializable("product") != null) {
             positiveButtonId = R.string.edit;

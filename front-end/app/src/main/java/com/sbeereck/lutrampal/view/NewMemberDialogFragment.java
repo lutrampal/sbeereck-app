@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.MemberController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.Member;
 import com.sbeereck.lutrampal.model.School;
 
@@ -48,7 +49,11 @@ public class NewMemberDialogFragment extends DialogFragmentWithAsyncTasks {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.fragment_new_member_dialog, null);
-        controller = new MemberController(Placeholders.getPlaceHolderDataManager());
+        RESTDataManager dataManager =
+                RESTDataManagerSingleton.getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new MemberController(dataManager);
+        }
         schoolSpinner = v.findViewById(R.id.school_spinner);
         schoolSpinner.setAdapter(new SchoolSpinnerAdapter(v.getContext()));
         firstNameEt = v.findViewById(R.id.first_name_edit_text);

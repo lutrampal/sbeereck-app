@@ -2,7 +2,7 @@ from passlib.hash import pbkdf2_sha256
 from flask_restful import reqparse
 import pymysql
 
-DB_HOST = 'localhost'
+DB_HOST = '172.17.0.2'
 DB_PORT = 3306
 DB_NAME = 'sbeereck-db'
 DB_USER = 'root'

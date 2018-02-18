@@ -13,6 +13,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.ProductController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.BeerCategory;
 import com.sbeereck.lutrampal.model.Product;
 import com.sbeereck.lutrampal.model.ProductType;
@@ -68,7 +69,12 @@ public class AddBeersActivity extends ActivityWithAsyncTasks {
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(getFabOnClickListener());
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        controller = new ProductController(Placeholders.getPlaceHolderDataManager());
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getApplicationContext());
+        if (dataManager == null) {
+            return;
+        }
+        controller = new ProductController(dataManager);
         new GetAllBeersTask().execute();
 
         Map<Product, BeerCategory> alreadySelectedBeers;

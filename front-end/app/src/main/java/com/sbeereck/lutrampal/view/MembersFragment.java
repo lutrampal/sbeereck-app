@@ -4,9 +4,9 @@ package com.sbeereck.lutrampal.view;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextMenu;
@@ -21,6 +21,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.MemberController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.TransactionController;
 import com.sbeereck.lutrampal.model.Member;
 
@@ -39,6 +40,7 @@ public class MembersFragment extends GeneralMainViewFragment
     private List<Member> members = new ArrayList<>();
     private MemberController controller;
     private float balanceTooLowThreshold = 0;
+    private FloatingActionButton mFabExport = null;
 
     @Override
     public void onOkButtonClick(Member obj, Boolean wasEditing) {
@@ -55,8 +57,12 @@ public class MembersFragment extends GeneralMainViewFragment
         protected List<Member> doInBackground(Void ... voids) {
             List<Member> members = null;
             try {
-                balanceTooLowThreshold = new TransactionController(
-                        Placeholders.getPlaceHolderDataManager()).getBalanceThreshold();
+                RESTDataManager dataManager =
+                        RESTDataManagerSingleton.getDataManager(getActivity());
+                if (dataManager != null) {
+                    balanceTooLowThreshold = new TransactionController(dataManager)
+                            .getBalanceThreshold();
+                }
             } catch (Exception e) {
                 balanceTooLowThreshold = 0;
             }
@@ -75,7 +81,7 @@ public class MembersFragment extends GeneralMainViewFragment
         protected void onPostExecute(List<Member> members) {
             if (e != null) {
                 Toast.makeText(mActivity.getApplicationContext(),
-                        getString(R.string.parties_loading_error) + " : " + e.getMessage(),
+                        getString(R.string.members_loading_error) + " : " + e.getMessage(),
                         Toast.LENGTH_SHORT).show();
             }
             MembersFragment.this.members.clear();
@@ -93,8 +99,15 @@ public class MembersFragment extends GeneralMainViewFragment
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_members, container, false);
         super.onCreateView(inflater, container, savedInstanceState);
-        controller = new MemberController(Placeholders.getPlaceHolderDataManager());
-        new GetAllMembersTask().execute();
+        mFabExport = view.findViewById(R.id.fab_export);
+        RESTDataManager dataManager = RESTDataManagerSingleton.getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new MemberController(dataManager);
+            new GetAllMembersTask().execute();
+        } else {
+            mFabAdd.setEnabled(false);
+            mFabExport.setEnabled(false);
+        }
         mListview.setAdapter(new MemberListItemAdapter(getActivity(), members));
         mListview.setOnItemClickListener(getListViewItemClickListener());
         mFabAdd.setOnClickListener(getFabAddClickListener());

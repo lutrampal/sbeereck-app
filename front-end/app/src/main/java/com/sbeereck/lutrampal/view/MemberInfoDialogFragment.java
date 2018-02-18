@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.MemberController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.model.Member;
 
 import java.text.DateFormat;
@@ -130,8 +131,12 @@ public class MemberInfoDialogFragment extends DialogFragment {
         tvEmail = v.findViewById(R.id.member_email);
         tvPhone = v.findViewById(R.id.member_phone);
         tvMembership = v.findViewById(R.id.membership);
-        controller = new MemberController(Placeholders.getPlaceHolderDataManager());
-        new FetchMemberTask(id).execute();
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getActivity());
+        if (dataManager != null) {
+            controller = new MemberController(dataManager);
+            new FetchMemberTask(id).execute();
+        }
         return builder.setView(v)
                 .create();
     }

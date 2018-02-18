@@ -18,7 +18,7 @@ import java.util.List;
 public class TestAnything {
 
     public static void main(String[] args) throws Exception {
-        RESTDataManager dm = new RESTfulDataManager("localhost", "8081", "0001password");
+        RESTDataManager dm = new RESTfulDataManager("localhost:8081", "0001password");
         TransactionController tController = new TransactionController(dm);
         PartyController pController = new PartyController(dm);
         Party p = pController.getParty(1);

@@ -9,11 +9,12 @@ import org.json.simple.parser.JSONParser;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /**
  * Created by lutrampal on 02/01/18 for S'Beer Eck.
@@ -22,27 +23,18 @@ import java.util.Scanner;
 public class RESTfulDataManager implements RESTDataManager {
 
     private String host;
-    private String port;
     private String authToken;
 
     public String getHost() {
-        if (host.toLowerCase().startsWith("http://")) {
+        if (host.toLowerCase().startsWith("https://")) {
             return host;
         } else {
-            return "http://" + host;
+            return "https://" + host;
         }
     }
 
     public void setHost(String host) {
         this.host = host;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
     }
 
     private String getAuthToken() {
@@ -53,15 +45,14 @@ public class RESTfulDataManager implements RESTDataManager {
         this.authToken = authToken;
     }
 
-    public RESTfulDataManager(String host, String port, String authToken) {
+    public RESTfulDataManager(String host, String authToken) {
         this.host = host;
-        this.port = port;
         this.authToken = authToken;
     }
 
     @Override
     public Map<String, Object> getObject(String resource) throws Exception {
-        Object res = sendHttp(resource, "GET", null);
+        Object res = sendHttps(resource, "GET", null);
         if (res instanceof JSONObject) {
             return (JSONObject) res;
         }
@@ -70,7 +61,7 @@ public class RESTfulDataManager implements RESTDataManager {
 
     @Override
     public List<Object> getArray(String resource) throws Exception {
-        Object res = sendHttp(resource, "GET", null);
+        Object res = sendHttps(resource, "GET", null);
         if (res instanceof JSONArray) {
             return (JSONArray) res;
         }
@@ -85,7 +76,7 @@ public class RESTfulDataManager implements RESTDataManager {
     @Override
     public Map<String, Object> post(String resource, Object jsonObject) throws Exception {
         Gson gson = new Gson();
-        Object res = sendHttp(resource, "POST", gson.toJson(jsonObject));
+        Object res = sendHttps(resource, "POST", gson.toJson(jsonObject));
         if (res instanceof JSONObject) {
             return (JSONObject) res;
         }
@@ -100,7 +91,7 @@ public class RESTfulDataManager implements RESTDataManager {
     @Override
     public Map<String, Object> put(String resource, Object jsonObject) throws Exception {
         Gson gson = new Gson();
-        Object res = sendHttp(resource, "PUT", gson.toJson(jsonObject));
+        Object res = sendHttps(resource, "PUT", gson.toJson(jsonObject));
         if (res instanceof JSONObject) {
             return (JSONObject) res;
         }
@@ -110,19 +101,20 @@ public class RESTfulDataManager implements RESTDataManager {
 
     @Override
     public Map<String, Object> delete(String resource) throws Exception {
-        Object res = sendHttp(resource, "DELETE", null);
+        Object res = sendHttps(resource, "DELETE", null);
         if (res instanceof JSONObject) {
             return (JSONObject) res;
         }
         return null;
     }
 
-    private Object sendHttp(String resource, String method, String json) throws Exception {
+    private Object sendHttps(String resource, String method, String json) throws Exception {
         Scanner scanner = null;
         try {
-            HttpURLConnection connection = (HttpURLConnection) new URL(getHost() + ":"
-                    + getPort() + resource).openConnection();
+            HttpsURLConnection connection = (HttpsURLConnection) new URL(getHost()
+                    + resource).openConnection();
             connection.setRequestMethod(method);
+
             connection.setRequestProperty("authentication-token", getAuthToken());
             if (json != null) {
                 connection.setRequestProperty("content-type", "application/json");
@@ -142,7 +134,7 @@ public class RESTfulDataManager implements RESTDataManager {
         }
     }
 
-    private void writeBody(HttpURLConnection connection, String body) throws Exception {
+    private void writeBody(HttpsURLConnection connection, String body) throws Exception {
         connection.setDoOutput(true);
         OutputStream os = connection.getOutputStream();
         OutputStreamWriter osw = new OutputStreamWriter(os, "UTF-8");

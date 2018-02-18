@@ -23,6 +23,7 @@ import android.widget.Filterable;
 import android.widget.Toast;
 
 import com.sbeereck.lutrampal.controller.PartyController;
+import com.sbeereck.lutrampal.controller.RESTDataManager;
 import com.sbeereck.lutrampal.controller.TransactionController;
 import com.yakivmospan.scytale.Crypto;
 import com.yakivmospan.scytale.Options;
@@ -66,10 +67,8 @@ public class SettingsFragment extends Fragment {
     private EditText defaultNormalPriceEt;
     private EditText defaultSpecialPriceEt;
 
-    private TransactionController transactionController = new TransactionController(
-            Placeholders.getPlaceHolderDataManager());
-    private PartyController partyController = new PartyController(
-            Placeholders.getPlaceHolderDataManager());
+    private TransactionController transactionController;
+    private PartyController partyController;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -101,7 +100,13 @@ public class SettingsFragment extends Fragment {
         balanceThresholdEt = view.findViewById(R.id.balance_et);
         defaultNormalPriceEt = view.findViewById(R.id.normal_et);
         defaultSpecialPriceEt = view.findViewById(R.id.special_et);
-        new GetPreferencesTask().execute();
+        RESTDataManager dataManager = RESTDataManagerSingleton
+                .getDataManager(getActivity());
+        if (dataManager != null) {
+            transactionController = new TransactionController(dataManager);
+            partyController = new PartyController(dataManager);
+            new GetPreferencesTask().execute();
+        }
         recoverCredentials();
         return view;
     }
@@ -109,8 +114,8 @@ public class SettingsFragment extends Fragment {
     private void recoverCredentials() {
         SharedPreferences sharedPref = getActivity()
                 .getSharedPreferences(getString(R.string.app_preferences), Context.MODE_PRIVATE);
-        String serverAdress = sharedPref.getString(getString(R.string.saved_server_address), "");
-        serverAddressEt.setText(serverAdress);
+        String serverAddress = sharedPref.getString(getString(R.string.saved_server_address), "");
+        serverAddressEt.setText(serverAddress);
 
 
         Store store = new Store(getActivity().getApplicationContext());
@@ -146,18 +151,15 @@ public class SettingsFragment extends Fragment {
         switch (id) {
             case R.id.validate:
                 try {
+                    storeCredentials();
                     defaultNormalBeerPrice =
                             Float.parseFloat(defaultNormalPriceEt.getText().toString());
                     defaultSpecialBeerPrice =
                             Float.parseFloat(defaultSpecialPriceEt.getText().toString());
                     balanceTooLowThreshold =
                             Float.parseFloat(balanceThresholdEt.getText().toString());
-                } catch (Exception e) {
-                    Toast.makeText(getActivity().getApplicationContext(),
-                            getString(R.string.invalid_input), Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                new SavePreferencesTask().execute();
+                    new SavePreferencesTask().execute();
+                } catch (Exception e) { }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -171,6 +173,9 @@ public class SettingsFragment extends Fragment {
         protected Void doInBackground(Void ... voids) {
             addTaskToRunningAsyncTasks(this);
             try {
+                if (partyController == null || transactionController == null) {
+                    return null;
+                }
                 defaultNormalBeerPrice = partyController.getDefaultNormalBeerPrice();
                 defaultSpecialBeerPrice = partyController.getDefaultSpecialBeerPrice();
                 balanceTooLowThreshold = transactionController.getBalanceThreshold();
@@ -199,12 +204,17 @@ public class SettingsFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Void ... voids) {
+            for (AsyncTask task: tasks) {
+                task.cancel(true);
+            }
             addTaskToRunningAsyncTasks(this);
             try {
+                if (partyController == null || transactionController == null) {
+                    return null;
+                }
                 partyController.setDefaultNormalBeerPrice(defaultNormalBeerPrice);
                 partyController.setDefaultSpecialBeerPrice(defaultSpecialBeerPrice);
                 transactionController.setBalanceThreshold(balanceTooLowThreshold);
-                storeCredentials();
             } catch (Exception e) {
                 this.e = e;
             }
@@ -220,8 +230,14 @@ public class SettingsFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(),
                         getString(R.string.preferences_saved), Toast.LENGTH_SHORT).show();
+                RESTDataManager dataManager = RESTDataManagerSingleton
+                        .getDataManager(getActivity());
+                if (dataManager != null) {
+                    transactionController = new TransactionController(dataManager);
+                    partyController = new PartyController(dataManager);
+                    new GetPreferencesTask().execute();
+                }
             }
-
         }
     }
 
@@ -245,4 +261,5 @@ public class SettingsFragment extends Fragment {
 
         editor.apply();
     }
+
 }
