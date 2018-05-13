@@ -1,29 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a534bd28-2271-4bfa-bebe-ce33713345dc" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AsyncTaskWithLoadAnimation.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/layout/progress_bar.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/create_db.sql" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/utilities.py" afterPath="$PROJECT_DIR$/utilities.py" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/TestAnything.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/RESTfulDataManager.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/controller/RESTfulDataManager.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/AddBeersActivity.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/BeersAndOthersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MemberInfoDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/MembersFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewMemberDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewPartyActivity.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewProductDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/NewTransactionActivity.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/PartiesFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/Placeholders.java" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/SettingsFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/SettingsFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionsActivity.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/TransactionsActivity.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/UpdateBalanceDialogFragment.java" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/java/com/sbeereck/lutrampal/view/UpdateBalanceDialogFragment.java" />
-      <change beforePath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/../../front-end/app/src/main/res/values/strings.xml" />
-    </list>
+    <list default="true" id="a534bd28-2271-4bfa-bebe-ce33713345dc" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,80 +26,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="party.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/party.py">
+      <file leaf-file-name="members.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../members.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+            <state relative-caret-position="612">
+              <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
               <folding>
-                <marker date="1517942938979" expanded="true" signature="470:631" ph="SELECT name,... parties" />
-                <marker date="1517942938979" expanded="true" signature="670:1022" ph="SELECT s.pro... served_beers_at_party" />
-                <marker date="1517942938979" expanded="true" signature="2073:2126" ph="UPDATE parties... " />
-                <marker date="1517942938979" expanded="true" signature="2982:3034" ph="SELECT party... parties" />
-                <marker date="1517942938979" expanded="true" signature="3066:3331" ph="UPDATE parties... " />
-                <marker date="1517942938979" expanded="true" signature="3362:3419" ph="DELETE FROM served_beers_at_party... " />
-                <marker date="1517942938979" expanded="true" signature="3450:3599" ph="INSERT INTO served_beers_at_party... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sbeereck_server.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
-              <folding>
-                <element signature="e#0#23#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utilities.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/utilities.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
-              <folding>
-                <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sbeereck.wsgi" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sbeereck.wsgi">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="default_price.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/default_price.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="774">
-              <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-                <marker date="1518545497825" expanded="true" signature="575:676" ph="SELECT balan... parameters" />
-                <marker date="1518545497825" expanded="true" signature="1589:1653" ph="UPDATE parameters... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="balance_too_low_threshold.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/balance_too_low_threshold.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding>
-                <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
-                <marker date="1518545510941" expanded="true" signature="1338:1517" ph="UPDATE parameters... " />
+                <marker date="1517943032327" expanded="true" signature="448:582" ph="SELECT membe... member_list" />
+                <marker date="1517943032327" expanded="true" signature="1660:1831" ph="INSERT INTO members... " />
               </folding>
             </state>
           </provider>
@@ -143,7 +55,7 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -181,7 +93,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="959" />
     <option name="width" value="968" />
     <option name="height" value="1047" />
@@ -223,19 +135,19 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="RESTful-api" type="b2602c69:ProjectViewProjectNode" />
+              <item name="." type="b2602c69:ProjectViewProjectNode" />
               <item name="RESTful-api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -309,7 +221,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="959" y="0" width="1920" height="1082" extended-state="7" />
+    <frame x="959" y="0" width="1920" height="1082" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -347,14 +259,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
           <caret line="30" column="38" lean-forward="false" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="11" lean-forward="false" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="82" />
@@ -364,29 +276,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/products.py" />
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+    <entry file="file://$PROJECT_DIR$/../products.py" />
+    <entry file="file://$PROJECT_DIR$/../sbeereck_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="23" lean-forward="false" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2628">
-          <caret line="152" column="63" lean-forward="false" selection-start-line="152" selection-start-column="53" selection-end-line="152" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py" />
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="11" column="16" lean-forward="false" selection-start-line="11" selection-start-column="16" selection-end-line="12" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="38" />
@@ -396,21 +302,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/party.py">
+    <entry file="file://$PROJECT_DIR$/../party.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+    <entry file="file://$PROJECT_DIR$/../sbeereck_server.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="38" />
@@ -420,78 +326,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="21" column="44" lean-forward="false" selection-start-line="21" selection-start-column="44" selection-end-line="21" selection-end-column="44" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py" />
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../sbeereck_server.py" />
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="68" lean-forward="false" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="34" lean-forward="false" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py" />
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../sbeereck_server.py" />
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="21" column="68" lean-forward="true" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="8" column="34" lean-forward="true" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py" />
+    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
+    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
+    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
+    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.pyx" />
     <entry file="file://$PROJECT_DIR$/../database/RESTful-api.py" />
     <entry file="file://$PROJECT_DIR$/import_csv_members_to_db.py" />
@@ -501,20 +377,8 @@
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/flask_restful/__init__.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/flask/app.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36-32/Lib/site-packages/flask_restful/reqparse.py" />
-    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-273">
-          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2109">
-          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../database/import_csv_members_to_db.py" />
+    <entry file="file://$PROJECT_DIR$/../database/generate_test_samples.py" />
     <entry file="file:///usr/local/lib/python3.5/dist-packages/flask/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
@@ -537,70 +401,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/party_transactions.py">
+    <entry file="file://$PROJECT_DIR$/../party_transactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
           <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product.py">
+    <entry file="file://$PROJECT_DIR$/../product.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
           <caret line="32" column="60" lean-forward="false" selection-start-line="32" selection-start-column="60" selection-end-line="32" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/products.py">
+    <entry file="file://$PROJECT_DIR$/../products.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="39" column="60" lean-forward="false" selection-start-line="39" selection-start-column="60" selection-end-line="39" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transaction.py">
+    <entry file="file://$PROJECT_DIR$/../transaction.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="13" column="20" lean-forward="false" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/membership.py">
+    <entry file="file://$PROJECT_DIR$/../membership.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/transactions.py">
+    <entry file="file://$PROJECT_DIR$/../transactions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="15" column="60" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/member.py">
+    <entry file="file://$PROJECT_DIR$/../member.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-195">
           <caret line="12" column="30" lean-forward="true" selection-start-line="12" selection-start-column="30" selection-end-line="12" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/members.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/parties.py">
+    <entry file="file://$PROJECT_DIR$/../parties.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/party.py">
+    <entry file="file://$PROJECT_DIR$/../party.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="774">
           <caret line="45" column="40" lean-forward="false" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
@@ -616,18 +473,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/balance_too_low_threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-          <folding>
-            <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
-            <marker date="1518545510941" expanded="true" signature="1338:1517" ph="UPDATE parameters... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/default_price.py">
+    <entry file="file://$PROJECT_DIR$/../default_price.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="774">
           <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
@@ -639,7 +485,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck.wsgi">
+    <entry file="file://$PROJECT_DIR$/../sbeereck.wsgi">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -647,9 +493,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sbeereck_server.py">
+    <entry file="file://$PROJECT_DIR$/../sbeereck_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
+        <state relative-caret-position="360">
           <caret line="33" column="50" lean-forward="false" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
@@ -657,12 +503,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utilities.py">
+    <entry file="file://$PROJECT_DIR$/../utilities.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
           <folding>
             <marker date="1518789460402" expanded="true" signature="361:425" ph="SELECT hashe... authentication_tokens" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../balance_too_low_threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+          <folding>
+            <marker date="1518545510941" expanded="true" signature="463:535" ph="SELECT balan... parameters" />
+            <marker date="1518545510941" expanded="true" signature="1338:1517" ph="UPDATE parameters... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../members.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="60" lean-forward="false" selection-start-line="36" selection-start-column="60" selection-end-line="36" selection-end-column="60" />
+          <folding>
+            <marker date="1517943032327" expanded="true" signature="448:582" ph="SELECT membe... member_list" />
+            <marker date="1517943032327" expanded="true" signature="1660:1831" ph="INSERT INTO members... " />
           </folding>
         </state>
       </provider>

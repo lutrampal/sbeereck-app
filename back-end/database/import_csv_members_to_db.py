@@ -23,7 +23,7 @@ def build_school_dictionnary(cvafile):
             elif school == 'La Prepa':
                 school = 'CPP'
             last_name = row['Nom']
-            first_name = row['Prénom'].split('(', 1)[0]  # some names have notes writtent in ( ) attached to them
+            first_name = row['Prénom'].split('(', 1)[0]  # some names have notes written in ( ) attached to them
             dico[(last_name, first_name)] = school
     return dico
 
@@ -47,7 +47,7 @@ def get_members_from_csv(file, student_school_dict):
             is_former_staff = 0
             if row['Cotiz\''] == 'non':
                 last_membership_payment = last_membership_payment - timedelta(days=365)
-            elif row['Cotiz\''] != 'oui': # member is part of the staff
+            elif row['Cotiz\''] != 'oui':  # member is part of the staff
                 is_former_staff = 1
 
             s1 = first_name.replace(" ", "").lower() + '.' + last_name.replace(" ", "").lower()
