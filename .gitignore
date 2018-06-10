@@ -1,5 +1,10 @@
+back-end/mysql/
+back-end/ssl
 testing/
 *.csv
+*.key
+*.pem
+*.cert
 
 # Created by https://www.gitignore.io/api/java,android,androidstudio
 
