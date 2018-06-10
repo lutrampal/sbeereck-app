@@ -1,0 +1,15 @@
+version: '3.6'
+services:
+    rest-api:
+        image: "lutrampal/sbeereck:1.0"
+        ports:
+         - "443:433"
+        volumes:
+        - ./ssl:/var/run/apache2/ssl
+    mysql:
+        image: "mysql:5.7"
+        volumes:
+         - ./mysql:/var/lib/mysql
+        environment:
+         - MYSQL_ROOT_PASSWORD=toor
+
