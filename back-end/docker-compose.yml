@@ -1,9 +1,9 @@
 version: '3.6'
 services:
     rest-api:
-        image: "lutrampal/sbeereck:1.0"
+        image: "lutrampal/sbeereck"
         ports:
-         - "443:433"
+         - "443:443"
         volumes:
         - ./ssl:/var/run/apache2/ssl
     mysql:
