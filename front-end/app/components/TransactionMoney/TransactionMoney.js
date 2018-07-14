@@ -1,11 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, FlatList, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
-import styles from './styles';
+import { View, TextInput, Keyboard} from 'react-native';
 import { SelectNumber } from '../SelectNumber';
-import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 
 export default class Header extends React.Component {
     render() {
@@ -40,7 +35,7 @@ export default class Header extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "" || text == "0")
+        if (text === "" || text === "0")
             return "";
         else
             return text.replace(",", ".");

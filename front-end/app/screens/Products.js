@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TextInput, Picker, Keyboard, AsyncStorage, Alert } from 'react-native';
+import { FlatList, Keyboard, AsyncStorage, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
@@ -269,7 +269,7 @@ export default class Home extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "" || text == "0")
+        if (text === "" || text === "0")
             return "0";
         else
             return text.toString().replace(",", ".");

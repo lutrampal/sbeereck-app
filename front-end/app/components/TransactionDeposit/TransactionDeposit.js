@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, FlatList, Picker } from 'react-native';
+import { TouchableOpacity, View, Text, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
-import styles from './styles';
 import { SelectNumber } from '../SelectNumber';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 
@@ -15,7 +12,7 @@ export default class Header extends React.Component {
                     <SelectNumber
                         style={{width: 150, height: 70, marginRight: 10}}
                         priceValue={this.props.depositsCount.toString()}
-                        onChangeText={(value) => { return; }}
+                        onChangeText={(value) => {  }}
                         disableChangeText={true}
                         onMorePress={() => { this.props.setDepositsCount(parseInt(this.props.depositsCount, 10)+1) }}
                         onLessPress={() => { if (parseInt(this.props.depositsCount, 10) > 1) this.props.setDepositsCount(parseInt(this.props.depositsCount, 10) - 1) }} />
@@ -56,7 +53,7 @@ export default class Header extends React.Component {
     }
 
     isSelected(deposit) {
-        if(deposit.id == this.props.selectedDeposit.id)
+        if(deposit.id === this.props.selectedDeposit.id)
         {
             return (
                 <Icon

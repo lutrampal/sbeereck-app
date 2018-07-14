@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-type';
 import { View, TextInput, Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';

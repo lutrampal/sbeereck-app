@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TextInput, Picker, Keyboard, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { FlatList, Keyboard, AsyncStorage, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
@@ -354,7 +353,7 @@ export default class Home extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "" || text == "0")
+        if (text === "" || text === "0")
             return "0";
         else
             return text.toString().replace(",", ".");
@@ -363,7 +362,7 @@ export default class Home extends React.Component {
     onEditBeerValidatePress(beers) {
         let resultedBeers = [];
         beers.forEach(myPartyBeer => {
-            if (myPartyBeer.category != null && myPartyBeer.category != undefined) {
+            if (myPartyBeer.category != null && myPartyBeer.category !== undefined) {
                 resultedBeers.push(
                     {
                         name: myPartyBeer.name,
@@ -381,7 +380,7 @@ export default class Home extends React.Component {
     onAddBeerValidatePress(beers) {
         let resultedBeers = [];
         beers.forEach(myPartyBeer => {
-            if (myPartyBeer.category != null && myPartyBeer.category != undefined) {
+            if (myPartyBeer.category != null && myPartyBeer.category !== undefined) {
                 resultedBeers.push(
                     {
                         name: myPartyBeer.name,

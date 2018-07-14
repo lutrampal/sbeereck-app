@@ -1,14 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, AsyncStorage } from 'react-native';
+import { FlatList, AsyncStorage } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
 import { BeerItem } from '../components/BeerItem';
-import { YellowButton } from '../components/YellowButton';
 import { SearchBox } from '../components/SearchBox';
-import { Popup } from '../components/Popup';
 import { Loading } from '../components/Loading'
-import { AddBeer } from '../components/AddBeer';
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -19,7 +16,7 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             initialBeers: [],
-            partyBeers: (this.props.navigation.state.params.beers != undefined) ? JSON.parse(JSON.stringify(this.props.navigation.state.params.beers)) : null,
+            partyBeers: (this.props.navigation.state.params.beers !== undefined) ? JSON.parse(JSON.stringify(this.props.navigation.state.params.beers)) : null,
             beers: [],
 
             loading: false,
@@ -79,7 +76,7 @@ export default class Home extends React.Component {
                     data={this.state.beers}
                     extraData={this.state}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => <BeerItem onPress={(value) => { this.state.initialBeers.find((obj => obj.id == item.id)).category = value; this.setState({ beers: this.state.initialBeers})}} item={item} />}
+                    renderItem={({ item }) => <BeerItem onPress={(value) => { this.state.initialBeers.find((obj => obj.id === item.id)).category = value; this.setState({ beers: this.state.initialBeers})}} item={item} />}
                 />
                 <Loading shown={this.state.loading} />
             </Container>

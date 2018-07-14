@@ -1,11 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, FlatList, Picker } from 'react-native';
+import {FlatList, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
-import styles from './styles';
-import { SelectNumber } from '../SelectNumber';
-import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
+import {SelectNumber} from '../SelectNumber';
 
 export default class Header extends React.Component {
     render() {
@@ -15,7 +11,7 @@ export default class Header extends React.Component {
                     <SelectNumber
                         style={{width: 150, height: 70, marginRight: 10}}
                         priceValue={this.props.foodsCount.toString()}
-                        onChangeText={(value) => { return; }}
+                        onChangeText={(value) => {  }}
                         disableChangeText={true}
                         onMorePress={() => { this.props.setFoodsCount(parseInt(this.props.foodsCount, 10)+1) }}
                         onLessPress={() => { if (parseInt(this.props.foodsCount, 10) > 1) this.props.setFoodsCount(parseInt(this.props.foodsCount, 10) - 1) }} />
@@ -41,7 +37,7 @@ export default class Header extends React.Component {
     }
 
     isSelected(food) {
-        if(food.id == this.props.selectedFood.id)
+        if(food.id === this.props.selectedFood.id)
         {
             return (
                 <Icon

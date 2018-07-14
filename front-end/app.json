@@ -4,7 +4,7 @@
     "icon": "./app-icon.png",
     "version": "1.0.3",
     "slug": "sbeereck",
-    "sdkVersion": "26.0.0",
+    "sdkVersion": "27.0.0",
     "ios": {
       "bundleIdentifier": "com.dylanfayant.sbeereck"
     },

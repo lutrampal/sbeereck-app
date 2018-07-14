@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Keyboard, AsyncStorage } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { Keyboard, AsyncStorage } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
@@ -68,7 +67,7 @@ export default class Home extends React.Component {
     }
 
     appParams() {
-        if(this.state.connected == true)
+        if(this.state.connected === true)
             return (<AppParam
                 default_price={this.state.default_price}
                 special_price={this.state.special_price}
@@ -89,7 +88,7 @@ export default class Home extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "" || text == "0")
+        if (text === "" || text === "0")
             return "0";
         else
             return text.toString().replace(",", ".");

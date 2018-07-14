@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="16af0cc7-51c1-41bd-a652-f97b2dedb2ba" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.Rhistory" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.flowconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddBeer/AddBeer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddBeer/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddBeer/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddMember/AddMember.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddMember/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddMember/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddParty/AddParty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddParty/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddParty/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddProduct/AddProduct.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddProduct/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AddProduct/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AppParam/AppParam.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AppParam/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/AppParam/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Authentification/Authentification.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Authentification/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Authentification/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/BeerItem/BeerItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/BeerItem/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/BeerItem/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Container/Container.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Container/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Container/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditParty/EditParty.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditParty/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditParty/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditProduct/EditProduct.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditProduct/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/EditProduct/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Header/Header.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Header/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Header/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Loading/Loading.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Loading/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Loading/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/MemberItem/MemberItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/MemberItem/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/MemberItem/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/PartyItem/PartyItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/PartyItem/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/PartyItem/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Popup/Popup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Popup/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/Popup/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ProductItem/ProductItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ProductItem/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ProductItem/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchBox/SearchBox.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchBox/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchBox/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchUser/SearchUser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchUser/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SearchUser/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectCategory/SelectCategory.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectCategory/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectCategory/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectNumber/SelectNumber.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectNumber/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SelectNumber/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SideMenu/SideMenu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/SideMenu/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionBeer/TransactionBeer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionBeer/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionBeer/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionDeposit/TransactionDeposit.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionDeposit/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionDeposit/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionFood/TransactionFood.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionFood/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionFood/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionItem/TransactionItem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionItem/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionItem/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionMoney/TransactionMoney.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionMoney/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/TransactionMoney/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ViewMember/ViewMember.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ViewMember/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/ViewMember/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/YellowButton/YellowButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/YellowButton/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/YellowButton/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/config/routes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/AddBeer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/Members.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/NewTransaction.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/Parameters.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/Party.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/Products.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/screens/Transactions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sbeereck.png" beforeDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Authentification.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/Authentification/Authentification.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/components/Authentification/styles.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/components/Authentification/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#50#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>import PropTypes from 'prop-type';</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/app</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/App.test.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/App.js" />
+        <option value="$PROJECT_DIR$/app/components/Header/Header.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/app/components/PartyItem/PartyItem.js" />
+        <option value="$PROJECT_DIR$/app/components/AddBeer/AddBeer.js" />
+        <option value="$PROJECT_DIR$/app/components/SelectNumber/SelectNumber.js" />
+        <option value="$PROJECT_DIR$/app/components/Loading/Loading.js" />
+        <option value="$PROJECT_DIR$/app/components/Popup/Popup.js" />
+        <option value="$PROJECT_DIR$/app/screens/Members.js" />
+        <option value="$PROJECT_DIR$/app/screens/NewTransaction.js" />
+        <option value="$PROJECT_DIR$/app/components/TransactionBeer/TransactionBeer.js" />
+        <option value="$PROJECT_DIR$/app/components/TransactionFood/TransactionFood.js" />
+        <option value="$PROJECT_DIR$/app/screens/AddBeer.js" />
+        <option value="$PROJECT_DIR$/app/components/AddMember/AddMember.js" />
+        <option value="$PROJECT_DIR$/app/components/AddParty/AddParty.js" />
+        <option value="$PROJECT_DIR$/app/screens/Party.js" />
+        <option value="$PROJECT_DIR$/app.json" />
+        <option value="$PROJECT_DIR$/app/components/Authentification/Authentification.js" />
+        <option value="$PROJECT_DIR$/app/components/Authentification/styles.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/node_modules" />
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths>
+      <path value="$PROJECT_DIR$/package.json" />
+    </packageJsonPaths>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="y" value="27" />
+    <option name="width" value="950" />
+    <option name="height" value="1052" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Authentification" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Header" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="front-end" type="b2602c69:ProjectViewProjectNode" />
+              <item name="front-end" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="PartyItem" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Téléchargements/Autres/french.dic" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="/usr/bin/node" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$PROJECT_DIR$/../../../Téléchargements/Autres" CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../../../Téléchargements/Autres/french.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16af0cc7-51c1-41bd-a652-f97b2dedb2ba" name="Default" comment="" />
+      <created>1531573147239</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1531573147239</updated>
+      <workItem from="1531573148661" duration="3337000" />
+      <workItem from="1531581284257" duration="663000" />
+      <workItem from="1531582509602" duration="484000" />
+      <workItem from="1531583056410" duration="176000" />
+      <workItem from="1531583240446" duration="89000" />
+      <workItem from="1531583359572" duration="4391000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="9140000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-2" width="1920" height="1082" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15491453" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50052744" side_tool="true" weight="0.33121693" />
+      <window_info anchor="bottom" id="Inspection Results" weight="0.32982087" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32982087" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4994726" weight="0.32876712" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Terminal" order="3" visible="true" weight="0.41025642" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="21" column="22" selection-start-line="21" selection-start-column="22" selection-end-line="21" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json" />
+    <entry file="file://$PROJECT_DIR$/App.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yarn.lock">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app-icon.png" />
+    <entry file="file://$PROJECT_DIR$/sbeereck.png" />
+    <entry file="file://$PROJECT_DIR$/app/index.js" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/routes.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Header/Header.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" selection-start-column="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/PartyItem/PartyItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="26" lean-forward="true" selection-start-column="26" selection-end-line="1" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/SelectNumber/SelectNumber.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Loading/Loading.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Popup/Popup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="16" column="51" selection-start-line="16" selection-start-column="51" selection-end-line="16" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/screens/Members.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="233" column="8" selection-start-line="233" selection-start-column="8" selection-end-line="233" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/screens/NewTransaction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="385" column="8" selection-start-line="385" selection-start-column="8" selection-end-line="385" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/TransactionBeer/TransactionBeer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/TransactionFood/TransactionFood.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/AddBeer/AddBeer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/screens/AddBeer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="54" column="27" lean-forward="true" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Container/Container.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/SideMenu/SideMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="81">
+          <caret line="3" column="22" selection-start-line="3" selection-start-column="22" selection-end-line="3" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/AddMember/AddMember.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/AddParty/AddParty.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="19" column="58" lean-forward="true" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/screens/Party.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="124" column="274" selection-start-line="124" selection-start-column="274" selection-end-line="124" selection-end-column="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/AddProduct/AddProduct.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/BeerItem/BeerItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Authentification/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Authentification/Authentification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/components/Authentification/styles.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

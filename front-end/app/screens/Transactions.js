@@ -1,17 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, TextInput, Picker, Keyboard, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
+import { FlatList, AsyncStorage, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
-import { MemberItem } from '../components/MemberItem';
 import { YellowButton } from '../components/YellowButton';
 import { SearchBox } from '../components/SearchBox';
-import { Popup } from '../components/Popup';
-import { AddProduct } from '../components/AddProduct';
-import { EditProduct } from '../components/EditProduct';
 import { Loading } from '../components/Loading';
-import { ViewMember } from '../components/ViewMember';
-import { AddMember } from '../components/AddMember';
 import { TransactionItem } from '../components/TransactionItem';
 
 EStyleSheet.build({

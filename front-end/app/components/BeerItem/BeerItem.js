@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { View, Text } from 'react-native';
 import styles from './styles';
 import {RadioGroup, RadioButton} from 'react-native-flexi-radio-button'
 

@@ -1,10 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
+import {Picker, Text, TouchableOpacity, View} from 'react-native';
 import styles from './styles';
-import {SelectNumber} from '../SelectNumber';
 
 export default class Header extends React.Component {
     render() {

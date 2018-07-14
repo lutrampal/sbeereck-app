@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-type';
 import { TouchableOpacity, View, TextInput, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
@@ -35,9 +34,9 @@ export default class Header extends React.Component {
     }
 
     textInput() {
-        if(this.props.disableChangeText == true)
+        if(this.props.disableChangeText === true)
         {
-            return (<View style={{flex: 1, padding: 7, backgroundColor: '#eff0f1', borderRadius: 7, marginRight: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 3 }}><Text style={{fontSize: 18}}>{this.props.priceValue}</Text></View>);
+            return (<View style={{flex: 1, padding: 7, backgroundColor: '#eff0f1', marginRight: 10, justifyContent: 'center', alignItems: 'center', borderRadius: 3 }}><Text style={{fontSize: 18}}>{this.props.priceValue}</Text></View>);
         } else {
             return (<TextInput underlineColorAndroid='rgba(0,0,0,0)' keyboardType='numeric' onChangeText={this.props.onChangeText} value={this.props.priceValue} style={styles.textStyle} />)
         }

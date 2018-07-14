@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {View, StatusBar, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import {StatusBar, SafeAreaView} from 'react-native';
 
 import styles from './styles';
 

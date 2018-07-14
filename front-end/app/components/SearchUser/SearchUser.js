@@ -1,10 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, Picker, Dimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
+import { TouchableOpacity, View, Text, Dimensions } from 'react-native';
 import styles from './styles';
-import {SelectNumber} from '../SelectNumber';
 import Autocomplete from 'react-native-autocomplete-input';
 
 export default class Header extends React.Component {
@@ -36,7 +32,7 @@ export default class Header extends React.Component {
     }
 
     getUserBalance() {
-        if (this.props.selectedMember != null && this.props.selectedMember.id != undefined) {
+        if (this.props.selectedMember != null && this.props.selectedMember.id !== undefined) {
             return (
                 <View style={{ alignItems: 'center', width: "auto", height: "auto", padding: 5}}>
                     <Text style={{fontSize: 22}}>Solde</Text>

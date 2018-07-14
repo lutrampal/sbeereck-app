@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
 import { TouchableOpacity, View, Text, TextInput, Keyboard, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import {SelectNumber} from '../SelectNumber';
 
