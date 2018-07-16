@@ -1,19 +1,19 @@
 import React from 'react';
-import { Keyboard, AsyncStorage } from 'react-native';
+import {Keyboard, AsyncStorage} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Container } from '../components/Container';
+import {Container} from '../components/Container';
 import {Header} from '../components/Header';
-import { Loading } from '../components/Loading';
-import { Authentification } from '../components/Authentification';
-import { AppParam } from '../components/AppParam';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import {Loading} from '../components/Loading';
+import {Authentification} from '../components/Authentification';
+import {AppParam} from '../components/AppParam';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
 })
 
 export default class Home extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -40,12 +40,15 @@ export default class Home extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <Container>
                 <Header
                     title="Paramètres"
                     leftButtonIcon="menu"
-                    leftButtonAction={() => { this.props.navigation.navigate('DrawerOpen'); Keyboard.dismiss()}}
+                    leftButtonAction={() => {
+                        this.props.navigation.navigate('DrawerOpen');
+                        Keyboard.dismiss()
+                    }}
                     rightButtonAction={this.saveParameters.bind(this)}
                     rightButtonIcon="check"
                 />
@@ -54,36 +57,79 @@ export default class Home extends React.Component {
                         appHost={this.state.appHost}
                         appToken={this.state.appToken}
 
-                        editAppHost={(appHost) => { this.setState({ appHost: appHost }) }}
-                        editAppToken={(appToken) => { this.setState({ appToken: appToken }) }}
+                        editAppHost={(appHost) => {
+                            this.setState({appHost: appHost})
+                        }}
+                        editAppToken={(appToken) => {
+                            this.setState({appToken: appToken})
+                        }}
                     />
                     {this.appParams()}
 
                 </KeyboardAwareScrollView>
 
-                <Loading shown={this.state.loading} />
+                <Loading shown={this.state.loading}/>
             </Container>
         );
     }
 
     appParams() {
-        if(this.state.connected === true)
+        if (this.state.connected === true)
             return (<AppParam
                 default_price={this.state.default_price}
                 special_price={this.state.special_price}
                 balance_treshold={this.state.balance_treshold}
 
-                onDefaultChange={(text) => {let texts = this.setPrice(text); this.setState({ defaultChanged: true, default_price: texts })}}
-                onDefaultMore={() => { this.setState({ defaultChanged: true, default_price: (parseFloat(this.state.default_price) + 0.01).toFixed(2).toString() }) }}
-                onDefaultLess={() => { this.setState({ defaultChanged: true, default_price: (parseFloat(this.state.default_price) - 0.01).toFixed(2).toString() }) }}
+                onDefaultChange={(text) => {
+                    let texts = this.setPrice(text);
+                    this.setState({defaultChanged: true, default_price: texts})
+                }}
+                onDefaultMore={() => {
+                    this.setState({
+                        defaultChanged: true,
+                        default_price: (parseFloat(this.state.default_price) + 0.01).toFixed(2).toString()
+                    })
+                }}
+                onDefaultLess={() => {
+                    this.setState({
+                        defaultChanged: true,
+                        default_price: (parseFloat(this.state.default_price) - 0.01).toFixed(2).toString()
+                    })
+                }}
 
-                onSpecialChange={(text) => {let texts = this.setPrice(text); this.setState({ specialChanged: true, special_price: texts })}}
-                onSpecialMore={() => { this.setState({ specialChanged: true, special_price: (parseFloat(this.state.special_price) + 0.01).toFixed(2).toString() }) }}
-                onSpecialLess={() => { this.setState({ specialChanged: true, special_price: (parseFloat(this.state.special_price) - 0.01).toFixed(2).toString() }) }}
+                onSpecialChange={(text) => {
+                    let texts = this.setPrice(text);
+                    this.setState({specialChanged: true, special_price: texts})
+                }}
+                onSpecialMore={() => {
+                    this.setState({
+                        specialChanged: true,
+                        special_price: (parseFloat(this.state.special_price) + 0.01).toFixed(2).toString()
+                    })
+                }}
+                onSpecialLess={() => {
+                    this.setState({
+                        specialChanged: true,
+                        special_price: (parseFloat(this.state.special_price) - 0.01).toFixed(2).toString()
+                    })
+                }}
 
-                onTresholdChange={(text) => {let texts = this.setPrice(text); this.setState({ tresholdChanged: true, balance_treshold: texts })}}
-                onTresholdMore={() => { this.setState({ tresholdChanged: true, balance_treshold: (parseFloat(this.state.balance_treshold) + 0.01).toFixed(2).toString() }) }}
-                onTresholdLess={() => { this.setState({ tresholdChanged: true, balance_treshold: (parseFloat(this.state.balance_treshold) - 0.01).toFixed(2).toString() }) }}
+                onTresholdChange={(text) => {
+                    let texts = this.setPrice(text);
+                    this.setState({tresholdChanged: true, balance_treshold: texts})
+                }}
+                onTresholdMore={() => {
+                    this.setState({
+                        tresholdChanged: true,
+                        balance_treshold: (parseFloat(this.state.balance_treshold) + 0.01).toFixed(2).toString()
+                    })
+                }}
+                onTresholdLess={() => {
+                    this.setState({
+                        tresholdChanged: true,
+                        balance_treshold: (parseFloat(this.state.balance_treshold) - 0.01).toFixed(2).toString()
+                    })
+                }}
             />);
     }
 
@@ -95,7 +141,7 @@ export default class Home extends React.Component {
     }
 
     async saveParameters() {
-        this.setState({ loading: true });
+        this.setState({loading: true});
 
         try {
             await AsyncStorage.setItem('@SbeerEck:host', this.state.appHost);
@@ -103,9 +149,8 @@ export default class Home extends React.Component {
 
             await this.checkConnection();
 
-            if(this.state.connected) {
-                if(this.state.defaultChanged)
-                {
+            if (this.state.connected) {
+                if (this.state.defaultChanged) {
                     let response = await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
                         {
                             method: "put",
@@ -120,8 +165,7 @@ export default class Home extends React.Component {
 
                     this.setState({defaultChanged: false});
                 }
-                if(this.state.specialChanged)
-                {
+                if (this.state.specialChanged) {
                     let response = await fetch('https://' + this.state.appHost + '/default_price/special_beer',
                         {
                             method: "put",
@@ -135,8 +179,7 @@ export default class Home extends React.Component {
                         });
                     this.setState({specialChanged: false});
                 }
-                if(this.state.tresholdChanged)
-                {
+                if (this.state.tresholdChanged) {
                     let response = await fetch('https://' + this.state.appHost + '/balance_too_low_threshold',
                         {
                             method: "put",
@@ -148,18 +191,18 @@ export default class Home extends React.Component {
                                 balance_too_low_threshold: this.state.balance_treshold
                             })
                         });
-                    this.setState({ tresholdChanged: false});
+                    this.setState({tresholdChanged: false});
                 }
                 this.loadParameters();
             }
         } catch (error) {
             alert("Erreur lors de la sauvegarde des paramètres.\n" + error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
     async loadData() {
-        this.setState({ loading: true });
+        this.setState({loading: true});
 
         try {
             let host = await AsyncStorage.getItem('@SbeerEck:host');
@@ -167,18 +210,18 @@ export default class Home extends React.Component {
 
             if (host != null) {
                 host = host.replace(" ", "");
-                this.setState({ appHost: host });
+                this.setState({appHost: host});
             }
-            if(token != null)
-                this.setState({ appToken: token });
+            if (token != null)
+                this.setState({appToken: token});
 
             await this.checkConnection();
 
-            if(this.state.connected)
+            if (this.state.connected)
                 this.loadParameters();
         } catch (error) {
             alert("Erreur lors du chargement des paramètres.\n" + error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
@@ -214,30 +257,35 @@ export default class Home extends React.Component {
             request = await response.json();
             let balance_treshold = request.balance_too_low_threshold;
 
-            this.setState({ default_price: default_price.toString(), special_price: special_price.toString(), balance_treshold: balance_treshold.toString(), connected: true});
+            this.setState({
+                default_price: default_price.toString(),
+                special_price: special_price.toString(),
+                balance_treshold: balance_treshold.toString(),
+                connected: true
+            });
 
         } catch (error) {
-            this.setState({ loading: false });
+            this.setState({loading: false});
             console.log(error);
         }
 
-        this.setState({ loading: false });
+        this.setState({loading: false});
     }
 
-    async checkConnection()  {
+    async checkConnection() {
         try {
-            let response = await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
+            await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
                 {
                     headers: {
                         'authentication-token': this.state.appToken
                     }
                 });
 
-            this.setState({ connected: true });
+            this.setState({connected: true});
 
         } catch (error) {
-            this.setState({ connected: false, loading: false });
-            alert("Veuillez vous connecter en entrant votre pseudonyme (username) et votre mot de passe (password).");
+            this.setState({connected: false, loading: false});
+            alert("Veuillez vous connecter en entrant l'adresse du serveur et votre mot de passe.");
         }
     }
 }
