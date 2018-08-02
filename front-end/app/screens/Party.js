@@ -316,7 +316,7 @@ export default class Home extends React.Component {
             this.setState({initialParties: request});
 
             this.setState({
-                parties: this.state.initialParties,
+                parties: this.state.parties.concat(this.state.initialParties),
                 loading: false,
                 searchValue: ""
             });
