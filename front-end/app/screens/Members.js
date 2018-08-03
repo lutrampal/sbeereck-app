@@ -1,22 +1,26 @@
 import React from 'react';
-import { View, Text, FlatList, Keyboard, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
+import {View, Text, FlatList, Keyboard, TouchableOpacity, AsyncStorage, Alert} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Container } from '../components/Container';
+import {Container} from '../components/Container';
 import {Header} from '../components/Header';
-import { MemberItem } from '../components/MemberItem';
-import { YellowButton } from '../components/YellowButton';
-import { SearchBox } from '../components/SearchBox';
-import { Popup } from '../components/Popup';
-import { Loading } from '../components/Loading';
-import { ViewMember } from '../components/ViewMember';
-import { AddMember } from '../components/AddMember';
+import {MemberItem} from '../components/MemberItem';
+import {YellowButton} from '../components/YellowButton';
+import {SearchBox} from '../components/SearchBox';
+import {Popup} from '../components/Popup';
+import {Loading} from '../components/Loading';
+import {ViewMember} from '../components/ViewMember';
+import {AddMember} from '../components/AddMember';
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
 })
 
 export default class Home extends React.Component {
-    constructor(props){
+    static navigationOptions = {
+        drawerLabel: "Adhérents",
+    }
+
+    constructor(props) {
         super(props);
         this.state = {
             newMemberFirstName: "",
@@ -33,7 +37,7 @@ export default class Home extends React.Component {
             isSearching: false,
             searchValue: "",
 
-            viewItem: { last_membership_payment: "" },
+            viewItem: {last_membership_payment: ""},
 
             addPopup: false,
             viewPopup: false,
@@ -42,11 +46,12 @@ export default class Home extends React.Component {
             members: [],
 
             loading: false,
+            editingMember: false
         };
     }
 
     async componentDidMount() {
-        this.setState({ loading: true });
+        this.setState({loading: true});
 
         try {
             let host = await AsyncStorage.getItem('@SbeerEck:host');
@@ -54,15 +59,14 @@ export default class Home extends React.Component {
 
             if (host != null) {
                 host = host.replace(" ", "");
-                this.setState({ appHost: host });
+                this.setState({appHost: host});
             }
             if (token != null)
-                this.setState({ appToken: token });
+                this.setState({appToken: token});
 
             await this.checkConnection();
 
-            if (this.state.connected)
-            {
+            if (this.state.connected) {
                 response = await fetch('https://' + this.state.appHost + '/balance_too_low_threshold',
                     {
                         headers: {
@@ -71,7 +75,7 @@ export default class Home extends React.Component {
                     });
 
                 // noinspection JSUndeclaredVariable
-              request = await response.json();
+                request = await response.json();
                 let balance_treshold = request.balance_too_low_threshold;
                 this.setState({limitBalance: balance_treshold});
 
@@ -79,38 +83,49 @@ export default class Home extends React.Component {
             }
         } catch (error) {
             alert("Erreur lors du chargement des paramètres.\n" + error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
-    static navigationOptions = {
-        drawerLabel: "Adhérents",
-    }
-
     render() {
-        return(
+        return (
             <Container>
-                <Header title="Adhérents" leftButtonIcon="menu" leftButtonAction={() => { this.props.navigation.navigate('DrawerOpen'); Keyboard.dismiss() }} rightButtonAction={() => { this.setState({ isSearching: !this.state.isSearching, searchValue: "", members: this.state.initialMembers }) }} rightButtonIcon="magnify" />
+                <Header title="Adhérents" leftButtonIcon="menu" leftButtonAction={() => {
+                    this.props.navigation.navigate('DrawerOpen');
+                    Keyboard.dismiss()
+                }} rightButtonAction={() => {
+                    this.setState({
+                        isSearching: !this.state.isSearching,
+                        searchValue: "",
+                        members: this.state.initialMembers
+                    })
+                }} rightButtonIcon="magnify"/>
 
                 <SearchBox showBox={this.state.isSearching}
-                searchText={this.state.searchValue}
-                editText={(text) => {
-                    this.setState(
-                        {
-                            searchValue: text,
-                            members: this.state.initialMembers.filter((line) => ((this.preg(line.first_name) + this.preg(line.last_name)).includes(this.preg(text))))
-                        }
-                    );
-                    }}/>
+                           searchText={this.state.searchValue}
+                           editText={(text) => {
+                               this.setState(
+                                   {
+                                       searchValue: text,
+                                       members: this.state.initialMembers.filter((line) => ((this.preg(line.first_name) + this.preg(line.last_name)).includes(this.preg(text))))
+                                   }
+                               );
+                           }}/>
 
                 <View style={{flexDirection: 'row', height: 'auto', width: '100%', padding: 5}}>
                     <Text style={{fontSize: 16}}>Trier par... </Text>
-                    <TouchableOpacity onPress={() => { this.state.members.sort(this.compareLastName); this.setState({}); }}>
-                        <Text style={{ fontSize: 16 }}>Nom de famille |</Text>
+                    <TouchableOpacity onPress={() => {
+                        this.state.members.sort(this.compareLastName);
+                        this.setState({});
+                    }}>
+                        <Text style={{fontSize: 16}}>Nom de famille |</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => { this.state.members.sort(this.compareBalance); this.setState({}); }}>
-                        <Text style={{ fontSize: 16 }}> Balance</Text>
+                    <TouchableOpacity onPress={() => {
+                        this.state.members.sort(this.compareBalance);
+                        this.setState({});
+                    }}>
+                        <Text style={{fontSize: 16}}> Balance</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -120,58 +135,73 @@ export default class Home extends React.Component {
                     data={this.state.members}
                     extraData={this.state}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => <MemberItem item={item} limitBalance={this.state.limitBalance} onItemClick={(theItem) => { this.getMemberDetails(theItem)}}/>}
+                    renderItem={({item}) => <MemberItem item={item} limitBalance={this.state.limitBalance}
+                                                        onItemClick={(theItem) => {
+                                                            this.getMemberDetails(theItem)
+                                                        }}/>}
                 />
-                <YellowButton buttonIcon="plus" buttonAction={() => { this.setState({ addPopup: true }) }} />
+                <YellowButton buttonIcon="plus" buttonAction={() => {
+                    this.setState({addPopup: true})
+                }}/>
 
-                <Popup shown={this.state.viewPopup} toggleState={() => this.setState({ viewPopup: !this.state.viewPopup })}>
+                <Popup shown={this.state.viewPopup}
+                       toggleState={() => this.setState({viewPopup: !this.state.viewPopup})}>
                     <ViewMember
                         viewItem={this.state.viewItem}
                         canUpdateMembership={this.canUpdateMembership()}
 
-                        onMorePress={() => { this.setState({ editMemberBalance: (parseFloat(this.state.editMemberBalance) + 0.01).toFixed(2).toString() }) }}
-                        onLessPress={() => { this.setState({ editMemberBalance: (parseFloat(this.state.editMemberBalance) - 0.01).toFixed(2).toString() }) }}
-                        onChangeBalance={(text) => { let editedText = this.setPrice(text); this.setState({ editMemberBalance: editedText }) }}
+                        onMorePress={() => {
+                            this.setState({editMemberBalance: (parseFloat(this.state.editMemberBalance) + 1).toFixed(2).toString()})
+                        }}
+                        onLessPress={() => {
+                            this.setState({editMemberBalance: (parseFloat(this.state.editMemberBalance) - 1).toFixed(2).toString()})
+                        }}
+                        onChangeBalance={(text) => {
+                            let editedText = this.setPrice(text);
+                            this.setState({editMemberBalance: editedText})
+                        }}
                         balanceValue={this.state.editMemberBalance}
 
                         phone={this.state.viewUserPhone}
                         email={this.state.viewUserEmail}
                         school={this.state.viewUserSchool}
+                        editing={this.state.editingMember}
 
                         onUpdateMembershipPress={(item) => {
                             Alert.alert(
                                 'Renouveler la cotisation',
                                 'Êtes-vous sûr de vouloir renouveler la cotisation de ' + item.first_name + ' ' + item.last_name + ' ?',
                                 [
-                                    { text: 'Annuler', onPress: () => { this.setState({ viewPopup: false }) }, style: 'cancel' },
+                                    {
+                                        text: 'Annuler', onPress: () => {
+                                            this.setState({viewPopup: false})
+                                        }, style: 'cancel'
+                                    },
                                     {
                                         text: 'Renouveler', onPress: () => {
-                                            this.setState({ loading: true }); // TODO : add in transaction with the staff id
+                                            this.setState({loading: true}); // TODO : add in transaction with the staff id
                                             this.updateMembership(item.id);
-                                            this.setState({ viewPopup: false })
+                                            this.setState({viewPopup: false})
                                         }
                                     },
                                 ],
-                                { cancelable: false }
+                                {cancelable: false}
                             )
                         }}
 
-                        onUpdateBalancePress={(item) => {
-                            Alert.alert(
-                                'Modifier la balance ',
-                                'Êtes-vous sûr de vouloir modifier la balance de ' + item.first_name + ' ' + item.last_name + ' ? \nL\'information sera traçée dans les logs avec votre nom.',
-                                [
-                                    { text: 'Annuler', onPress: () => { this.setState({ viewPopup: false }) }, style: 'cancel' },
-                                    {
-                                        text: 'Modifier', onPress: () => {
-                                            this.setState({ loading: true }); // TODO : add the transaction description with staff id
-                                            this.editMemberBalance(item, this.state.editMemberBalance);
-                                            this.setState({ viewPopup: false })
-                                        }
-                                    },
-                                ],
-                                { cancelable: false }
-                            )
+                        onValidateEditPress={(item) => {
+                        }}
+
+                        onEditPress={() => {
+                            this.setState({
+                                editingMember: true
+                            })
+                        }}
+
+                        onCancelEditPress={() => {
+                            this.setState({
+                                editingMember: false
+                            })
                         }}
 
                         onCloseAccountPress={(item) => {
@@ -179,30 +209,43 @@ export default class Home extends React.Component {
                                 'Clôture du compte',
                                 'Êtes-vous sûr de vouloir fermer le compte de ' + item.first_name + ' ' + item.last_name + ' ?\nCette opération sera irréversible !',
                                 [
-                                    { text: 'Annuler', onPress: () => { this.setState({ viewPopup: false }) }, style: 'cancel' },
+                                    {
+                                        text: 'Annuler', onPress: () => {
+                                            this.setState({viewPopup: false})
+                                        }, style: 'cancel'
+                                    },
                                     {
                                         text: 'Clôturer', onPress: () => {
-                                            this.setState({ loading: true }); // TODO : add log with the staff id
+                                            this.setState({loading: true}); // TODO : add log with the staff id
                                             this.closeAccount(item.id);
-                                            this.setState({ viewPopup: false })
+                                            this.setState({viewPopup: false})
                                         }
                                     },
                                 ],
-                                { cancelable: false }
+                                {cancelable: false}
                             )
                         }}
                     />
                 </Popup>
 
 
-
-                <Popup shown={this.state.addPopup} toggleState={() => this.setState({ addPopup: !this.state.addPopup })}>
+                <Popup shown={this.state.addPopup} toggleState={() => this.setState({addPopup: !this.state.addPopup})}>
                     <AddMember
-                        onEditFirstName={(text) => { this.setState({ newMemberFirstName: text }) }}
-                        onEditLastName={(text) => { this.setState({ newMemberLastName: text }) }}
-                        onEditEmail={(text) => { this.setState({ newMemberEmail: text }) }}
-                        onEditSchool={(text) => { this.setState({ newMemberSchool: text }) }}
-                        onEditPhone={(text) => { this.setState({ newMemberPhone: text }) }}
+                        onEditFirstName={(text) => {
+                            this.setState({newMemberFirstName: text})
+                        }}
+                        onEditLastName={(text) => {
+                            this.setState({newMemberLastName: text})
+                        }}
+                        onEditEmail={(text) => {
+                            this.setState({newMemberEmail: text})
+                        }}
+                        onEditSchool={(text) => {
+                            this.setState({newMemberSchool: text})
+                        }}
+                        onEditPhone={(text) => {
+                            this.setState({newMemberPhone: text})
+                        }}
 
                         newMemberEmail={this.state.newMemberEmail}
                         newMemberFirstName={this.state.newMemberFirstName}
@@ -211,14 +254,14 @@ export default class Home extends React.Component {
                         newMemberSchool={this.state.newMemberSchool}
 
                         onAddPress={() => {
-                            this.setState({ loading: true });
+                            this.setState({loading: true});
                             this.createAccount(this.state.newMemberFirstName, this.state.newMemberLastName, this.state.newMemberPhone, this.state.newMemberSchool, this.state.newMemberEmail);
-                            this.setState({ addPopup: false })
+                            this.setState({addPopup: false})
                         }}
                     />
                 </Popup>
 
-                <Loading shown={this.state.loading} />
+                <Loading shown={this.state.loading}/>
             </Container>
         );
     }
@@ -235,7 +278,7 @@ export default class Home extends React.Component {
     }
 
     async getMemberDetails(theItem) {
-        this.setState({ loading: true })
+        this.setState({loading: true})
         try {
             let response = await fetch('https://' + this.state.appHost + '/members/' + theItem.id,
                 {
@@ -246,12 +289,19 @@ export default class Home extends React.Component {
 
             let user = await response.json();
 
-            this.setState({ viewPopup: true, viewItem: theItem, editMemberBalance: theItem.balance, viewUserSchool: user.school, viewUserEmail: user.email, viewUserPhone: user.phone });
+            this.setState({
+                viewPopup: true,
+                viewItem: theItem,
+                editMemberBalance: theItem.balance,
+                viewUserSchool: user.school,
+                viewUserEmail: user.email,
+                viewUserPhone: user.phone
+            });
 
-            this.setState({ loading: false });
+            this.setState({loading: false});
 
         } catch (error) {
-            this.setState({ loading: false });
+            this.setState({loading: false});
             console.log(error);
         }
     }
@@ -271,11 +321,11 @@ export default class Home extends React.Component {
 
             let request = await response.json();
 
-            this.setState({ initialMembers: request });
+            this.setState({initialMembers: request});
 
-            this.setState({ members: this.state.initialMembers, loading: false, searchValue: "" });
+            this.setState({members: this.state.initialMembers, loading: false, searchValue: ""});
         } catch (error) {
-            this.setState({ loading: false, searchValue: "" });
+            this.setState({loading: false, searchValue: ""});
             console.log(error);
         }
     }
@@ -289,10 +339,10 @@ export default class Home extends React.Component {
                     }
                 });
 
-            this.setState({ connected: true });
+            this.setState({connected: true});
 
         } catch (error) {
-            this.setState({ connected: false, loading: false });
+            this.setState({connected: false, loading: false});
             this.props.navigation.navigate("Parameters");
         }
     }
@@ -322,7 +372,7 @@ export default class Home extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
@@ -361,7 +411,7 @@ export default class Home extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
@@ -384,7 +434,7 @@ export default class Home extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
 
@@ -407,9 +457,10 @@ export default class Home extends React.Component {
             }
         } catch (error) {
             console.log(error);
-            this.setState({ loading: false });
+            this.setState({loading: false});
         }
     }
+
 
     preg(chaine) {
         let tab = {
@@ -435,6 +486,7 @@ export default class Home extends React.Component {
             return 1;
         return 0;
     }
+
     compareBalance(a, b) {
         if (a.balance < b.balance)
             return -1;

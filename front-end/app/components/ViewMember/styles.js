@@ -7,6 +7,12 @@ export default styles = EStyleSheet.create({
         fontSize: 25,
         fontWeight: 'bold'
     },
+    addType: {
+        marginTop: 10,
+        padding: 0,
+        backgroundColor: '#eff0f1',
+        borderRadius: 7,
+    },
     line: {
         fontSize: 18,
         marginTop: 10,
