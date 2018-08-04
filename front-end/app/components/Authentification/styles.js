@@ -10,7 +10,8 @@ export default styles = EStyleSheet.create({
     },
     textInput: {
         width: '100%',
-        height: 30,
+        height: 'auto',
         fontSize: 20,
+        marginTop: 20
     }
 });

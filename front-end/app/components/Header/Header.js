@@ -1,15 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, Keyboard } from 'react-native';
+import {TouchableOpacity, View, Text, Keyboard} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 
 export default class Header extends React.Component {
     render() {
-        return(
+        return (
             <View style={styles.headerBar}>
                 <TouchableOpacity
-                    onPress={() => {this.props.leftButtonAction()}}
+                    onPress={() => {
+                        this.props.leftButtonAction()
+                    }}
                     style={styles.leftButtonStyle}
                 >
                     <Icon
@@ -22,7 +23,10 @@ export default class Header extends React.Component {
                 <Text style={styles.textStyle}>{this.props.title}</Text>
 
                 <TouchableOpacity
-                    onPress={() => {this.props.rightButtonAction(); Keyboard.dismiss()}}
+                    onPress={() => {
+                        this.props.rightButtonAction();
+                        Keyboard.dismiss()
+                    }}
                     style={styles.rightButtonStyle}
                 >
                     <Icon

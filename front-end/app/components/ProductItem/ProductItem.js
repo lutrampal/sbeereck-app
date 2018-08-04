@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
 import { TouchableOpacity, View, Text } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 
 export default class Header extends React.Component {
@@ -19,7 +17,7 @@ export default class Header extends React.Component {
     }
 
     unity() {
-        if (this.props.item.type == 'beer')
+        if (this.props.item.type === 'beer')
             return "/demi";
         return "";
     }

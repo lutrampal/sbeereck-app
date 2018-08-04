@@ -1,28 +1,14 @@
 {
   "name": "sbeereck",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "private": true,
-  "devDependencies": {
-    "react-native-scripts": "1.13.1",
-    "jest-expo": "26.0.0",
-    "react-test-renderer": "16.3.0-alpha.1"
-  },
-  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
+    "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest"
   },
-  "jest": {
-    "preset": "jest-expo"
-  },
   "dependencies": {
-    "expo": "^26.0.0",
-    "prop-type": "0.0.1",
-    "react": "16.3.0-alpha.1",
-    "react-native": "0.54.0",
+    "react": "16.4.1",
+    "react-native": "0.56.0",
     "react-native-autocomplete-input": "^3.5.0",
     "react-native-datepicker": "^1.6.0",
     "react-native-extended-stylesheet": "^0.8.1",
@@ -31,7 +17,17 @@
     "react-native-simple-radio-button": "^2.7.1",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "git+https://github.com/martnu/react-navigation.git#pass-down-drawer-lock-mode",
+    "regenerator": "^0.13.2",
     "rmc-feedback": "^1.0.4",
     "rmc-input-number": "^1.0.4"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.0",
+    "babel-preset-react-native": "5.0.2",
+    "jest": "23.4.1",
+    "react-test-renderer": "16.4.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }

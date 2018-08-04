@@ -1,9 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, FlatList, Picker } from 'react-native';
+import { TouchableOpacity, View, Text, FlatList} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
-import styles from './styles';
 import { SelectNumber } from '../SelectNumber';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 
@@ -15,7 +12,7 @@ export default class Header extends React.Component {
                     <SelectNumber
                         style={{width: 150, height: 70, marginRight: 10}}
                         priceValue={this.props.beersCount.toString()}
-                        onChangeText={(value) => { return; }}
+                        onChangeText={(value) => {  }}
                         disableChangeText={true}
                         onMorePress={() => { this.props.setBeersCount(parseInt(this.props.beersCount, 10)+1) }}
                         onLessPress={() => { if (parseInt(this.props.beersCount, 10) > 1) this.props.setBeersCount(parseInt(this.props.beersCount, 10) - 1) }} />
@@ -70,7 +67,7 @@ export default class Header extends React.Component {
     }
 
     isSelected(beer) {
-        if(beer.id == this.props.selectedBeer.id)
+        if(beer.id === this.props.selectedBeer.id)
         {
             return (
                 <Icon
@@ -82,7 +79,7 @@ export default class Header extends React.Component {
         }
     }
     getBeerColor(category) {
-        if(category == "special")
+        if(category === "special")
             return "#fbbc05";
         else
             return 'black';

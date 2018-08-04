@@ -1,10 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import DatePicker from 'react-native-datepicker';
-import styles from './styles';
-import { SelectNumber } from '../SelectNumber';
+import { View, Text} from 'react-native';
 import { RadioGroup, RadioButton } from 'react-native-flexi-radio-button'
 
 export default class Header extends React.Component {

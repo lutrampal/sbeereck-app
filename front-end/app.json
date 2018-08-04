@@ -1,15 +1,13 @@
 {
-  "expo": {
-    "name": "S'Beer Eck",
-    "icon": "./app-icon.png",
-    "version": "1.0.3",
-    "slug": "sbeereck",
-    "sdkVersion": "26.0.0",
-    "ios": {
-      "bundleIdentifier": "com.dylanfayant.sbeereck"
-    },
-    "android": {
-      "package": "com.dylanfayant.sbeereck"
-    }
+  "name": "sbeereck",
+  "displayName": "S'Beer Eck",
+  "icon": "./app-icon.png",
+  "version": "1.0.3",
+  "slug": "sbeereck",
+  "ios": {
+    "bundleIdentifier": "com.dylanfayant.sbeereck"
+  },
+  "android": {
+    "package": "com.dylanfayant.sbeereck"
   }
 }

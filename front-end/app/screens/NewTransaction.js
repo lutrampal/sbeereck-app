@@ -1,12 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, Keyboard, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
-import { NavigationActions } from 'react-navigation';
+import { View, Text, Keyboard, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
 import { Loading } from '../components/Loading';
-import { Authentification } from '../components/Authentification';
-import { AppParam } from '../components/AppParam';
 import { SearchUser } from '../components/SearchUser';
 import { SelectCategory } from '../components/SelectCategory';
 import { TransactionBeer } from '../components/TransactionBeer';
@@ -163,7 +160,7 @@ export default class Home extends React.Component {
     }
 
     showContent(members, query, comp) {
-        if(this.state.selectedMember.id == undefined)
+        if(this.state.selectedMember.id === undefined)
             return (
                 <KeyboardAwareScrollView style={{flex: 1, height: '100%'}} alwaysBounceVertical={false}>
                     <SearchUser
@@ -208,7 +205,7 @@ export default class Home extends React.Component {
     }
 
     getUserBalance() {
-        if (this.state.selectedMember != null && this.state.selectedMember.id != undefined) {
+        if (this.state.selectedMember != null && this.state.selectedMember.id !== undefined) {
             return (
                 <View style={{ alignItems: 'center', width: "auto", height: "auto", padding: 5 }}>
                     <Text style={{ fontSize: 22 }}>Solde</Text>
@@ -324,7 +321,7 @@ export default class Home extends React.Component {
             return null;
         }
 
-        if (parseFloat(this.state.selectedMember.balance) < parseFloat(this.state.limitBalance) && (this.state.selectedCategory != 'money' && (this.state.selectedCategory != 'deposit' || this.state.depositType == -1)) ) {
+        if (parseFloat(this.state.selectedMember.balance) < parseFloat(this.state.limitBalance) && (this.state.selectedCategory !== 'money' && (this.state.selectedCategory !== 'deposit' || this.state.depositType === -1)) ) {
             Alert.alert(
                 'Balance dépassée',
                 'Le compte du membre est en dessous de la limite de ' + this.state.limitBalance + ' euros. \nVoulez-vous forcer l\'opération?',
@@ -344,7 +341,7 @@ export default class Home extends React.Component {
     }
 
     saveParameters2() {
-        if (this.getMembership() == false) {
+        if (this.getMembership() === false) {
             Alert.alert(
                 'Cotisation expirée',
                 'La cotisation de ce membre est expirée. Sauf cas exceptionnel, l\'adhérent doit obligatoirement la renouveler avant de pouvoir procéder à un paiement. \nVoulez-vous tout de même forcer l\'opération?',
@@ -370,10 +367,10 @@ export default class Home extends React.Component {
 
         let dateNow = new Date();
 
-        var dd = dateMembership.getDate();
-        var mm = dateMembership.getMonth() + 1;
-        var yyyy = dateMembership.getFullYear();
-        if (dd < 10) {
+      let dd = dateMembership.getDate()
+      let mm = dateMembership.getMonth() + 1
+      const yyyy = dateMembership.getFullYear()
+      if (dd < 10) {
             dd = '0' + dd;
         }
         if (mm < 10) {
@@ -383,9 +380,8 @@ export default class Home extends React.Component {
 
         if (this.state.selectedMember.is_former_staff)
             return true;
-        if (dateMembership.getTime() <= dateNow.getTime())
-            return false;
-        return true;
+        return dateMembership.getTime() > dateNow.getTime();
+
     }
 
     async continueSaveParameters() {
@@ -430,7 +426,7 @@ export default class Home extends React.Component {
                 this.props.navigation.goBack();
                 break;
             case 'money':
-                if (this.state.moneyName == "") {
+                if (this.state.moneyName === "") {
                     alert("Veuillez entrer une description de transaction !");
                     return null;
                 }
@@ -505,7 +501,7 @@ export default class Home extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "")
+        if (text === "")
             return parseFloat("0");
         else
             return parseFloat(text.toString().replace(",", "."));

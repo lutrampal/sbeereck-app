@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+    sbeereck-rest-api:
+        image: "lutrampal/sbeereck"
+        ports:
+         - "443:443"
+        volumes:
+        - ./ssl:/var/run/apache2/ssl
+        environment:
+         SB_DB_HOST: sbeereck-mysql
+         SB_DB_PORT: 3306
+         SB_DB_NAME: sbeereck-db
+         SB_DB_USER: root
+         SB_DB_PASSWORD: toor
+         
+    sbeereck-mysql:
+        image: "mysql:5.7"
+        volumes:
+         - ./mysql:/var/lib/mysql
+        environment:
+         MYSQL_ROOT_PASSWORD: toor

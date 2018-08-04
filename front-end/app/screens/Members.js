@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, TextInput, Picker, Keyboard, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
+import { View, Text, FlatList, Keyboard, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
@@ -7,8 +7,6 @@ import { MemberItem } from '../components/MemberItem';
 import { YellowButton } from '../components/YellowButton';
 import { SearchBox } from '../components/SearchBox';
 import { Popup } from '../components/Popup';
-import { AddProduct } from '../components/AddProduct';
-import { EditProduct } from '../components/EditProduct';
 import { Loading } from '../components/Loading';
 import { ViewMember } from '../components/ViewMember';
 import { AddMember } from '../components/AddMember';
@@ -72,7 +70,8 @@ export default class Home extends React.Component {
                         }
                     });
 
-                request = await response.json();
+                // noinspection JSUndeclaredVariable
+              request = await response.json();
                 let balance_treshold = request.balance_too_low_threshold;
                 this.setState({limitBalance: balance_treshold});
 
@@ -231,9 +230,8 @@ export default class Home extends React.Component {
 
         let dateNow = new Date();
 
-        if (dateMembership.getTime() <= dateNow.getTime())
-            return true;
-        return false;
+        return dateMembership.getTime() <= dateNow.getTime();
+
     }
 
     async getMemberDetails(theItem) {
@@ -446,7 +444,7 @@ export default class Home extends React.Component {
     }
 
     setPrice(text) {
-        if (text == "" || text == "0")
+        if (text === "" || text === "0")
             return "0";
         else
             return text.toString().replace(",", ".");

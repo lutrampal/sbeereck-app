@@ -1,7 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-type';
-import { TouchableOpacity, View, Text, TextInput, Keyboard, Picker } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { TouchableOpacity, View, Text} from 'react-native';
 import styles from './styles';
 import {SelectNumber} from '../SelectNumber';
 
@@ -47,10 +45,10 @@ export default class Header extends React.Component {
 
         let dateNow = new Date();
 
-        var dd = dateMembership.getDate();
-        var mm = dateMembership.getMonth() + 1;
-        var yyyy = dateMembership.getFullYear();
-        if (dd < 10) {
+      let dd = dateMembership.getDate()
+      let mm = dateMembership.getMonth() + 1
+      const yyyy = dateMembership.getFullYear()
+      if (dd < 10) {
             dd = '0' + dd;
         }
         if (mm < 10) {

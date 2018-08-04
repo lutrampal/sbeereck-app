@@ -1,5 +1,10 @@
+back-end/mysql/
+back-end/ssl
 testing/
 *.csv
+*.key
+*.pem
+*.cert
 
 # Created by https://www.gitignore.io/api/java,android,androidstudio
 
@@ -158,9 +163,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-### AndroidStudio Patch ###
-
-!/gradle/wrapper/gradle-wrapper.jar
 
 ### Java ###
 # Compiled class file
