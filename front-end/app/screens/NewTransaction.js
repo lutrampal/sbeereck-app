@@ -4,6 +4,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
 import { Loading } from '../components/Loading';
+import { ChargePopup } from '../components/ChargePopup';
+import { Popup } from '../components/Popup';
 import { SearchUser } from '../components/SearchUser';
 import { SelectCategory } from '../components/SelectCategory';
 import { TransactionBeer } from '../components/TransactionBeer';
@@ -12,7 +14,6 @@ import { TransactionDeposit } from '../components/TransactionDeposit';
 import { TransactionMoney } from '../components/TransactionMoney';
 import { TransactionFood } from '../components/TransactionFood';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import QRCodeScanner from 'react-native-qrcode-scanner';
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -34,7 +35,8 @@ export default class Home extends React.Component {
 
             members: [],
             query: "",
-            selectedMember: {},
+            selectedMember: {first_name: '', last_name: ''},
+            selectedMember: {first_name: '', last_name: ''},
 
             selectedCategory: 'beer',
 
@@ -56,6 +58,8 @@ export default class Home extends React.Component {
 
             moneyName: "Recharge",
             moneyCount: "0.00",
+
+            chargePopup: false,
         }
     }
 
@@ -157,9 +161,56 @@ export default class Home extends React.Component {
                     rightButtonIcon="check"
                 />
                 {this.showContent(members, query, comp)}
+
+                <Popup shown={this.state.chargePopup} toggleState={() => {this.setState({chargePopup: !this.state.chargePopup})}}>
+                    <ChargePopup
+                        userName={this.state.selectedMember.first_name + " " + this.state.selectedMember.last_name}
+                        moneyCount={this.state.moneyCount}
+                        addProduct={this.addProduct.bind(this)}
+                        closePopup={(() => { this.setState({chargePopup: !this.state.chargePopup}) }).bind(this)}
+                        onLydiaPayment={this.onLydiaPayment.bind(this)}
+                    />
+                </Popup>
+
                 <Loading shown={this.state.loading} />
             </Container>
         );
+    }
+
+    async onLydiaPayment(qrcodecontent) {
+        alert(qrcodecontent)
+
+        this.setState({ loading: true, chargePopup: false });
+
+        try {
+            response = await fetch('https://homologation.lydia-app.com/api/payment/payment',
+                {
+                    method: "post",
+                    headers: {
+                        'content-type': "application/json"
+                    },
+                    body: JSON.stringify({
+                        vendor_token : "5b658507657ac943697160",
+                        phone : "0621856641",
+                        paymentData : qrcodecontent,
+                        send_email_to_collecter: "no",
+                        send_email_to_payer: "yes",
+                        transmission: "qrcode",
+                        amount: this.state.moneyCount,
+                        currency: "EUR",
+                        order_id: Date.now()
+                    })
+                });
+
+            request = await response.json();
+
+            this.addProduct();
+            this.setState({ loading: false });
+        } catch (error) {
+            alert("Erreur lors du rechargement du compte par Lydia.\n" + error);
+            this.setState({ loading: false });
+        }
+
     }
 
     showContent(members, query, comp) {
@@ -223,7 +274,13 @@ export default class Home extends React.Component {
                             }
                         />
 
-                        <TouchableOpacity onPress={() => this.addProduct()} style={{ marginTop: 10, height: 35, width: '100%', borderRadius: 7, alignItems: 'center', justifyContent: 'center', backgroundColor: '#edaf36'}}>
+                        <TouchableOpacity onPress={() => {
+                            if(this.state.selectedCategory == 'money') {
+                                this.setState({chargePopup: true});
+                            } else {
+                                this.addProduct()
+                            }
+                        }} style={{ marginTop: 10, height: 35, width: '100%', borderRadius: 7, alignItems: 'center', justifyContent: 'center', backgroundColor: '#edaf36'}}>
                             <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Ajouter à la commande</Text>
                         </TouchableOpacity>
                     </View>
