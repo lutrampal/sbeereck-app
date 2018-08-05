@@ -4,7 +4,7 @@
 
 ## Parties
 	* /parties  
-		GET: returns all the parties, ordered my descending dates  
+		 GET: returns all the parties, ordered my descending dates  
 			[ {  
 				"id":  
 				"name":  
@@ -28,7 +28,7 @@
 				{  
 					id:  
 				}  
-				
+
 	* /parties/<id>  
 		GET : return the desired party
 			{  
@@ -74,8 +74,8 @@
 				"price":
 				"type":
 			}
-	
-		
+
+
 	* /products/<id>
 		DELETE : delete the desired product
 		POST: insert a new product, the sent product object should be as follows  
@@ -95,7 +95,7 @@
 				"type":
 			}
 	* /members
-		GET return all the members	
+		GET return all the members
 			[ {  
 				"id":  
 				"first_name":  
@@ -118,7 +118,7 @@
 				}  
 
 	* /members/<id>
-		GET return the desired member	
+		GET return the desired member
 			{  
 				"id":  
 				"first_name":  
@@ -130,9 +130,19 @@
 				"phone":
 				"is_former_staff":
 			}
+		PUT : update the desired member, balance and membership cannot be changed through this endpoint
+			{  
+				"first_name":
+				"last_name":
+				"school":
+				"email":
+				"phone":
+			}
 		DELETE delete the desired member
+
 	* /members/<id>/membership
 		PUT renew the membership of this member, no body is required, the last_membership_payment field will be set to the current timestamp
+
 	* /parties/<id>/transactions
 		GET return all the transactions for the desired party
 			[ {  
@@ -172,40 +182,18 @@
 	* /balance_too_low_threshold
 		GET return the minimum accepted balance for an account
 			{
-				"balance_too_low_threshold":	
+				"balance_too_low_threshold":
 			}
 		PUT update the minimum accepted balance for an account
 			{
-				"balance_too_low_threshold":	
+				"balance_too_low_threshold":
 			}
 	* /default_prices/<product>
 		GET return the default price for the requested product, valid options are "normal_beer" and "special_beer"
 			{
-				"default_product_price":	
+				"default_product_price":
 			}
 		PUT update the default price for the requested
 			{
-				"default_product_price":	
+				"default_product_price":
 			}
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-		
-		

@@ -10,7 +10,7 @@ else:
     DB_HOST = 'sbeereck-mysql'
 
 if 'SB_DB_PORT' in os.environ:
-    DB_PORT = os.environ['SB_DB_PORT']
+    DB_PORT = int(os.environ['SB_DB_PORT'])
 else:
     DB_PORT = 3306
 

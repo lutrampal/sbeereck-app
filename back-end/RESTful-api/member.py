@@ -49,3 +49,37 @@ class Member(Resource):
         connection.commit()
         connection.close()
         return 201
+
+    def put(self, member_id):
+        parser = get_default_parser()
+        args = parser.parse_args()
+        connection = get_db_connection()
+        if not is_token_valid(args['authentication-token'], connection):
+            connection.close()
+            abort(403)
+        if request.json is None:
+            abort(400, description="request should be json")
+        for key in ['first_name', 'last_name', 'school', 'phone', 'email']:
+            if key not in request.json:
+                abort(400, description="missing " + key + " key in JSON body")
+        check_member_exist_query = "SELECT member_id FROM members WHERE member_id = %(id)s"
+        update_member_query = "UPDATE members " \
+                              "SET first_name = %(first_name)s, last_name = %(last_name)s, school = %(school)s, " \
+                              "phone = %(phone)s, email = %(email)s " \
+                              "WHERE member_id = %(id)s"
+        member = {
+            'id': member_id,
+            'first_name': request.json['first_name'],
+            'last_name': request.json['last_name'],
+            'school': request.json['school'],
+            'phone': request.json['phone'],
+            'email': request.json['email']
+        }
+        with connection.cursor() as cursor:
+            if not cursor.execute(check_member_exist_query, member):
+                connection.close()
+                abort(404)
+            cursor.execute(update_member_query, member)
+        connection.commit()
+        connection.close()
+        return 204
