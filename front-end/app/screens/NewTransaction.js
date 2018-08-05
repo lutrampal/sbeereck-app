@@ -11,7 +11,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { TransactionDeposit } from '../components/TransactionDeposit';
 import { TransactionMoney } from '../components/TransactionMoney';
 import { TransactionFood } from '../components/TransactionFood';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import QRCodeScanner from 'react-native-qrcode-scanner';
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
