@@ -62,7 +62,7 @@ export default class Header extends React.Component {
     getEdit() {
         if (!this.props.editing) {
             return (
-                <TouchableOpacity onPress={() => this.props.onEditPress()}
+                <TouchableOpacity onPress={() => this.props.onEditPress(this.props.viewItem)}
                                   style={styles.validateButton}>
                     <Text style={styles.validateText}>Editer</Text>
                 </TouchableOpacity>
@@ -132,17 +132,18 @@ export default class Header extends React.Component {
         return (<View>
             <Text style={styles.addTitle}>Editer {this.props.viewItem.first_name} {this.props.viewItem.last_name}</Text>
 
-            <TextInput autoCorrect={false} style={styles.line} defaultValue={this.props.viewItem.first_name}
-                       placeholder="Prénom" onChangeText={this.props.editFirstName}/>
-            <TextInput autoCorrect={false} style={styles.line} defaultValue={this.props.viewItem.last_name}
-                       placeholder="Nom" onChangeText={this.props.editLastName}/>
-            <TextInput autoCorrect={false} keyboardType='email-address' style={styles.line}
-                       defaultValue={this.props.email} placeholder="Email" onChangeText={this.props.editEmail}/>
-            <TextInput autoCorrect={false} keyboardType='phone-pad' style={styles.line} defaultValue={this.props.phone}
-                       placeholder="Téléphone" onChangeText={this.props.editPhone}/>
+            <TextInput autoCorrect={false} style={styles.editableLine} defaultValue={this.props.viewItem.first_name}
+                       placeholder="Prénom" onChangeText={this.props.onEditFirstName}/>
+            <TextInput autoCorrect={false} style={styles.editableLine} defaultValue={this.props.viewItem.last_name}
+                       placeholder="Nom" onChangeText={this.props.onEditLastName}/>
+            <TextInput autoCorrect={false} keyboardType='email-address' style={styles.editableLine}
+                       defaultValue={this.props.email} placeholder="Email" onChangeText={this.props.onEditEmail}/>
+            <TextInput autoCorrect={false} keyboardType='phone-pad' style={styles.editableLine} defaultValue={this.props.phone}
+                       placeholder="Téléphone" onChangeText={this.props.onEditPhone}/>
             <Picker
                 style={styles.addType}
-                selectedValue={this.props.school}>
+                selectedValue={this.props.newMemberSchool}
+                onValueChange={(value, index) => this.props.onEditSchool(value)}>
                 <Picker.Item label="Ense3" value="Ense3" />
                 <Picker.Item label="Ensimag" value="Ensimag" />
                 <Picker.Item label="Esisar" value="Esisar" />

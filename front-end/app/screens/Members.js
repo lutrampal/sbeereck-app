@@ -141,7 +141,14 @@ export default class Home extends React.Component {
                                                         }}/>}
                 />
                 <YellowButton buttonIcon="plus" buttonAction={() => {
-                    this.setState({addPopup: true})
+                    this.setState({
+                        addPopup: true,
+                        newMemberFirstName: "",
+                        newMemberLastName: "",
+                        newMemberEmail: "",
+                        newMemberSchool: "",
+                        newMemberPhone: "",
+                    })
                 }}/>
 
                 <Popup shown={this.state.viewPopup}
@@ -189,21 +196,83 @@ export default class Home extends React.Component {
                             )
                         }}
 
-                        onValidateEditPress={(item) => {
+                        onUpdateBalancePress={(item) => {
+                            Alert.alert(
+                                'Modifier la balance ',
+                                'Êtes-vous sûr de vouloir modifier la balance de ' + item.first_name + ' ' + item.last_name + ' ? \nL\'information sera traçée dans les logs avec votre nom.',
+                                [
+                                    {
+                                        text: 'Annuler', onPress: () => {
+                                            this.setState({viewPopup: false})
+                                        }, style: 'cancel'
+                                    },
+                                    {
+                                        text: 'Modifier', onPress: () => {
+                                            this.setState({loading: true}); // TODO : add the transaction description with staff id
+                                            this.editMemberBalance(item, this.state.editMemberBalance);
+                                            this.setState({viewPopup: false})
+                                        }
+                                    },
+                                ],
+                                {cancelable: false}
+                            )
                         }}
 
-                        onEditPress={() => {
+
+                        onValidateEditPress={(item) => {
+                            this.setState({loading: true});
+                            this.editMember(item.id, this.state.newMemberFirstName, this.state.newMemberLastName,
+                                this.state.newMemberSchool, this.state.newMemberEmail, this.state.newMemberPhone);
                             this.setState({
-                                editingMember: true
+                                viewPopup: false,
+                                editingMember: false,
+                                newMemberFirstName: "",
+                                newMemberLastName: "",
+                                newMemberEmail: "",
+                                newMemberSchool: "",
+                                newMemberPhone: ""
+                            })
+                        }}
+
+                        onEditPress={(item) => {
+                            this.setState({
+                                editingMember: true,
+                                newMemberFirstName: item.first_name,
+                                newMemberLastName: item.last_name,
+                                newMemberEmail: this.state.viewUserEmail,
+                                newMemberSchool: this.state.viewUserSchool,
+                                newMemberPhone: this.state.viewUserPhone,
                             })
                         }}
 
                         onCancelEditPress={() => {
                             this.setState({
-                                editingMember: false
+                                editingMember: false,
+                                newMemberFirstName: "",
+                                newMemberLastName: "",
+                                newMemberEmail: "",
+                                newMemberSchool: "",
+                                newMemberPhone: "",
                             })
                         }}
 
+                        onEditFirstName={(text) => {
+                            this.setState({newMemberFirstName: text})
+                        }}
+                        onEditLastName={(text) => {
+                            this.setState({newMemberLastName: text})
+                        }}
+                        onEditEmail={(text) => {
+                            this.setState({newMemberEmail: text})
+                        }}
+                        onEditSchool={(text) => {
+                            this.setState({newMemberSchool: text})
+                        }}
+                        onEditPhone={(text) => {
+                            this.setState({newMemberPhone: text})
+                        }}
+
+                        newMemberSchool={this.state.newMemberSchool}
                         onCloseAccountPress={(item) => {
                             Alert.alert(
                                 'Clôture du compte',
@@ -461,6 +530,34 @@ export default class Home extends React.Component {
         }
     }
 
+    async editMember(member_id, first_name, last_name, school, email, phone) {
+        await this.checkConnection();
+
+        try {
+            if (this.state.connected) {
+                let response = await fetch('https://' + this.state.appHost + '/members/' + member_id,
+                    {
+                        method: "put",
+                        headers: {
+                            'content-type': "application/json",
+                            'authentication-token': this.state.appToken
+                        },
+                        body: JSON.stringify({
+                            "first_name": first_name,
+                            "last_name": last_name,
+                            "school": school,
+                            "email": email,
+                            "phone": phone
+                        })
+                    });
+
+                this.initiateMembers();
+            }
+        } catch (error) {
+            console.log(error);
+            this.setState({loading: false});
+        }
+    }
 
     preg(chaine) {
         let tab = {
@@ -501,4 +598,5 @@ export default class Home extends React.Component {
         else
             return text.toString().replace(",", ".");
     }
+
 }

@@ -17,6 +17,11 @@ export default styles = EStyleSheet.create({
         fontSize: 18,
         marginTop: 10,
     },
+    editableLine: {
+        fontSize: 18,
+        marginTop: 10,
+        backgroundColor: '#eff0f1'
+    },
     suppressButton: {
         marginTop: 10,
         height: 35,
