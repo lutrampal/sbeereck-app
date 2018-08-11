@@ -417,6 +417,13 @@ export default class Home extends React.Component {
                     }
                 });
 
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
+
             this.setState({ connected: true });
 
         } catch (error) {
@@ -501,13 +508,8 @@ export default class Home extends React.Component {
         bill = this.getTotalPrice();
         text = ""
         this.state.products.forEach(function(element) {
-          text = element.count + " " + element.type + " de " + element.name;
+          text += element.count + " " + element.type + " de " + element.name + "\n";
         });
-
-        // Step 2, if multiple products, change transaction name
-        if(this.state.products.length > 1) {
-            text = "Plusieurs produits"
-        }
 
         // Step 3, process the transaction in the database
         await this.createTransaction(bill, text);
