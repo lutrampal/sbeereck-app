@@ -2,6 +2,7 @@ import React from 'react';
 import {TouchableOpacity, View, Text, TextInput, Picker} from 'react-native';
 import styles from './styles';
 import {SelectNumber} from '../SelectNumber';
+import {Linking} from 'react-native'
 
 export default class Header extends React.Component {
 
@@ -17,7 +18,10 @@ export default class Header extends React.Component {
     getPhone() {
         if(this.props.phone != null)
         {
-            return (<Text style={styles.line}>Téléphone : {this.props.phone}</Text>)
+            return (
+                <TouchableOpacity onPress={() => Linking.openURL('tel:' + this.props.phone)}>
+                    <Text style={styles.linkLine}>Téléphone : {this.props.phone}</Text>
+                </TouchableOpacity>)
         }
     }
 
@@ -74,8 +78,10 @@ export default class Header extends React.Component {
                 onChangeText={(value) => this.props.onChangeBalance(value)}
                 onMorePress={() => this.props.onMorePress()}
                 onLessPress={() => this.props.onLessPress()} />
-            <Text style={styles.line}>Email : {this.props.email}</Text>
             <Text style={styles.line}>École : {this.props.school}</Text>
+            <TouchableOpacity onPress={() => Linking.openURL('mailto:' + this.props.email)}>
+                <Text style={styles.linkLine}>Email : {this.props.email}</Text>
+            </TouchableOpacity>
             {this.getPhone()}
             {this.getMembership()}
             {this.getCotisation()}
