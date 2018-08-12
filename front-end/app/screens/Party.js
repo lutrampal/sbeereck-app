@@ -10,6 +10,7 @@ import {Popup} from '../components/Popup';
 import {Loading} from '../components/Loading'
 import {AddParty} from '../components/AddParty';
 import {EditParty} from '../components/EditParty';
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -100,7 +101,7 @@ export default class Home extends React.Component {
                 this.initialParties();
             }
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({loading: false});
         }
     }
@@ -349,7 +350,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initialParties();
-                alert("Soirée ajoutée !");
+                Toast.show("Soirée ajoutée !");
             }
         } catch (error) {
             console.log(error);
@@ -379,7 +380,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initialParties();
-                alert("Soirée modifiée !");
+                Toast.show("Soirée modifiée !");
             }
         } catch (error) {
             console.log(error);
@@ -402,7 +403,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initialParties();
-                alert("Soirée supprimée !");
+                Toast.show("Soirée supprimée !");
             }
         } catch (error) {
             console.log(error);

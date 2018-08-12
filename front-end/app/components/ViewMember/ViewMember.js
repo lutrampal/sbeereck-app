@@ -79,9 +79,9 @@ export default class Header extends React.Component {
             {this.getPhone()}
             {this.getMembership()}
             {this.getCotisation()}
-            <TouchableOpacity onPress={() => this.props.onExportPress(this.props.viewItem)}
+            <TouchableOpacity onPress={() => this.props.onShowTransactionsPress(this.props.viewItem)}
                               style={styles.validateButton}>
-                <Text style={styles.validateText}>Exporter les transactions</Text>
+                <Text style={styles.validateText}>Voir les transactions</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => this.props.onEditPress(this.props.viewItem)}
                               style={styles.validateButton}>

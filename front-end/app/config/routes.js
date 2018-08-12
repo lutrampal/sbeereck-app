@@ -8,6 +8,7 @@ import Parameters from '../screens/Parameters';
 import Transactions from '../screens/Transactions';
 import NewTransaction from '../screens/NewTransaction';
 import DrawerContent from '../components/SideMenu/SideMenu';
+import MemberTransactions from "../screens/MemberTransactions"
 
 const PartyNavigator = StackNavigator({
     Party: {
@@ -45,7 +46,10 @@ const ProductsNavigator = StackNavigator({
 const MembersNavigator = StackNavigator({
     Members: {
         screen: Members,
-    }
+    },
+    MemberTransactions: {
+        screen: MemberTransactions
+    },
 }, {
     headerMode: 'none',
     navigationOptions: {

@@ -11,7 +11,7 @@ class MemberTransactions(Resource):
         if not is_token_valid(args['authentication-token'], connection):
             connection.close()
             abort(403)
-        query = "SELECT t.party_id AS party_id, name AS party_name, amount, label, timestamp " \
+        query = "SELECT transaction_id AS id, t.party_id AS party_id, name AS party_name, amount, label, timestamp " \
                 "FROM transactions t INNER JOIN parties p ON t.party_id=p.party_id " \
                 "WHERE member_id=%s " \
                 "ORDER BY timestamp DESC"

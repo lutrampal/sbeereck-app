@@ -6,6 +6,7 @@ import {Header} from '../components/Header';
 import { BeerItem } from '../components/BeerItem';
 import { SearchBox } from '../components/SearchBox';
 import { Loading } from '../components/Loading'
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -51,7 +52,7 @@ export default class Home extends React.Component {
                 this.initialBeers();
             }
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({ loading: false });
         }
     }

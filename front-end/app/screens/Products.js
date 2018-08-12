@@ -10,6 +10,7 @@ import { Loading } from '../components/Loading';
 import { Popup } from '../components/Popup';
 import { AddProduct } from '../components/AddProduct';
 import { EditProduct } from '../components/EditProduct';
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -64,7 +65,7 @@ export default class Home extends React.Component {
             if (this.state.connected)
                 this.initiateProducts();
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({ loading: false });
         }
     }
@@ -210,7 +211,7 @@ export default class Home extends React.Component {
                         })
                     });
                 this.initiateProducts();
-                alert("Produit ajouté !");
+                Toast.show("Produit ajouté !");
             }
         } catch (error) {
             console.log(error);
@@ -232,7 +233,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateProducts();
-                alert("Produit supprimé !");
+                Toast.show("Produit supprimé !");
             }
         } catch (error) {
             console.log(error);
@@ -260,7 +261,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateProducts();
-                alert("Produit mis à jour !");
+                Toast.show("Produit mis à jour !");
             }
         } catch (error) {
             console.log(error);

@@ -12,6 +12,7 @@ import { TransactionDeposit } from '../components/TransactionDeposit';
 import { TransactionMoney } from '../components/TransactionMoney';
 import { TransactionFood } from '../components/TransactionFood';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -130,7 +131,7 @@ export default class Home extends React.Component {
                 this.initiateMembers();
             }
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({ loading: false });
         }
     }
@@ -317,7 +318,7 @@ export default class Home extends React.Component {
 
     saveParameters() {
         if (this.state.selectedMember.id === undefined) {
-            alert("Veuillez sélectionner un membre !");
+            Toast.show("Veuillez sélectionner un membre !");
             return null;
         }
 
@@ -391,7 +392,7 @@ export default class Home extends React.Component {
         switch(this.state.selectedCategory) {
             case 'beer':
                 if(this.state.selectedBeer.id === undefined) {
-                    alert("Veuillez sélectionner une bière !");
+                    Toast.show("Veuillez sélectionner une bière !");
                     return null;
                 }
                 bill = parseInt(this.state.beersCount, 10)*this.getBeerPrice()*parseInt(this.state.type, 10)*-1;
@@ -403,7 +404,7 @@ export default class Home extends React.Component {
                 break;
             case 'deposit':
                 if (this.state.selectedDeposit.id === undefined) {
-                    alert("Veuillez sélectionner un type de caution !");
+                    Toast.show("Veuillez sélectionner un type de caution !");
                     return null;
                 }
                 bill = parseInt(this.state.depositsCount, 10) * parseFloat(this.state.selectedDeposit.price) * parseInt(this.state.depositType, 10);
@@ -415,7 +416,7 @@ export default class Home extends React.Component {
                 break;
             case 'food':
                 if (this.state.selectedFood.id === undefined) {
-                    alert("Veuillez sélectionner un alliment !");
+                    Toast.show("Veuillez sélectionner un alliment !");
                     return null;
                 }
                 bill = parseInt(this.state.foodsCount, 10) * parseFloat(this.state.selectedFood.price) * -1;
@@ -427,7 +428,7 @@ export default class Home extends React.Component {
                 break;
             case 'money':
                 if (this.state.moneyName === "") {
-                    alert("Veuillez entrer une description de transaction !");
+                    Toast.show("Veuillez entrer une description de transaction !");
                     return null;
                 }
                 bill = parseFloat(this.state.moneyCount);
@@ -438,7 +439,7 @@ export default class Home extends React.Component {
                 this.props.navigation.goBack();
                 break;
             default:
-                alert("not implemented yet");
+                Toast.show("not implemented yet");
         }
     }
 
@@ -463,7 +464,7 @@ export default class Home extends React.Component {
                     });
 
                 this.props.navigation.state.params.refreshItems();
-                alert("Transaction créée !");
+                Toast.show("Transaction créée !");
             }
         } catch (error) {
             console.log(error);

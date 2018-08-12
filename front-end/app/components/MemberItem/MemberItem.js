@@ -13,6 +13,7 @@ export default class Header extends React.Component {
                     <Text style={[styles.price, { color: this.balance_color() }]}>{this.props.item.balance}€</Text>
                 </View>
             </TouchableOpacity>
+
         );
     }
 

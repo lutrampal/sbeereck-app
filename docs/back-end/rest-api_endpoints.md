@@ -156,7 +156,8 @@
 
 		* /members/<id>/transactions
 			GET return all the transactions of this member
-			[ {  
+			[ {
+				"id": 
 				"party_id":
 				"party_name":
 				"amount":  

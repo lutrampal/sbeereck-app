@@ -12,6 +12,7 @@ import {ViewMember} from '../components/ViewMember';
 import {AddMember} from '../components/AddMember';
 import * as RNFS from "react-native-fs"
 import {open} from "react-native-share"
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -84,7 +85,7 @@ export default class Home extends React.Component {
                 this.initiateMembers();
             }
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({loading: false});
         }
     }
@@ -200,8 +201,8 @@ export default class Home extends React.Component {
                             )
                         }}
 
-                        onExportPress={(item) => {
-                            this.exportMember(item.id, item.first_name + " " + item.last_name)
+                        onShowTransactionsPress={(item) => {
+                            this.showMemberTransactions(item)
                         }}
 
                         onUpdateBalancePress={(item) => {
@@ -429,27 +430,6 @@ export default class Home extends React.Component {
         }
     }
 
-    async getMemberTransactions(member_id) {
-        await this.checkConnection();
-        this.setState({loading: true});
-
-        try {
-            let response = await fetch('https://' + this.state.appHost + '/members/' + member_id + '/transactions',
-                {
-                    headers: {
-                        'authentication-token': this.state.appToken
-                    }
-                });
-
-            let response_body = await response.json();
-
-            this.setState({memberTransactions: response_body, loading: false});
-        } catch (error) {
-            this.setState({loading: false});
-            console.log(error);
-        }
-    }
-
     async checkConnection() {
         try {
             let response = await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
@@ -488,7 +468,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Balance mise à jour !");
+                Toast.show("Balance mise à jour !");
             }
         } catch (error) {
             console.log(error);
@@ -520,7 +500,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Utilisateur créé !");
+                Toast.show("Utilisateur créé !");
                 this.setState({
                     newMemberFirstName: "",
                     newMemberLastName: "",
@@ -550,7 +530,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Compte clôturé !");
+                Toast.show("Compte clôturé !");
             }
         } catch (error) {
             console.log(error);
@@ -573,7 +553,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Cotisation renouvelée !");
+                Toast.show("Cotisation renouvelée !");
             }
         } catch (error) {
             console.log(error);
@@ -684,34 +664,18 @@ export default class Home extends React.Component {
             });
     }
 
-    async exportMember(id, name) {
-        await this.getMemberTransactions(id)
-
-        let csv = "Soirée,Date et heure,Montant,Libellé\n"
-        /* CSV formatting:
-         *  - each value is double quoted to escape commas
-         *  - each double quote in value is doubled to escape it
-         */
-        this.state.memberTransactions.forEach((t) => {
-            csv += '"' + t.party_name + '","' + t.timestamp + '","'
-                + t.amount.toString().replace(/\./g, ',').replace(/ /g,'') + '","' + t.label + '"\n'
+    showMemberTransactions(item) {
+        this.setState({
+            viewPopup: false
         })
-        let path = RNFS.DocumentDirectoryPath + '/' + name.replace(/[^\w\s-]/g, '').trim().replace(/[^\w\s-]/g, '-')
-            + '.csv';
-        RNFS.writeFile(path, csv, 'ascii')
-            .then((success) => {
-                this.setState({loading: false});
-                open({
-                    title: 'Exporter les transactions de ' + name,
-                    url: 'file://' + path,
-                    type: 'text/csv',
-                    showAppsToView: true,
-                })
-            })
-            .catch((err) => {
-                console.error(err.message);
-                this.setState({loading: false});
-            });
-
+        this.props.navigation.navigate('MemberTransactions', {
+            memberId: item.id,
+            memberFirstName: item.first_name,
+            memberLastName: item.last_name,
+            refreshItems: (() => {
+                this.initiateMembers()
+            }).bind(this)
+        })
     }
+
 }
