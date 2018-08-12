@@ -205,7 +205,9 @@ export default class Home extends React.Component {
                 + "," + '"' + t.label.replace(/"/g, '""') + '"' + "," + '"' + t.first_name.replace(/"/g, '""') + '"'
                 + "," + '"' + t.last_name.replace(/"/g, '""') + '"' + "\n"
         })
-        let path = RNFS.DocumentDirectoryPath + '/' + this.props.navigation.state.params.partyName + '.csv';
+        let path = RNFS.DocumentDirectoryPath + '/'
+            + this.props.navigation.state.params.partyName.replace(/[^\w\s-]/g, '').trim().replace(/[^\w\s-]/g, '-')
+            + '.csv';
         RNFS.writeFile(path, csv, 'ascii')
             .then((success) => {
                 open({
