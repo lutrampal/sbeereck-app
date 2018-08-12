@@ -10,6 +10,8 @@ import {Popup} from '../components/Popup';
 import {Loading} from '../components/Loading';
 import {ViewMember} from '../components/ViewMember';
 import {AddMember} from '../components/AddMember';
+import * as RNFS from "react-native-fs"
+import {open} from "react-native-share"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -151,6 +153,8 @@ export default class Home extends React.Component {
                     })
                 }}/>
 
+                <YellowButton top={true} buttonIcon="table" buttonAction={() => {this.exportMembers()}}/>
+
                 <Popup shown={this.state.viewPopup}
                        toggleState={() => this.setState({viewPopup: !this.state.viewPopup})}>
                     <ViewMember
@@ -194,6 +198,10 @@ export default class Home extends React.Component {
                                 ],
                                 {cancelable: false}
                             )
+                        }}
+
+                        onExportPress={(item) => {
+                            this.exportMember(item.id, item.first_name + " " + item.last_name)
                         }}
 
                         onUpdateBalancePress={(item) => {
@@ -399,6 +407,49 @@ export default class Home extends React.Component {
         }
     }
 
+    async getFullMembers() {
+        await this.checkConnection();
+
+        this.setState({loading: true});
+
+        try {
+            let response = await fetch('https://' + this.state.appHost + '/members/full',
+                {
+                    headers: {
+                        'authentication-token': this.state.appToken
+                    }
+                });
+
+            let response_body = await response.json();
+
+            this.setState({fullMembers: response_body, loading: false});
+        } catch (error) {
+            this.setState({loading: false});
+            console.log(error);
+        }
+    }
+
+    async getMemberTransactions(member_id) {
+        await this.checkConnection();
+        this.setState({loading: true});
+
+        try {
+            let response = await fetch('https://' + this.state.appHost + '/members/' + member_id + '/transactions',
+                {
+                    headers: {
+                        'authentication-token': this.state.appToken
+                    }
+                });
+
+            let response_body = await response.json();
+
+            this.setState({memberTransactions: response_body, loading: false});
+        } catch (error) {
+            this.setState({loading: false});
+            console.log(error);
+        }
+    }
+
     async checkConnection() {
         try {
             let response = await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
@@ -599,4 +650,67 @@ export default class Home extends React.Component {
             return text.toString().replace(",", ".");
     }
 
+    async exportMembers() {
+        this.setState({loading: true});
+        await this.getFullMembers();
+
+        let selectedMembersIds = this.state.members.map(member => member.id)
+        let selectedMembers = this.state.fullMembers.filter(value => selectedMembersIds.indexOf(value.id) !== -1)
+
+        let csv = "Prénom,Nom,Solde,Ecole,Email,Téléphone,Dernière cotisation,Ancien staff ?\n"
+        /* CSV formatting:
+         *  - each value is double quoted to escape commas
+         *  - each double quote in value is doubled to escape it
+         */
+        selectedMembers.forEach((m) => {
+            csv += '"' + m.first_name + '","' + m.last_name + '","'
+                + m.balance.toString().replace(/\./g, ',').replace(/ /g,'') + '","' + m.school + '","' + m.email + '","'
+                + m.phone + '","' + m.last_membership_payment + '","' + (m.is_former_staff ? 1 : 0) + '"\n'
+        })
+        let path = RNFS.DocumentDirectoryPath + '/membres.csv';
+        RNFS.writeFile(path, csv, 'ascii')
+            .then((success) => {
+                this.setState({loading: false});
+                open({
+                    title: 'Exporter les membres sélectionnés',
+                    url: 'file://' + path,
+                    type: 'text/csv',
+                    showAppsToView: true,
+                })
+            })
+            .catch((err) => {
+                console.error(err.message);
+                this.setState({loading: false});
+            });
+    }
+
+    async exportMember(id, name) {
+        await this.getMemberTransactions(id)
+
+        let csv = "Soirée,Date et heure,Montant,Libellé\n"
+        /* CSV formatting:
+         *  - each value is double quoted to escape commas
+         *  - each double quote in value is doubled to escape it
+         */
+        this.state.memberTransactions.forEach((t) => {
+            csv += '"' + t.party_name + '","' + t.timestamp + '","'
+                + t.amount.toString().replace(/\./g, ',').replace(/ /g,'') + '","' + t.label + '"\n'
+        })
+        let path = RNFS.DocumentDirectoryPath + '/' + name + '.csv';
+        RNFS.writeFile(path, csv, 'ascii')
+            .then((success) => {
+                this.setState({loading: false});
+                open({
+                    title: 'Exporter les transactions de ' + name,
+                    url: 'file://' + path,
+                    type: 'text/csv',
+                    showAppsToView: true,
+                })
+            })
+            .catch((err) => {
+                console.error(err.message);
+                this.setState({loading: false});
+            });
+
+    }
 }

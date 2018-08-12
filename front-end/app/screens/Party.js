@@ -150,6 +150,7 @@ export default class Home extends React.Component {
                                                        }} onItemClick={(theItem) => {
                         this.props.navigation.navigate('Transactions', {
                             partyId: theItem.id,
+                            partyName: theItem.name,
                             refreshItems: (() => {
                                 this.initialParties()
                             }).bind(this)

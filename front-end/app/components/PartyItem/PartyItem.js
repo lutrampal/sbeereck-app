@@ -6,7 +6,7 @@ import styles from './styles';
 export default class Header extends React.Component {
     render() {
         return (
-            <TouchableOpacity onPress={() => { this.props.onItemClick(this.props.item) }} style={styles.container}>
+            <TouchableOpacity onPress={() => { this.props.onItemClick(this.props.item) }} style={styles.bottomContainer}>
                 <View style={styles.leftSide}>
                     <Text style={styles.name}>{this.props.item.name}</Text>
                     <Text style={styles.sbeers}>{this.props.item.number_of_attendees} participants</Text>

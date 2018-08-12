@@ -2,7 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 
 export default styles = EStyleSheet.create({
-    container: {
+    bottomContainer: {
         flexDirection: 'row',
         width: '100%',
         height: 'auto',

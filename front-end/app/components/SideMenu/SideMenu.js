@@ -7,7 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class DrawerContent extends Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.bottomContainer}>
         <ScrollView alwaysBounceVertical={false}>
           <View style={{width: '100%', height: 150, alignItems: 'center'}}>
             <Image

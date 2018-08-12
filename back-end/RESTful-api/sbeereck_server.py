@@ -1,5 +1,8 @@
 from flask import Flask
 from flask_restful import Resource, Api, reqparse
+
+from full_members import FullMembers
+from member_transactions import MemberTransactions
 from parties import Parties
 from party import Party
 from products import Products
@@ -20,10 +23,12 @@ parser = reqparse.RequestParser()
 api.add_resource(Parties, '/parties')
 api.add_resource(Products, '/products')
 api.add_resource(Members, '/members')
+api.add_resource(FullMembers, '/members/full')
 api.add_resource(Party, '/parties/<party_id>')
 api.add_resource(Product, '/products/<product_id>')
 api.add_resource(Member, '/members/<member_id>')
 api.add_resource(Membership, '/members/<member_id>/membership')
+api.add_resource(MemberTransactions, "/members/<member_id>/transactions")
 api.add_resource(PartyTransactions, "/parties/<party_id>/transactions")
 api.add_resource(Transaction, "/transactions/<transaction_id>")
 api.add_resource(Transactions, "/transactions")

@@ -16,7 +16,7 @@ export default class Header extends React.Component {
         ];
 
         return (
-            <View style={styles.container}>
+            <View style={styles.bottomContainer}>
                 <View style={styles.leftSide}>
                     <Text style={styles.name}>{this.props.item.name}</Text>
                 </View>

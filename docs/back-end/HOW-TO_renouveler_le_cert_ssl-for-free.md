@@ -21,7 +21,7 @@
 `mkdir verif-files && mv <fichier 1> <fichier 2> verif-files`
 
 8. Lancer le container :  
-`sudo docker run -d -p 80:80 -v /home/ec2-user/verif-files:/usr/local/apache2/htdocs/.well-known/acme-challenge --name apache httpd`
+`sudo docker run -d -p 80:80 -v /home/$USER/verif-files:/usr/local/apache2/htdocs/.well-known/acme-challenge --name apache httpd:2.4.32`
 
     > Les liens demandés par sslforfree doivent désormais être accessibles.
 
@@ -34,16 +34,16 @@
 12. Sur le serveur, supprimer le nouveau container apache :  
 `sudo docker rm -f apache`
 
-13. Stopper le webservice :  
-`sudo docker stop sbeereck-webservice`
+13. Stopper le back-end :  
+`sudo docker-compose down`
 
 14. Dans le dossier /home/ec2-user/ssl, mettre à jour les fichiers :  
-`echo "<certificat>" > /home/ec2-user/ssl/sbeereck.cert`  
-`echo "<private key>" > /home/ec2-user/ssl/sbeereck.key`  
-`echo "<CA Bundle>" /home/ec2-user/ssl/ca_bundle.cert`
+`echo "<certificat>" > /home/$USER/ssl/sbeereck.cert`  
+`echo "<private key>" > /home/$USER/ssl/sbeereck.key`  
+`echo "<CA Bundle>" /home/$USER/ssl/ca_bundle.cert`
 
 15. Relancer le webservice :  
-`sudo docker start sbeereck-webservice`
+`sudo docker-compose up -d`
 
 **C'est fini !  
 ( •_•)  

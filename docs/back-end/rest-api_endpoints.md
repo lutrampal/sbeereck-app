@@ -115,7 +115,21 @@
 			the response, in case of success, contains the member id  
 				{  
 					"id":  
-				}  
+				}
+
+		* /members/full
+			GET return all the members and all their information
+				[ {  
+					"id":  
+					"first_name":  
+					"last_name":  
+					"balance":  
+					"last_membership_payment":
+					"school":
+					"email":
+					"phone":
+					"is_former_staff":
+				  }, ... ]  
 
 	* /members/<id>
 		GET return the desired member
@@ -139,6 +153,16 @@
 				"phone":
 			}
 		DELETE delete the desired member
+
+		* /members/<id>/transactions
+			GET return all the transactions of this member
+			[ {  
+				"party_id":
+				"party_name":
+				"amount":  
+				"label":
+				"timestamp":
+				}, ... ]  
 
 	* /members/<id>/membership
 		PUT renew the membership of this member, no body is required, the last_membership_payment field will be set to the current timestamp

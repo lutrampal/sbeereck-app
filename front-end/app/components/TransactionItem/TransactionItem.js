@@ -6,7 +6,7 @@ import styles from './styles';
 export default class Header extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
+            <View style={styles.bottomContainer}>
                 <View style={styles.leftSide}>
                     <Text style={[styles.name, { fontWeight: 'bold' }]}>{this.props.item.label}</Text>
                     <Text style={styles.name}>{this.props.item.first_name} {this.props.item.last_name}</Text>

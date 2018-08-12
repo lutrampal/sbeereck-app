@@ -1,12 +1,14 @@
 import React from 'react';
-import { FlatList, AsyncStorage, Alert } from 'react-native';
+import {Alert, AsyncStorage, FlatList} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { Container } from '../components/Container';
+import {Container} from '../components/Container';
 import {Header} from '../components/Header';
-import { YellowButton } from '../components/YellowButton';
-import { SearchBox } from '../components/SearchBox';
-import { Loading } from '../components/Loading';
-import { TransactionItem } from '../components/TransactionItem';
+import {YellowButton} from '../components/YellowButton';
+import {SearchBox} from '../components/SearchBox';
+import {Loading} from '../components/Loading';
+import {TransactionItem} from '../components/TransactionItem';
+import * as RNFS from "react-native-fs"
+import {open} from "react-native-share"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -103,6 +105,8 @@ export default class Home extends React.Component {
                     this.props.navigation.navigate('NewTransaction', { partyId: this.props.navigation.state.params.partyId, refreshItems: (() => { this.initiatesTransactions(); this.props.navigation.state.params.refreshItems(); }).bind(this) })
                  }} />
 
+                <YellowButton top={true} buttonIcon="table" buttonAction={() => this.exportParty()}/>
+
                 <Loading shown={this.state.loading} />
             </Container>
         );
@@ -188,5 +192,31 @@ export default class Home extends React.Component {
             chaine = chaine.toLowerCase().replace(new RegExp(i, "gi"), tab[i])
         }
         return chaine;
+    }
+
+    exportParty() {
+        let csv = "Date et heure,Montant,Libellé,Prénom,Nom\n"
+        /* CSV formatting:
+         *  - each value is double quoted to escape commas
+         *  - each double quote in value is doubled to escape it
+         */
+        this.state.transactions.forEach((t) => {
+            csv += '"' + t.timestamp + '"' + "," + '"' + t.amount.toString().replace(/\./g, ',').replace(/ /g,'') + '"'
+                + "," + '"' + t.label.replace(/"/g, '""') + '"' + "," + '"' + t.first_name.replace(/"/g, '""') + '"'
+                + "," + '"' + t.last_name.replace(/"/g, '""') + '"' + "\n"
+        })
+        let path = RNFS.DocumentDirectoryPath + '/' + this.props.navigation.state.params.partyName + '.csv';
+        RNFS.writeFile(path, csv, 'ascii')
+            .then((success) => {
+                open({
+                    title: 'Exporter ' + this.props.navigation.state.params.partyName,
+                    url: 'file://' + path,
+                    type: 'text/csv',
+                    showAppsToView: true,
+                })
+            })
+            .catch((err) => {
+                console.error(err.message);
+            });
     }
 }

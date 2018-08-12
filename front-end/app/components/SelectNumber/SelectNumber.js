@@ -6,7 +6,7 @@ import styles from './styles';
 export default class Header extends React.Component {
     render() {
         return (
-            <View style={[styles.container, this.props.style]}>
+            <View style={[styles.bottomContainer, this.props.style]}>
                 <View style={{flex: 1}}>
                     {this.price()}
                     {this.textInput()}
