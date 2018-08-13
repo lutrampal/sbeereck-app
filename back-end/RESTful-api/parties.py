@@ -32,7 +32,7 @@ class Parties(Resource):
                     'date': str(row['date']),
                     'number_of_attendees': number_of_attendees,
                     'revenue': revenue,
-                    'top-up': topup
+                    'topup': topup
                 })
         connection.close()
         return parties, 201

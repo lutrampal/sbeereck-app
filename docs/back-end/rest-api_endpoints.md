@@ -10,7 +10,8 @@
 				"name":  
 				"date":  
 				"number_of_attendees":  
-				"balance":  
+				"revenue":
+				"topup":  
 			  }, ... ]  
 		POST: insert a new party, the sent party object should be as follows  
 			{
@@ -157,7 +158,7 @@
 		* /members/<id>/transactions
 			GET return all the transactions of this member
 			[ {
-				"id": 
+				"id":
 				"party_id":
 				"party_name":
 				"amount":  
