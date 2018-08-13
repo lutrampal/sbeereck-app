@@ -11,6 +11,7 @@
     "react-native": "0.56.0",
     "react-native-autocomplete-input": "^3.5.0",
     "react-native-datepicker": "^1.6.0",
+    "react-native-easy-grid": "^0.2.0",
     "react-native-extended-stylesheet": "^0.8.1",
     "react-native-flexi-radio-button": "^0.2.2",
     "react-native-fs": "^2.11.15",
