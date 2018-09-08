@@ -316,7 +316,7 @@ export default class Home extends React.Component {
             this.setState({initialParties: request});
 
             this.setState({
-                parties: this.state.parties.concat(this.state.initialParties),
+                parties: this.state.initialParties,
                 loading: false,
                 searchValue: ""
             });
@@ -346,9 +346,8 @@ export default class Home extends React.Component {
                             "served_beers": this.state.newPartyBeers
                         })
                     });
-
-                this.initialParties();
                 alert("Soirée ajoutée !");
+                this.initialParties();
             }
         } catch (error) {
             console.log(error);
@@ -417,6 +416,13 @@ export default class Home extends React.Component {
                         'authentication-token': this.state.appToken
                     }
                 });
+
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
 
             this.setState({connected: true});
 

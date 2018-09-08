@@ -409,6 +409,14 @@ export default class Home extends React.Component {
                 });
 
             this.setState({connected: true});
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
+
+            this.setState({ connected: true });
 
         } catch (error) {
             this.setState({connected: false, loading: false});
