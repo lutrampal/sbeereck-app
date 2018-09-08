@@ -5,6 +5,7 @@ testing/
 *.key
 *.pem
 *.cert
+front-end/android/app/src/main/assets/
 
 # Created by https://www.gitignore.io/api/java,android,androidstudio
 
@@ -183,3 +184,5 @@ fabric.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
 # End of https://www.gitignore.io/api/java,android,androidstudio
+
+.idea/

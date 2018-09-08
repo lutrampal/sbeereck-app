@@ -3,8 +3,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default styles = EStyleSheet.create({
     container: {
-        width: 70,
-        height: 70,
+        width: 50,
+        height: 50,
         position: 'absolute',
         bottom: 10,
         right: 10,
