@@ -6,6 +6,7 @@ import com.facebook.react.ReactApplication;
 import cl.json.RNSharePackage;
 import com.rnfs.RNFSPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import org.reactnative.camera.RNCameraPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -29,7 +30,8 @@ public class MainApplication extends Application implements ShareApplication, Re
           new MainReactPackage(),
             new RNSharePackage(),
             new RNFSPackage(),
-            new VectorIconsPackage()
+            new VectorIconsPackage(),
+            new RNCameraPackage()
       );
     }
 

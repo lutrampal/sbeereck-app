@@ -619,7 +619,7 @@
 				00E356EF1AD99517003FC87E /* sbeereckTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				9BE1783A95C14F439A6DAFFE /* Resources */,
+				479C1D7F451A43FF891C812B /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -646,20 +646,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9BE1783A95C14F439A6DAFFE /* Resources */ = {
+		479C1D7F451A43FF891C812B /* Resources */ = {
 			isa = "PBXGroup";
 			children = (
-				A4374C48173745DA816ADAE7 /* Entypo.ttf */,
-				FF00BC71034B46FC8D40B56E /* EvilIcons.ttf */,
-				159B779506C54356B0E20741 /* Feather.ttf */,
-				AB1AF3F17162404C86C39AC4 /* FontAwesome.ttf */,
-				459DFFCA3F1C46538D0F0998 /* Foundation.ttf */,
-				FCCBFFB5AB2E4B49B126C547 /* Ionicons.ttf */,
-				83813281D36545F0B69A7633 /* MaterialCommunityIcons.ttf */,
-				141C1FEB91BF41D3AD0424D1 /* MaterialIcons.ttf */,
-				27297E5EA825423B82E662E7 /* Octicons.ttf */,
-				C115B2898FCE4F4787F39D92 /* SimpleLineIcons.ttf */,
-				2666BCBC2C414C2D86476645 /* Zocial.ttf */,
+				3682621572704E088AC9A0C8 /* Entypo.ttf */,
+				BF21D8D3C43941078CDB0C7E /* EvilIcons.ttf */,
+				4E0C0312F6084ECDA61812EB /* Feather.ttf */,
+				FAC0064D636C48DFA43CE5B9 /* FontAwesome.ttf */,
+				49A1AFF5F7554E8189F768F5 /* Foundation.ttf */,
+				12D1A52A16FF4CF9BCBA0224 /* Ionicons.ttf */,
+				59ABC2ECA4EA46C4A8BF8986 /* MaterialCommunityIcons.ttf */,
+				A6FB3BE468004754BB3262D7 /* MaterialIcons.ttf */,
+				52913FB7F45B47279B3B3C52 /* Octicons.ttf */,
+				38F6709854924F0DACCD8229 /* SimpleLineIcons.ttf */,
+				EFD00979DD114C0D81F2D067 /* Zocial.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1111,17 +1111,17 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				5224759A254D4188A8643DFB /* Entypo.ttf in Resources */,
-				1D9F203ACF9E458792E96EA6 /* EvilIcons.ttf in Resources */,
-				E4ADE222049E4A15A2AEABBD /* Feather.ttf in Resources */,
-				A0111090A23744D5B589290A /* FontAwesome.ttf in Resources */,
-				84FC827ADA0F49CE8759A5AB /* Foundation.ttf in Resources */,
-				0091EA933B824D34A4A00B12 /* Ionicons.ttf in Resources */,
-				72917690E2B34AFA89BE3409 /* MaterialCommunityIcons.ttf in Resources */,
-				9F0CFB5E6D114153B1E1793A /* MaterialIcons.ttf in Resources */,
-				1F4EEF66EC57426EAA2EF0F0 /* Octicons.ttf in Resources */,
-				E1364D2762A64A9FA5953ED6 /* SimpleLineIcons.ttf in Resources */,
-				1FAF77482E0C476BAB12414E /* Zocial.ttf in Resources */,
+				B05587AFCC6443A5A9904F2C /* Entypo.ttf in Resources */,
+				EFA1E7B397634BA4B9011DF6 /* EvilIcons.ttf in Resources */,
+				C56F608E75574B3D86C9C290 /* Feather.ttf in Resources */,
+				FA0B120415EC4E7D816F6CCF /* FontAwesome.ttf in Resources */,
+				EB90D00F2D3C46548B140E6C /* Foundation.ttf in Resources */,
+				EFCACC5DBD2243ACBB746C3B /* Ionicons.ttf in Resources */,
+				228F6DE9D367486EA45D9DDE /* MaterialCommunityIcons.ttf in Resources */,
+				D2B80B09BF1F4EEB94CE121F /* MaterialIcons.ttf in Resources */,
+				58937ECECEBF4492AF373A6A /* Octicons.ttf in Resources */,
+				526454447A384F7B9A812A06 /* SimpleLineIcons.ttf in Resources */,
+				24B336ED9F784F8DB70BA7A1 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1262,6 +1262,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1293,6 +1295,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1318,6 +1322,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1342,6 +1348,8 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1382,6 +1390,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1422,6 +1432,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1461,6 +1473,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",
@@ -1500,6 +1514,8 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/../node_modules/react-native-camera/ios/**",
+					"$(SRCROOT)/../node_modules/react-native-permissions/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-fs/**",
 					"$(SRCROOT)/../node_modules/react-native-share/ios",

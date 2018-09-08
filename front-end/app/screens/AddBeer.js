@@ -127,6 +127,13 @@ export default class Home extends React.Component {
                     }
                 });
 
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
+
             this.setState({ connected: true });
 
         } catch (error) {

@@ -348,7 +348,6 @@ export default class Home extends React.Component {
                             "served_beers": this.state.newPartyBeers
                         })
                     });
-
                 this.initialParties();
                 Toast.show("Soirée ajoutée !");
             }
@@ -419,6 +418,13 @@ export default class Home extends React.Component {
                         'authentication-token': this.state.appToken
                     }
                 });
+
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
 
             this.setState({connected: true});
 

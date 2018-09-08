@@ -51,6 +51,10 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Veuillez autoriser l application a utiliser la camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Veuillez autoriser l application a utiliser la camera</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

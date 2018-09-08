@@ -1,9 +1,11 @@
 import React from 'react';
-import { View, Text, Keyboard, AsyncStorage, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, Keyboard, AsyncStorage, Alert, TouchableOpacity, FlatList } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Container } from '../components/Container';
 import {Header} from '../components/Header';
 import { Loading } from '../components/Loading';
+import { ChargePopup } from '../components/ChargePopup';
+import { Popup } from '../components/Popup';
 import { SearchUser } from '../components/SearchUser';
 import { SelectCategory } from '../components/SelectCategory';
 import { TransactionBeer } from '../components/TransactionBeer';
@@ -34,9 +36,12 @@ export default class Home extends React.Component {
 
             members: [],
             query: "",
-            selectedMember: {},
+            selectedMember: {first_name: '', last_name: ''},
+            selectedMember: {first_name: '', last_name: ''},
 
             selectedCategory: 'beer',
+
+            products: [],
 
             beers: [],
             selectedBeer: {},
@@ -54,6 +59,8 @@ export default class Home extends React.Component {
 
             moneyName: "Recharge",
             moneyCount: "0.00",
+
+            chargePopup: false,
         }
     }
 
@@ -155,9 +162,56 @@ export default class Home extends React.Component {
                     rightButtonIcon="check"
                 />
                 {this.showContent(members, query, comp)}
+
+                <Popup shown={this.state.chargePopup} toggleState={() => {this.setState({chargePopup: !this.state.chargePopup})}}>
+                    <ChargePopup
+                        userName={this.state.selectedMember.first_name + " " + this.state.selectedMember.last_name}
+                        moneyCount={this.state.moneyCount}
+                        addProduct={this.addProduct.bind(this)}
+                        closePopup={(() => { this.setState({chargePopup: !this.state.chargePopup}) }).bind(this)}
+                        onLydiaPayment={this.onLydiaPayment.bind(this)}
+                    />
+                </Popup>
+
                 <Loading shown={this.state.loading} />
             </Container>
         );
+    }
+
+    async onLydiaPayment(qrcodecontent) {
+        alert(qrcodecontent)
+
+        this.setState({ loading: true, chargePopup: false });
+
+        try {
+            response = await fetch('https://homologation.lydia-app.com/api/payment/payment',
+                {
+                    method: "post",
+                    headers: {
+                        'content-type': "application/json"
+                    },
+                    body: JSON.stringify({
+                        vendor_token : "5b658507657ac943697160",
+                        phone : "0621856641",
+                        paymentData : qrcodecontent,
+                        send_email_to_collecter: "no",
+                        send_email_to_payer: "yes",
+                        transmission: "qrcode",
+                        amount: this.state.moneyCount,
+                        currency: "EUR",
+                        order_id: Date.now()
+                    })
+                });
+
+            request = await response.json();
+
+            this.addProduct();
+            this.setState({ loading: false });
+        } catch (error) {
+            alert("Erreur lors du rechargement du compte par Lydia.\n" + error);
+            this.setState({ loading: false });
+        }
+
     }
 
     showContent(members, query, comp) {
@@ -182,7 +236,7 @@ export default class Home extends React.Component {
             return (
                 <KeyboardAwareScrollView alwaysBounceVertical={false}>
                     <View style={{flexDirection: 'row', alignItems: 'center', padding: 10}}>
-                        <TouchableOpacity onPress={() => { this.setState({ selectedMember: {}, query: ""})}}>
+                        <TouchableOpacity onPress={() => { this.setState({ selectedMember: {}, query: "", products: []})}}>
                             <Icon
                                 name="times-circle"
                                 size={20}
@@ -195,6 +249,43 @@ export default class Home extends React.Component {
                         {this.getUserBalance()}
                     </View>
 
+                    <View style={{height: 'auto', width: '100%', paddingLeft: 20, paddingRight: 20}}>
+                        <Text>
+                            Total commande : {this.getTotalPrice()}€
+                        </Text>
+
+                        <FlatList
+                            data={this.state.products}
+                            extraData={this.state}
+                            keyExtractor={(item, index) => index.toString()}
+                            renderItem={({ item }) => (
+                                    <View style={{flexDirection: 'row', height: 'auto', paddingTop: 5, paddingBottom: 5, borderBottomWidth: 1, borderColor: 'grey'}} onPress={() => this.props.setSelectedBeer(item)}>
+                                        <Text style={{flex: 1, fontSize: 12, fontWeight: 'bold', color: 'black'}}>
+                                            {item.count + " " + item.type + " de " + item.name}
+                                        </Text>
+                                        <TouchableOpacity onPress={() => {this.removeProduct(item)}}>
+                                            <Icon
+                                                name="times-circle"
+                                                size={15}
+                                                color="#c70100"
+                                            />
+                                        </TouchableOpacity>
+                                    </View>
+                                )
+                            }
+                        />
+
+                        <TouchableOpacity onPress={() => {
+                            if(this.state.selectedCategory == 'money') {
+                                this.setState({chargePopup: true});
+                            } else {
+                                this.addProduct()
+                            }
+                        }} style={{ marginTop: 10, height: 35, width: '100%', borderRadius: 7, alignItems: 'center', justifyContent: 'center', backgroundColor: '#edaf36'}}>
+                            <Text style={{color: 'white', fontSize: 18, fontWeight: 'bold'}}>Ajouter à la commande</Text>
+                        </TouchableOpacity>
+                    </View>
+
                     <SelectCategory
                         selectedCategory={this.state.selectedCategory}
                         changeSelectedCategory={(item) => { this.setState({ selectedCategory: item }) }}
@@ -203,6 +294,25 @@ export default class Home extends React.Component {
                     {this.openCategory()}
                 </KeyboardAwareScrollView>
             )
+    }
+
+    getTotalPrice() {
+        bill = 0;
+        this.state.products.forEach(function(element) {
+              bill = bill + element.price;
+            });
+
+        return parseFloat(Math.round(bill * 100) / 100).toFixed(2);;
+    }
+
+    removeProduct(product) {
+        const index = this.state.products.indexOf(product);
+
+        if (index !== -1) {
+            this.state.products.splice(index, 1);
+        }
+
+        this.setState({loading: this.state.products});
     }
 
     getUserBalance() {
@@ -308,6 +418,13 @@ export default class Home extends React.Component {
                     }
                 });
 
+            let request = await response.json();
+            if(request.message != undefined)
+            {
+                this.setState({connected: false, loading: false});
+                this.props.navigation.navigate("Parameters");
+            }
+
             this.setState({ connected: true });
 
         } catch (error) {
@@ -322,10 +439,10 @@ export default class Home extends React.Component {
             return null;
         }
 
-        if (parseFloat(this.state.selectedMember.balance) < parseFloat(this.state.limitBalance) && (this.state.selectedCategory !== 'money' && (this.state.selectedCategory !== 'deposit' || this.state.depositType === -1)) ) {
+        if (parseFloat(this.state.selectedMember.balance) + parseFloat(this.getTotalPrice()) < parseFloat(this.state.limitBalance)) {
             Alert.alert(
                 'Balance dépassée',
-                'Le compte du membre est en dessous de la limite de ' + this.state.limitBalance + ' euros. \nVoulez-vous forcer l\'opération?',
+                'Le solde du membre sera en dessous de la limite de ' + this.state.limitBalance + ' euros. \nVoulez-vous forcer l\'opération?',
                 [
                     { text: 'Annuler', onPress: () => { this.setState({ viewPopup: false }) }, style: 'cancel' },
                     {
@@ -386,8 +503,25 @@ export default class Home extends React.Component {
     }
 
     async continueSaveParameters() {
-        let bill = 0;
-        let text = "";
+        this.setState({loading: true})
+
+        // Step 1, calculate the price, set transaction text
+        bill = this.getTotalPrice();
+        text = ""
+        this.state.products.forEach(function(element) {
+          text += element.count + " " + element.type + " de " + element.name + "\n";
+        });
+
+        // Step 3, process the transaction in the database
+        await this.createTransaction(bill, text);
+
+        // Step 4, change of screen
+        this.props.navigation.goBack();
+    }
+
+    async addProduct() {
+        // create object in the collection
+        // object attributs : price, count, type, name
 
         switch(this.state.selectedCategory) {
             case 'beer':
@@ -395,52 +529,59 @@ export default class Home extends React.Component {
                     Toast.show("Veuillez sélectionner une bière !");
                     return null;
                 }
-                bill = parseInt(this.state.beersCount, 10)*this.getBeerPrice()*parseInt(this.state.type, 10)*-1;
-                text = this.state.beersCount + " " + this.getBeerType(this.state.type) + " de "  + this.state.selectedBeer.name;
-                this.setState({loading: true});
-                await this.createTransaction(bill, text);
-                this.setState({loading: false});
-                this.props.navigation.goBack();
+                price = parseInt(this.state.beersCount, 10)*this.getBeerPrice()*parseInt(this.state.type, 10)*-1;
+                count = this.state.beersCount;
+                type = this.getBeerType(this.state.type);
+                name = this.state.selectedBeer.name;
+
                 break;
             case 'deposit':
                 if (this.state.selectedDeposit.id === undefined) {
                     Toast.show("Veuillez sélectionner un type de caution !");
                     return null;
                 }
-                bill = parseInt(this.state.depositsCount, 10) * parseFloat(this.state.selectedDeposit.price) * parseInt(this.state.depositType, 10);
-                text = this.state.depositsCount + " " + this.state.selectedDeposit.name + " " + this.getDepositType(this.state.depositType);
-                this.setState({ loading: true });
-                await this.createTransaction(bill, text);
-                this.setState({ loading: false });
-                this.props.navigation.goBack();
+                price = parseInt(this.state.depositsCount, 10) * parseFloat(this.state.selectedDeposit.price) * parseInt(this.state.depositType, 10);
+                count = this.state.depositsCount;
+                type = this.getDepositType(this.state.depositType);
+                name = this.state.selectedDeposit.name;
+
                 break;
             case 'food':
                 if (this.state.selectedFood.id === undefined) {
                     Toast.show("Veuillez sélectionner un alliment !");
                     return null;
                 }
-                bill = parseInt(this.state.foodsCount, 10) * parseFloat(this.state.selectedFood.price) * -1;
-                text = this.state.foodsCount + " " + this.state.selectedFood.name;
-                this.setState({ loading: true });
-                await this.createTransaction(bill, text);
-                this.setState({ loading: false });
-                this.props.navigation.goBack();
+                price = parseInt(this.state.foodsCount, 10) * parseFloat(this.state.selectedFood.price) * -1;
+                count = this.state.foodsCount;
+                type = "portion(s)";
+                name = this.state.selectedFood.name;
+
                 break;
             case 'money':
                 if (this.state.moneyName === "") {
                     Toast.show("Veuillez entrer une description de transaction !");
                     return null;
                 }
-                bill = parseFloat(this.state.moneyCount);
-                text = this.state.moneyName;
-                this.setState({ loading: true });
-                await this.createTransaction(bill, text);
-                this.setState({ loading: false });
-                this.props.navigation.goBack();
+                price = parseFloat(this.state.moneyCount);
+                count = 1;
+                type = this.state.moneyName;
+                name = price + " euro(s)";
+
                 break;
             default:
                 Toast.show("not implemented yet");
         }
+
+        product = {
+            price: price,
+            count: count,
+            type: type,
+            name: name
+        }
+
+        this.state.products.push(product);
+
+        this.setState({products: this.state.products});
     }
 
     async createTransaction(bill, text) {
@@ -486,9 +627,9 @@ export default class Home extends React.Component {
     getDepositType(type) {
         switch (type) {
             case -1:
-                return "encaisée(s)";
+                return "encaissement(s)";
             case 1:
-                return "rendue(s)";
+                return "remise(s)";
         }
     }
 
