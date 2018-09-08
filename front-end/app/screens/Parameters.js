@@ -7,6 +7,7 @@ import {Loading} from '../components/Loading';
 import {Authentification} from '../components/Authentification';
 import {AppParam} from '../components/AppParam';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -215,7 +216,7 @@ export default class Home extends React.Component {
                 this.loadParameters();
             }
         } catch (error) {
-            alert("Erreur lors de la sauvegarde des paramètres.\n" + error);
+            Toast.show("Erreur lors de la sauvegarde des paramètres.\n" + error);
             this.setState({loading: false});
         }
     }
@@ -239,7 +240,7 @@ export default class Home extends React.Component {
             if (this.state.connected)
                 this.loadParameters();
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({loading: false});
         }
     }
@@ -304,7 +305,7 @@ export default class Home extends React.Component {
 
         } catch (error) {
             this.setState({connected: false, loading: false});
-            alert("Veuillez vous connecter en entrant l'adresse du serveur et votre mot de passe.");
+            Toast.show("Veuillez vous connecter en entrant l'adresse du serveur et votre mot de passe.");
         }
     }
 }

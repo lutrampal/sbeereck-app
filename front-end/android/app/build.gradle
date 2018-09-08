@@ -137,6 +137,8 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-share')
+    compile project(':react-native-fs')
     compile project(':react-native-vector-icons')
     compile project(':react-native-camera')
     compile fileTree(dir: "libs", include: ["*.jar"])

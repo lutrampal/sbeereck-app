@@ -12,7 +12,8 @@ class Members(Resource):
             connection.close()
             abort(403)
         query = "SELECT member_id AS id, first_name, last_name, balance, last_membership_payment, is_former_staff " \
-                "FROM member_list"
+                "FROM member_list " \
+                "ORDER BY last_name, first_name"
         members = []
         with connection.cursor() as cursor:
             cursor.execute(query)

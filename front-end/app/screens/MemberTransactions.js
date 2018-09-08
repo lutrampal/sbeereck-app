@@ -6,9 +6,9 @@ import {Header} from '../components/Header';
 import {YellowButton} from '../components/YellowButton';
 import {SearchBox} from '../components/SearchBox';
 import {Loading} from '../components/Loading';
-import {TransactionItem} from '../components/TransactionItem';
 import * as RNFS from "react-native-fs"
 import {open} from "react-native-share"
+import TransactionItem from "../components/TransactionItem/TransactionItem"
 import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
@@ -74,7 +74,7 @@ export default class Home extends React.Component {
                     this.setState(
                         {
                             searchValue: text,
-                            transactions: this.state.initialTransactions.filter((line) => ((this.preg(line.first_name) + this.preg(line.last_name) + this.preg(line.label) + this.preg(line.amount.toString())).includes(this.preg(text))))
+                            transactions: this.state.initialTransactions.filter((line) => ((this.preg(line.party_name) + this.preg(line.label) + this.preg(line.amount.toString())).includes(this.preg(text))))
                         }
                     );
                     }}/>
@@ -85,10 +85,12 @@ export default class Home extends React.Component {
                     data={this.state.transactions}
                     extraData={this.state}
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => <TransactionItem bottom_text={item.first_name + ' ' + item.last_name} item={item} onClickDelete={(theItem) => {
+                    renderItem={({ item }) => <TransactionItem bottom_text={item.party_name} item={item} onClickDelete={(item) => {
                         Alert.alert(
                             'Supprimer la transaction',
-                            'Êtes-vous sûr de vouloir supprimer la transaction de ' + item.first_name + ' ' + item.last_name + ' : "' + item.label + '" ?',
+                            'Êtes-vous sûr de vouloir supprimer la transaction de '
+                            + this.props.navigation.state.params.memberFirstName + ' '
+                            + this.props.navigation.state.params.memberLastName + ' : "' + item.label + '" ?',
                             [
                                 { text: 'Annuler', onPress: () => { }, style: 'cancel' },
                                 {
@@ -102,11 +104,8 @@ export default class Home extends React.Component {
                         )
                     }}/>}
                 />
-                <YellowButton buttonIcon="plus" buttonAction={() => {
-                    this.props.navigation.navigate('NewTransaction', { partyId: this.props.navigation.state.params.partyId, refreshItems: (() => { this.initiatesTransactions(); this.props.navigation.state.params.refreshItems(); }).bind(this) })
-                 }} />
 
-                <YellowButton top={true} buttonIcon="table" buttonAction={() => this.exportParty()}/>
+                <YellowButton buttonIcon="table" buttonAction={() => this.exportMember()}/>
 
                 <Loading shown={this.state.loading} />
             </Container>
@@ -119,7 +118,7 @@ export default class Home extends React.Component {
         this.setState({loading: true})
 
         try {
-            let response = await fetch('https://' + this.state.appHost + '/parties/' + this.props.navigation.state.params.partyId + '/transactions' ,
+            let response = await fetch('https://' + this.state.appHost + '/members/' + this.props.navigation.state.params.memberId + '/transactions' ,
                 {
                     headers: {
                         'authentication-token': this.state.appToken
@@ -145,13 +144,6 @@ export default class Home extends React.Component {
                         'authentication-token': this.state.appToken
                     }
                 });
-
-            let request = await response.json();
-            if(request.message != undefined)
-            {
-                this.setState({connected: false, loading: false});
-                this.props.navigation.navigate("Parameters");
-            }
 
             this.setState({ connected: true });
 
@@ -202,24 +194,27 @@ export default class Home extends React.Component {
         return chaine;
     }
 
-    exportParty() {
-        let csv = "Date et heure,Montant,Libellé,Prénom,Nom\n"
+    exportMember() {
+        let csv = "Soirée,Date et heure,Montant,Libellé\n"
         /* CSV formatting:
          *  - each value is double quoted to escape commas
          *  - each double quote in value is doubled to escape it
          */
         this.state.transactions.forEach((t) => {
-            csv += '"' + t.timestamp + '"' + "," + '"' + t.amount.toString().replace(/\./g, ',').replace(/ /g,'') + '"'
-                + "," + '"' + t.label.replace(/"/g, '""') + '"' + "," + '"' + t.first_name.replace(/"/g, '""') + '"'
-                + "," + '"' + t.last_name.replace(/"/g, '""') + '"' + "\n"
+            csv += '"' + t.party_name + '","' + t.timestamp + '","'
+                + t.amount.toString().replace(/\./g, ',').replace(/ /g,'') + '","' + t.label + '"\n'
         })
         let path = RNFS.DocumentDirectoryPath + '/'
-            + this.props.navigation.state.params.partyName.replace(/[^\w\s-]/g, '').trim().replace(/[^\w\s-]/g, '-')
+            + (this.props.navigation.state.params.memberFirstName + ' ' + this.props.navigation.state.params.memberLastName)
+                .replace(/[^\w\s-]/g, '').trim().replace(/[^\w\s-]/g, '-')
             + '.csv';
         RNFS.writeFile(path, csv, 'ascii')
             .then((success) => {
                 open({
-                    title: 'Exporter ' + this.props.navigation.state.params.partyName,
+                    title: 'Exporter les transactions '
+                        + (/[aeiouyAEIOUY]/.test(this.props.navigation.state.params.memberFirstName[0]) ? "d'" : "de ")
+                        + this.props.navigation.state.params.memberFirstName + ' '
+                        + this.props.navigation.state.params.memberLastName,
                     url: 'file://' + path,
                     type: 'text/csv',
                     showAppsToView: true,
@@ -228,5 +223,6 @@ export default class Home extends React.Component {
             .catch((err) => {
                 console.error(err.message);
             });
+
     }
 }

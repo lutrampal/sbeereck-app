@@ -2,16 +2,14 @@ import React from 'react';
 import {TouchableOpacity, View, Text, TextInput, Picker} from 'react-native';
 import styles from './styles';
 import {SelectNumber} from '../SelectNumber';
+import {Linking} from 'react-native'
 
 export default class Header extends React.Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                {this.getMemberInfo()}
-                {this.getEdit()}
-                {this.getUpdateBalance()}
-                {this.getCloseAccount()}
+            <View>
+                {this.getMemberView()}
             </View>
         );
     }it() {
@@ -20,7 +18,10 @@ export default class Header extends React.Component {
     getPhone() {
         if(this.props.phone != null)
         {
-            return (<Text style={styles.line}>Téléphone : {this.props.phone}</Text>)
+            return (
+                <TouchableOpacity onPress={() => Linking.openURL('tel:' + this.props.phone)}>
+                    <Text style={styles.linkLine}>Téléphone : {this.props.phone}</Text>
+                </TouchableOpacity>)
         }
     }
 
@@ -59,77 +60,53 @@ export default class Header extends React.Component {
         else return (<View />);
     }
 
-    getEdit() {
+    getMemberView() {
         if (!this.props.editing) {
-            return (
-                <TouchableOpacity onPress={() => this.props.onEditPress(this.props.viewItem)}
-                                  style={styles.validateButton}>
-                    <Text style={styles.validateText}>Editer</Text>
-                </TouchableOpacity>
-            )
-        } else {
-            return (
-                <View>
-                    <TouchableOpacity onPress={() => this.props.onValidateEditPress(this.props.viewItem)}
-                                      style={styles.validateButton}>
-                        <Text style={styles.validateText}>Valider</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => this.props.onCancelEditPress()}
-                                      style={styles.suppressButton}>
-                        <Text style={styles.validateText}>Annuler</Text>
-                    </TouchableOpacity>
-                </View>
-            )
-
-        }
-    }
-
-    getUpdateBalance() {
-        if (!this.props.editing) {
-            return (
-                <TouchableOpacity onPress={() => this.props.onUpdateBalancePress(this.props.viewItem)}
-                                  style={styles.validateButton}>
-                    <Text style={styles.validateText}>Mettre à jour la balance</Text>
-                </TouchableOpacity>
-            )
-        }
-    }
-
-    getCloseAccount() {
-        if (!this.props.editing) {
-            return (
-                <TouchableOpacity onPress={() => this.props.onCloseAccountPress(this.props.viewItem)}
-                                  style={styles.suppressButton}>
-                    <Text style={styles.validateText}>Clôturer le compte</Text>
-                </TouchableOpacity>
-            )
-        }
-    }
-
-    getMemberInfo() {
-        if (!this.props.editing) {
-            return <View>
-                <Text style={styles.addTitle}>{this.props.viewItem.first_name} {this.props.viewItem.last_name}</Text>
-
-                <Text style={styles.line}>Balance</Text>
-                <SelectNumber
-                    priceValue={this.props.balanceValue.toString()}
-                    onChangeText={(value) => this.props.onChangeBalance(value)}
-                    onMorePress={() => this.props.onMorePress()}
-                    onLessPress={() => this.props.onLessPress()} />
-                <Text style={styles.line}>Email : {this.props.email}</Text>
-                <Text style={styles.line}>École : {this.props.school}</Text>
-                {this.getPhone()}
-                {this.getMembership()}
-                {this.getCotisation()}
-            </View>
+            return this.getInfoView()
         } else {
             return this.getEditView()
         }
     }
 
+    getInfoView() {
+        return <View style={{flex: 1}}>
+            <Text style={styles.addTitle}>{this.props.viewItem.first_name} {this.props.viewItem.last_name}</Text>
+
+            <Text style={styles.line}>Balance</Text>
+            <SelectNumber
+                priceValue={this.props.balanceValue.toString()}
+                onChangeText={(value) => this.props.onChangeBalance(value)}
+                onMorePress={() => this.props.onMorePress()}
+                onLessPress={() => this.props.onLessPress()} />
+            <Text style={styles.line}>École : {this.props.school}</Text>
+            <TouchableOpacity onPress={() => Linking.openURL('mailto:' + this.props.email)}>
+                <Text style={styles.linkLine}>Email : {this.props.email}</Text>
+            </TouchableOpacity>
+            {this.getPhone()}
+            {this.getMembership()}
+            {this.getCotisation()}
+            <TouchableOpacity onPress={() => this.props.onShowTransactionsPress(this.props.viewItem)}
+                              style={styles.validateButton}>
+                <Text style={styles.validateText}>Voir les transactions</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.onEditPress(this.props.viewItem)}
+                              style={styles.validateButton}>
+                <Text style={styles.validateText}>Editer</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.onUpdateBalancePress(this.props.viewItem)}
+                              style={styles.validateButton}>
+                <Text style={styles.validateText}>Mettre à jour la balance</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.onCloseAccountPress(this.props.viewItem)}
+                              style={styles.suppressButton}>
+                <Text style={styles.validateText}>Clôturer le compte</Text>
+            </TouchableOpacity>
+        </View>
+
+    }
+
     getEditView() {
-        return (<View>
+        return (<View style={{flex: 1}}>
             <Text style={styles.addTitle}>Editer {this.props.viewItem.first_name} {this.props.viewItem.last_name}</Text>
 
             <TextInput autoCorrect={false} style={styles.editableLine} defaultValue={this.props.viewItem.first_name}
@@ -153,6 +130,16 @@ export default class Header extends React.Component {
                 <Picker.Item label="CPP" value="CPP" />
                 <Picker.Item label="Autre" value="Autre" />
             </Picker>
+            <View>
+                <TouchableOpacity onPress={() => this.props.onValidateEditPress(this.props.viewItem)}
+                                  style={styles.validateButton}>
+                    <Text style={styles.validateText}>Valider</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.onCancelEditPress()}
+                                  style={styles.suppressButton}>
+                    <Text style={styles.validateText}>Annuler</Text>
+                </TouchableOpacity>
+            </View>
         </View>)
     }
 }

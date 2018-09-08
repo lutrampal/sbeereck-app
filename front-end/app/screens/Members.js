@@ -10,6 +10,9 @@ import {Popup} from '../components/Popup';
 import {Loading} from '../components/Loading';
 import {ViewMember} from '../components/ViewMember';
 import {AddMember} from '../components/AddMember';
+import * as RNFS from "react-native-fs"
+import {open} from "react-native-share"
+import Toast from "react-native-simple-toast"
 
 EStyleSheet.build({
     $mainBackground: '#F9F9F9'
@@ -82,7 +85,7 @@ export default class Home extends React.Component {
                 this.initiateMembers();
             }
         } catch (error) {
-            alert("Erreur lors du chargement des paramètres.\n" + error);
+            Toast.show("Erreur lors du chargement des paramètres.\n" + error);
             this.setState({loading: false});
         }
     }
@@ -151,6 +154,8 @@ export default class Home extends React.Component {
                     })
                 }}/>
 
+                <YellowButton top={true} buttonIcon="table" buttonAction={() => {this.exportMembers()}}/>
+
                 <Popup shown={this.state.viewPopup}
                        toggleState={() => this.setState({viewPopup: !this.state.viewPopup})}>
                     <ViewMember
@@ -194,6 +199,10 @@ export default class Home extends React.Component {
                                 ],
                                 {cancelable: false}
                             )
+                        }}
+
+                        onShowTransactionsPress={(item) => {
+                            this.showMemberTransactions(item)
                         }}
 
                         onUpdateBalancePress={(item) => {
@@ -399,6 +408,28 @@ export default class Home extends React.Component {
         }
     }
 
+    async getFullMembers() {
+        await this.checkConnection();
+
+        this.setState({loading: true});
+
+        try {
+            let response = await fetch('https://' + this.state.appHost + '/members/full',
+                {
+                    headers: {
+                        'authentication-token': this.state.appToken
+                    }
+                });
+
+            let response_body = await response.json();
+
+            this.setState({fullMembers: response_body, loading: false});
+        } catch (error) {
+            this.setState({loading: false});
+            console.log(error);
+        }
+    }
+
     async checkConnection() {
         try {
             let response = await fetch('https://' + this.state.appHost + '/default_price/normal_beer',
@@ -445,7 +476,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Balance mise à jour !");
+                Toast.show("Balance mise à jour !");
             }
         } catch (error) {
             console.log(error);
@@ -477,7 +508,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Utilisateur créé !");
+                Toast.show("Utilisateur créé !");
                 this.setState({
                     newMemberFirstName: "",
                     newMemberLastName: "",
@@ -507,7 +538,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Compte clôturé !");
+                Toast.show("Compte clôturé !");
             }
         } catch (error) {
             console.log(error);
@@ -530,7 +561,7 @@ export default class Home extends React.Component {
                     });
 
                 this.initiateMembers();
-                alert("Cotisation renouvelée !");
+                Toast.show("Cotisation renouvelée !");
             }
         } catch (error) {
             console.log(error);
@@ -605,6 +636,54 @@ export default class Home extends React.Component {
             return "0";
         else
             return text.toString().replace(",", ".");
+    }
+
+    async exportMembers() {
+        this.setState({loading: true});
+        await this.getFullMembers();
+
+        let selectedMembersIds = this.state.members.map(member => member.id)
+        let selectedMembers = this.state.fullMembers.filter(value => selectedMembersIds.indexOf(value.id) !== -1)
+
+        let csv = "Prénom,Nom,Solde,Ecole,Email,Téléphone,Dernière cotisation,Ancien staff ?\n"
+        /* CSV formatting:
+         *  - each value is double quoted to escape commas
+         *  - each double quote in value is doubled to escape it
+         */
+        selectedMembers.forEach((m) => {
+            csv += '"' + m.first_name + '","' + m.last_name + '","'
+                + m.balance.toString().replace(/\./g, ',').replace(/ /g,'') + '","' + m.school + '","' + m.email + '","'
+                + m.phone + '","' + m.last_membership_payment + '","' + (m.is_former_staff ? 1 : 0) + '"\n'
+        })
+        let path = RNFS.DocumentDirectoryPath + '/membres.csv';
+        RNFS.writeFile(path, csv, 'ascii')
+            .then((success) => {
+                this.setState({loading: false});
+                open({
+                    title: 'Exporter les membres sélectionnés',
+                    url: 'file://' + path,
+                    type: 'text/csv',
+                    showAppsToView: true,
+                })
+            })
+            .catch((err) => {
+                console.error(err.message);
+                this.setState({loading: false});
+            });
+    }
+
+    showMemberTransactions(item) {
+        this.setState({
+            viewPopup: false
+        })
+        this.props.navigation.navigate('MemberTransactions', {
+            memberId: item.id,
+            memberFirstName: item.first_name,
+            memberLastName: item.last_name,
+            refreshItems: (() => {
+                this.initiateMembers()
+            }).bind(this)
+        })
     }
 
 }

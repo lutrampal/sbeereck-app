@@ -8,7 +8,7 @@ export default class Header extends React.Component {
         return (
             <TouchableOpacity
                 onPress={() => this.props.buttonAction()}
-                style={styles.container}
+                style={this.props.top ? styles.topContainer : styles.bottomContainer}
             >
                 <Icon
                     name={this.props.buttonIcon}

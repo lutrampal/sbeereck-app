@@ -6,7 +6,7 @@ import styles from './styles';
 export default class Header extends React.Component {
     render() {
         return (
-            <View style={[styles.container, this.showInput()]}>
+            <View style={[styles.bottomContainer, this.showInput()]}>
                 <View style={[styles.textContainer]}>
                     <Icon
                         name="search"

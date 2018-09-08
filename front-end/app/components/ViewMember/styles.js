@@ -17,6 +17,12 @@ export default styles = EStyleSheet.create({
         fontSize: 18,
         marginTop: 10,
     },
+    linkLine: {
+        fontSize: 18,
+        marginTop: 10,
+        color: "#2d89ef",
+        fontStyle: 'italic',
+    },
     editableLine: {
         fontSize: 18,
         marginTop: 10,
