@@ -11,7 +11,7 @@ class Parties(Resource):
         if not is_token_valid(args['authentication-token'], connection):
             connection.close()
             abort(403)
-        query = "SELECT party_id, name, date, number_of_attendees, revenue, topup " \
+        query = "SELECT party_id, name, date, number_of_attendees, revenue, topup, balance " \
                 "FROM party_list"
         parties = []
         with connection.cursor() as cursor:
@@ -26,13 +26,17 @@ class Parties(Resource):
                 topup = row['topup']
                 if topup is None:
                     topup = 0
+                balance = row['balance']
+                if balance is None:
+                    balance = 0
                 parties.append({
                     'id': row['party_id'],
                     'name': row['name'],
                     'date': str(row['date']),
                     'number_of_attendees': number_of_attendees,
                     'revenue': revenue,
-                    'topup': topup
+                    'topup': topup,
+                    'balance': balance
                 })
         connection.close()
         return parties, 201
