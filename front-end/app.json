@@ -2,7 +2,7 @@
   "name": "sbeereck",
   "displayName": "S'Beer Eck",
   "icon": "./app-icon.png",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "slug": "sbeereck",
   "ios": {
     "bundleIdentifier": "com.dylanfayant.sbeereck"
